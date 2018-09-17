@@ -4,7 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
   entry: {
-    app: './src/react-apps/index.js',
+    app: './src/index.js',
     vendor: ['react', 'react-dom', 'react-router', 'react-router-dom']
   },
   plugins: [
