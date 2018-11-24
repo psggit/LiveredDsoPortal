@@ -9,13 +9,14 @@
     "watch": "webpack --watch",
     "start:dev": "NODE_ENV=development webpack-dev-server --config webpack.dev.js --history-api-fallback",
     "dev-server": "NODE_ENV=production node server.js",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production babel-node --presets es2015 server.js"
   },
   "author": "Madhur Garg <madhur@hipbar.com>",
   "license": "ISC",
   "devDependencies": {
     "babel-loader": "^7.1.4",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
@@ -40,9 +41,10 @@
     "webpack-merge": "^4.1.2"
   },
   "dependencies": {
+    "@auth0/cosmos": "^0.5.2",
     "express": "^4.16.3",
-    "lodash": "^4.17.10",
     "react": "^16.3.2",
+    "react-day-picker": "^7.2.4",
     "react-dom": "^16.3.2",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2"

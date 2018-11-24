@@ -1,4 +1,8 @@
 {
   "presets": ["es2015", "react"],
-  "plugins": ["syntax-dynamic-import"]
+  "plugins": [
+    "syntax-dynamic-import",
+    "syntax-object-rest-spread",
+    "transform-class-properties"
+  ]
 }

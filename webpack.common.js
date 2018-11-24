@@ -1,11 +1,18 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const webpack = require('webpack')
 
 module.exports = {
   entry: {
     app: './src/index.js',
     vendor: ['react', 'react-dom', 'react-router', 'react-router-dom']
+  },
+  resolve: {
+    alias: {
+      Components: path.resolve(__dirname, 'src/components'),
+      Utils: path.resolve(__dirname, 'src/utils')
+    }
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
