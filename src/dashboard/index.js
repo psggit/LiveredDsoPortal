@@ -9,6 +9,7 @@ import LiveOttp from './live-ottp-list'
 import HistoryOttp from './history-ottp-list'
 import { Alert } from '@auth0/cosmos'
 import unmountNotify from 'Components/notify/utils'
+import Header from 'Components/header';
 
 const history = createHistory()
 
@@ -36,15 +37,16 @@ class App extends React.Component {
         style={{
           backgroundColor: '#fbfbfb',
           width: '100%',
-          maxWidth: '1440px',
+          //maxWidth: '1980px',
           margin: '0 auto',
           height: '100vh',
           overflow: 'auto'
         }}
       >
-        <Navbar />
+        {/* <Navbar /> */}
+        <Header />
         <div style={{ display: 'flex' }}>
-          <SideMenu
+          {/* <SideMenu
             history={history}
             menuItems={[
               { label: 'Summary', value: 'summary' },
@@ -54,7 +56,7 @@ class App extends React.Component {
               { label: 'Manage API Keys', value: 'manage-api-keys' }
             ]}
             currentRoute={this.state.currentRoute}
-          />
+          /> */}
           <Router history={history}>
             <Switch>
               <Route

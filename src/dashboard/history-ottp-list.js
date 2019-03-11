@@ -7,7 +7,7 @@ import { Spinner, Alert } from '@auth0/cosmos'
 import Layout from './layout'
 import { POST } from 'Utils/fetch'
 import { getTodayAndTomorrow, format } from 'Utils/date-utils'
-import iconsMap from 'Utils/getIcon'
+//import iconsMap from 'Utils/getIcon'
 import DatePicker from 'Components/date-picker'
 import Notify from 'Components/notify'
 
