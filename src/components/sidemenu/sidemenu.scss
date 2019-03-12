@@ -1,18 +1,14 @@
 .side-menu {
   position: fixed;
-  top: 62px;
+  top: 74px;
   left: 0;
-  width: 240px;
-  height: calc(100vh - 62px);
-  background: #475f6c;
-  // border-right: 1px solid #D6DAE3;
+  width: 250px;
+  height: calc(100vh - 74px);
+  background: #152935;
   box-shadow: 0px 0px 4px 1px rgba(21, 19, 19, 0.9);
   .side-menu__item {
     width: 100%;
-    background-color: #475f6c;
-    &:not(:last-child) {
-      border-bottom: 1px solid #dfdfdf;
-    }
+    background-color: #152935;
     a {
       font-size: 14px;
       font-weight: 400;
@@ -22,11 +18,15 @@
       width: 100%;
       text-decoration: none;
       color: #fff;
+      span {
+        display: inline-block;
+        width: 40px;
+      }
     }
     &.active, &:hover {
-      background-color: #fff;
+      background-color: #2c4555;
       a {
-        color: #333;
+        color: #fff;
       }
     }
   }

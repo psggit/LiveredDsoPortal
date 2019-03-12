@@ -10,6 +10,7 @@ import HistoryOttp from './history-ottp-list'
 import { Alert } from '@auth0/cosmos'
 import unmountNotify from 'Components/notify/utils'
 import Header from 'Components/header';
+import { menuItems } from './../const/nav-items'
 
 const history = createHistory()
 
@@ -46,17 +47,11 @@ class App extends React.Component {
         {/* <Navbar /> */}
         <Header />
         <div style={{ display: 'flex' }}>
-          {/* <SideMenu
+          <SideMenu
             history={history}
-            menuItems={[
-              { label: 'Summary', value: 'summary' },
-              { value: 'live-ottp', label: 'In Progress OTTP' },
-              { value: 'history-ottp', label: 'OTTP History' },
-              { label: 'Account', value: 'account' },
-              { label: 'Manage API Keys', value: 'manage-api-keys' }
-            ]}
+            menuItems={menuItems}
             currentRoute={this.state.currentRoute}
-          /> */}
+          />
           <Router history={history}>
             <Switch>
               <Route
