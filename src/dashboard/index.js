@@ -1,16 +1,13 @@
 import React from 'react'
 import SideMenu from 'Components/sidemenu'
-import Navbar from 'Components/navbar'
 import createHistory from 'history/createBrowserHistory'
 import { Route, Switch } from 'react-router-dom'
 import { Router } from 'react-router'
 import Account from './Account'
-import LiveOttp from './live-ottp-list'
-import HistoryOttp from './history-ottp-list'
-import { Alert } from '@auth0/cosmos'
 import unmountNotify from 'Components/notify/utils'
 import Header from 'Components/header';
 import { menuItems } from './../const/nav-items'
+import 'Sass/app.scss'
 
 const history = createHistory()
 
@@ -64,7 +61,7 @@ class App extends React.Component {
                 }
               />
 
-              <Route
+              {/* <Route
                 exact
                 path="/home/live-ottp"
                 render={
@@ -82,7 +79,7 @@ class App extends React.Component {
                     <HistoryOttp {...props} />
                   )
                 }
-              />
+              /> */}
             </Switch>
           </Router>
         </div>

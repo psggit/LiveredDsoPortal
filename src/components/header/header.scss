@@ -1,17 +1,19 @@
 #pageHeader {
-  height: 74px;
+  height: 84px;
   background: #fafafa;
+  //border: 1px solid #fafafa;
   .logo {
-    padding: 10px 30px 10px 56px;
+    padding: 20px 30px 20px 56px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border: 1px solid #dfe3e6;
   }
 
-  div.line {
-    background: #152935;
-    height: 10px;
-  }
+  // div.line {
+  //   background: #152935;
+  //   height: 10px;
+  // }
 
   .icon {
     cursor: pointer;

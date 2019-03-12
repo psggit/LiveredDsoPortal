@@ -1,9 +1,9 @@
 .side-menu {
   position: fixed;
-  top: 74px;
+  top: 86px;
   left: 0;
   width: 250px;
-  height: calc(100vh - 74px);
+  height: calc(100vh - 86px);
   background: #152935;
   box-shadow: 0px 0px 4px 1px rgba(21, 19, 19, 0.9);
   .side-menu__item {
@@ -12,7 +12,7 @@
     a {
       font-size: 14px;
       font-weight: 400;
-      font-family: 'Montserrat', sans-serif;
+      //font-family: 'Montserrat', sans-serif;
       display: block;
       padding: 20px 20px;
       width: 100%;

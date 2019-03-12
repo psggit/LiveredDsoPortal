@@ -1,7 +1,7 @@
 import React from "react";
 import "./header.scss";
 import Icon from "./../icon";
-import Dialog from "./../dialog";
+//import Dialog from "./../dialog";
 import Button from "./../button";
 import { POST } from "Utils/fetch";
 
@@ -63,7 +63,7 @@ class Header extends React.Component {
 
   handleClick() {
     console.log("click")
-    location.href="/home/support"
+    location.href="/home/account"
   }
 
   render() {
@@ -77,12 +77,12 @@ class Header extends React.Component {
             <Icon name="overflowMenu" />
           </span>
         </div>
-        <div className="line"></div>
+        {/* <div className="line"></div> */}
       
         <div
           className={`dropdown-menu ${showDropdown ? "show" : "hide"}`}
         >
-          <div className="menu-item">
+          <div className="menu-item" onClick={this.handleClick}>
             My Account
           </div>
           <div
@@ -93,7 +93,7 @@ class Header extends React.Component {
           </div>
         </div>
         
-        {showLogoutModal && (
+        {/* {showLogoutModal && (
           <Dialog
             title="Do you want to logout?"
             actions={[
@@ -105,7 +105,7 @@ class Header extends React.Component {
               </Button>
             ]}
           />
-        )}
+        )} */}
       </div>
     );
   }

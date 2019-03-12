@@ -3,19 +3,19 @@ import React from 'react'
 const Layout = ({ title, children }) => (
   <div
     style={{
-    marginLeft: '240px',
-    marginTop: '62px',
-    padding: '60px',
-    width: 'calc(100% - 240px)'
+    marginLeft: '250px',
+    //marginTop: '62px',
+    padding: '70px',
+    width: 'calc(100% - 250px)'
   }}
   >
     <p
       style={{
-      color: '#4a4a4a',
+      color: '#152935',
       fontSize: '22px',
-      fontWeight: '600',
-      paddingBottom: '20px',
-      borderBottom: '1px solid #dfdfdf'
+      //fontWeight: '600',
+      marginBottom: '30px',
+      //borderBottom: '1px solid #dfdfdf'
     }}
     >
       { title }
