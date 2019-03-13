@@ -15,21 +15,23 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      currentRoute: location.pathname.split('/')[2] || 'live-ottp',
+      currentRoute: location.pathname.split('/')[2] || '',
+      key: 0,
+      isLoggedIn: false
     }
   }
 
   componentDidMount() {
     history.listen((loction) => {
+      console.log("history")
       const newRoute = location.pathname.split('/')[2]
-      if (newRoute !== this.state.currentRoute) {
-        unmountNotify()
-        this.setState({ currentRoute: newRoute })
-      }
+      const { key } = this.state
+      this.setState({ key: key + 1, currentRoute: newRoute })
     })
   }
 
   render() {
+    const { isLoggedIn } = this.state
     return (
       <div
         style={{
@@ -42,7 +44,7 @@ class App extends React.Component {
         }}
       >
         {/* <Navbar /> */}
-        <Header />
+        <Header isLoggedIn={isLoggedIn} />
         <div style={{ display: 'flex' }}>
           <SideMenu
             history={history}

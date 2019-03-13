@@ -1,15 +1,16 @@
 import React from "react";
 import "./header.scss";
 import Icon from "./../icon";
-//import Dialog from "./../dialog";
+import Dialog from "./../dialog";
 import Button from "./../button";
 import { POST } from "Utils/fetch";
 
 class Header extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      showLogoutModal: false
+      showLogoutModal: false,
+      isLoggedIn: props.isLoggedIn
     }
     this.logout = this.logout.bind(this)
     this.mountLogoutModal = this.mountLogoutModal.bind(this)
@@ -73,12 +74,15 @@ class Header extends React.Component {
      
         <div className="logo">
           <Icon name="liveredLogo" />
-          <span onClick={this.openDropdown} className="icon">
-            <Icon name="overflowMenu" />
-          </span>
+          {
+            this.state.isLoggedIn &&
+            <span onClick={this.openDropdown} className="icon">
+              <Icon name="overflowMenu" />
+            </span>
+          }
         </div>
-        {/* <div className="line"></div> */}
       
+       
         <div
           className={`dropdown-menu ${showDropdown ? "show" : "hide"}`}
         >
@@ -93,9 +97,10 @@ class Header extends React.Component {
           </div>
         </div>
         
-        {/* {showLogoutModal && (
+        {showLogoutModal && (
           <Dialog
             title="Do you want to logout?"
+            onClick={this.unMountLogoutModal}
             actions={[
               <Button onClick={() => this.unMountLogoutModal()} secondary>
                 No
@@ -105,7 +110,7 @@ class Header extends React.Component {
               </Button>
             ]}
           />
-        )} */}
+        )}
       </div>
     );
   }

@@ -22,15 +22,22 @@ class SideMenu extends React.Component {
         {
           menuItems.map((item, i) => (
             <div key={i} className={`side-menu__item ${this.checkActiveClass(item.value)}`}>
-              <a
-                href={`/home/${item.value}`}
-                onClick={(e) => { this.handleChangeRoute(e, item.value) }}
-              >
-                <span>
-                  <Icon name={item.icon} />
-                </span>
-                { item.label }
-              </a>
+              {
+                item.label !== "Seperator" &&
+                <a
+                  href={`/home/${item.value}`}
+                  onClick={(e) => { this.handleChangeRoute(e, item.value) }}
+                >
+                  <span>
+                    <Icon name={item.icon} />
+                  </span>
+                  { item.label }
+                </a>
+              }
+              {
+                item.label === "Seperator" &&
+                <p></p>
+              }
             </div>
           ))
         }

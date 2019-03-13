@@ -21,3 +21,65 @@
     color:#3d70b2;
   }
 }
+
+input[type='text'], input[type='password'], input[type='number'] {
+  width: 225px;
+  height: 40px;
+  background-color: rgba(61, 112, 178, 0.1);
+  border: 0;
+  padding: 0 10px;
+  color: #222;
+  font-size: 14px;
+  &:focus {
+    outline: 0;
+  }
+}
+
+textarea {
+  background-color: rgba(61, 112, 178, 0.1);
+}
+
+input[type='date'] {
+  width: 225px;
+  height: 40px;
+  background-color: rgba(61, 112, 178, 0.1);
+  border: 0;
+  padding: 10px 10px 10px 30px;
+  color: #222;
+  font-size: 14px;
+  &:focus {
+    outline: 0;
+  }
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  //background: transparent;
+  cursor: pointer;
+}
+
+input.error {
+  border: 1px solid #d0021b;
+}
+
+label {
+  display: block;
+  font-weight: 300;
+  color: #6B7891;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+
+.form-group:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.form-group button:not(:last-child) {
+  margin-right: 20px;
+}
+
+.form-group .__error {
+  color: #e71d32;
+  font-size: 12px;
+  margin-top: 5px;
+}

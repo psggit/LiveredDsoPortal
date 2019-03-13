@@ -1,14 +1,15 @@
 .side-menu {
   position: fixed;
-  top: 86px;
+  top: 76px;
   left: 0;
   width: 250px;
-  height: calc(100vh - 86px);
-  background: #152935;
-  box-shadow: 0px 0px 4px 1px rgba(21, 19, 19, 0.9);
+  height: calc(100vh - 76px);
+  background: #2d3f49;
+  padding-top: 20px;
+  //box-shadow: 0px 0px 4px 1px rgba(21, 19, 19, 0.9);
   .side-menu__item {
     width: 100%;
-    background-color: #152935;
+    background-color: #2d3f49;
     a {
       font-size: 14px;
       font-weight: 400;
@@ -28,6 +29,11 @@
       a {
         color: #fff;
       }
+    }
+
+    p {
+      border-bottom: 1px solid #f8f8f8;
+      margin: 10px 20px;
     }
   }
 }
