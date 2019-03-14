@@ -6,8 +6,10 @@ import { createSession } from "./session"
 import Notify from "Components/notification"
 import Header from "Components/header"
 import Label from "Components/label"
-import { validateEmail, validateTextField } from "Utils/validators"
+// import { validateEmail, validateTextField } from "Utils/validators"
 import './login.scss'
+import TextInput from "Components/form-inputs/text-input"
+import EmailInput from "Components/form-inputs/email-input"
 
 class Login extends React.Component {
   constructor() {
@@ -28,8 +30,8 @@ class Login extends React.Component {
     }
 
     this.handleLogin = this.handleLogin.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePassword = this.handlePassword.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    // this.handlePassword = this.handlePassword.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleClick = this.handleClick.bind(this)
   }
@@ -41,20 +43,20 @@ class Login extends React.Component {
   }
 
   handleLogin() {
-    const { email, password } = this.state
-    const emailErr = validateEmail({
-      fieldName: "Email ID",
-      fieldValue: email
-    })
-    this.setState({ emailErr })
+    const { email, password, passwordErr, emailErr } = this.state
+    // const emailErr = validateEmail({
+    //   fieldName: "Email ID",
+    //   fieldValue: email
+    // })
+    // this.setState({ emailErr })
 
-    const passwordErr = validateTextField({
-      fieldName: "Password",
-      fieldValue: password
-    })
-    this.setState({ passwordErr })
+    // const passwordErr = validateTextField({
+    //   fieldName: "Password",
+    //   fieldValue: password
+    // })
+    // this.setState({ passwordErr })
 
-    if (!emailErr.status && !passwordErr.status) {
+    if (password.length && email.length && !passwordErr.status && !emailErr.status) {
       this.setState({ isSubmitting: true })
       POST({
         api: "/retailer/auth/login",
@@ -73,15 +75,30 @@ class Login extends React.Component {
         .catch((error) => {
           this.setState({ showLoginErr: true })
         })
+    } else {
+      this.setState({ showLoginErr: true })
     }
   }
 
-  handlePassword(e) {
-    this.setState({ password: e.target.value, showLoginErr: false })
-  }
-
-  handleEmailChange(e) {
-    this.setState({ email: e.target.value, showLoginErr: false })
+  handleChange(fieldStatusObj) {
+    this.setState({ showLoginErr: false })
+    const errName = `${fieldStatusObj.fieldName}Err`
+    if (!fieldStatusObj.status) {
+      this.setState({
+        [fieldStatusObj.fieldName]: fieldStatusObj.fieldValue,
+        [errName]: {
+          status: fieldStatusObj.status,
+          value: fieldStatusObj.value
+        }
+      })
+    } else {
+      this.setState({
+        [errName]: {
+          status: fieldStatusObj.status,
+          value: fieldStatusObj.value
+        }
+      })
+    }
   }
 
   handleClick() {
@@ -89,68 +106,61 @@ class Login extends React.Component {
   }
 
   render() {
-    const submittingStyle = {
-      cursor: "progress",
-      opacity: "0.7"
-    }
     const { emailErr, passwordErr } = this.state
     return (
       <React.Fragment>
         <Header isLoggedIn={false} />
+
         <div id="login" className="container">
-        <div className="wrapper">
-          <h3 className="title">
-            Login
-          </h3>
-          <div className="body">
-            <React.Fragment>
-              <div className="form-group">
-                <Label>Email Id</Label>
-                <input
-                  spellCheck={false}
-                  onKeyDown={this.handleKeyPress}
-                  onChange={this.handleEmailChange}
-                  style={{ width: "100%" }}
-                  type="text"
-                  name="email"
-                  autoComplete="off"
-                  className={`${emailErr.status ? "error" : undefined}`}
-                />
-                {emailErr.status && <p className="__error">{emailErr.value}</p>}
-              </div>
-              <div className="form-group">
-                <Label>Password</Label>
-                <input
-                  onKeyDown={this.handleKeyPress}
-                  onChange={this.handlePassword}
-                  style={{ width: "100%" }}
-                  type="password"
-                  name="password"
-                  className={`${passwordErr.status ? "error" : undefined}`}
-                />
-                {passwordErr.status && (
-                  <p className="__error">{passwordErr.value}</p>
-                )}
-              </div>
-              <div className="form-group" style={{ textAlign: "center" }}>
-                <Button
-                  onClick={this.handleLogin}
-                  className={`${this.state.isSubmitting} ? 'submit-btn' : ''`}
-                  // style={
-                  //   this.state.isSubmitting
-                  //     ? submittingStyle
-                  //     : { boxShadow: "0 2px 4px 0 #333" }
-                  // }
-                  primary
-                >
-                  Login
-                </Button>
-              </div>
-              <p className="footer" onClick={this.handleClick}>
-                Having trouble? Contact Support
-              </p>
-            </React.Fragment>
-          </div>
+          <div className="wrapper">
+            <h3 className="title">
+              Login
+            </h3>
+            <div className="body">
+              <React.Fragment>
+                <div className="form-group">
+                  <Label>Email Id</Label>
+                  {/* <input
+                    spellCheck={false}
+                    onKeyDown={this.handleKeyPress}
+                    onChange={this.handleEmailChange}
+                    //style={{ width: "100%" }}
+                    type="text"
+                    name="email"
+                    autoComplete="off"
+                    className={`${emailErr.status ? "error" : undefined}`}
+                  /> */}
+                  <EmailInput name="email" type="text" onChange={this.handleChange}/>
+                  {emailErr.status && <p className="__error">{emailErr.value}</p>}
+                </div>
+                <div className="form-group">
+                  <Label>Password</Label>
+                  <TextInput name="password" type="password" onChange={this.handleChange}/>
+                  {/* <input
+                    onKeyDown={this.handleKeyPress}
+                    onChange={this.handlePassword}
+                    //style={{ width: "100%" }}
+                    type="password"
+                    name="password"
+                    className={`${passwordErr.status ? "error" : undefined}`}
+                  /> */}
+                  {passwordErr.status && (
+                    <p className="__error">{passwordErr.value}</p>
+                  )}
+                </div>
+                <div className="form-group" style={{ textAlign: "center" }}>
+                  <Button
+                    onClick={this.handleLogin}
+                    primary
+                  >
+                    Login
+                  </Button>
+                </div>
+                <p className="footer" onClick={this.handleClick}>
+                  Having trouble? Contact Support
+                </p>
+              </React.Fragment>
+            </div>
             {this.state.showLoginErr && (
               <p className="login-error">
                 Wrong username or password
