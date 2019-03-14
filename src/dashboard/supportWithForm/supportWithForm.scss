@@ -1,4 +1,8 @@
 #supportForm {
+  .sub-header {
+    font-size: 18px;
+    margin-top: 10px;
+  }
   .main-container {
     display: flex;
     margin-top: 40px;
@@ -21,7 +25,7 @@
       justify-content: center;
       padding: 40px;
       
-      p {
+      .contact-link {
         font-size: 18px;
         margin-top: 10px;
       }
@@ -38,12 +42,15 @@
       .footer {
         margin-top: 40px;
         font-size: 18px;
+        
         .title {
           color: #152935;
           font-weight: 600;
+          margin-top: 10px;
         }
         .text {
           color: #000;
+          margin-top: 10px;
         }
       }
     }
