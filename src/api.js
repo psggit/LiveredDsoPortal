@@ -1,4 +1,5 @@
 import { POST } from 'Utils/fetch'
+import Notify from "Components/notify"
 
 export function createComplaint (payloadObj, successCallback, failureCallback) {
   console.log("data", payloadObj)
@@ -9,11 +10,11 @@ export function createComplaint (payloadObj, successCallback, failureCallback) {
       data: payloadObj
   })
   .then((json) => {
-      Notify("success", "Successfully created organization")
+      Notify("success", "Complaint created")
       successCallback(json)
   })
   .catch(err => {
-      console.log("Error in creating organization", err)
+      console.log("Error in creating complaint", err)
       err.response.json().then(json => { Notify("danger", json.error) })
       failureCallback()
   })

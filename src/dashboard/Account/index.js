@@ -1,7 +1,8 @@
 import React from 'react'
 import {accountData} from './../mock-data'
 import DataTable from '../../components/table'
-import { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } from 'constants';
+import PageHeader from "Components/pageheader"
+// import { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } from 'constants';
 
 class Account extends React.Component {
 
@@ -33,7 +34,8 @@ class Account extends React.Component {
   render() {
     const {activeTab} = this.state
     return (
-      <div>
+      <div id="myAccount">
+        <PageHeader pageName="My Account" />
         <div style={{display: 'flex', marginBottom: '40px', marginTop: '4px'}}>
           <ul className="nav">
             <li 

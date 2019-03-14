@@ -18,20 +18,19 @@ class SupportForm extends React.Component {
     this.createComplaint({
       name: formData.name,
       email: formData.email,
-      //state_short_name: "TN",
       reason: formData.reason,
       urgency: formData.urgencyLevel,
       message: formData.message,
       confirmation: formData.isConfirmation,
       dso_id: "SW123"
-    })
+    }, this.successCallback, this.failureCallback)
   }
 
-  successCallback() {
+  successCallback(response) {
     console.log("success")
   }
 
-  failureCallback() {
+  failureCallback(error) {
     console.log("failue")
   }
 

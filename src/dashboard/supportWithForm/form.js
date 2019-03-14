@@ -78,13 +78,12 @@ class TicketForm extends React.Component {
 
   handleSelectChange(e, fieldName) {
     if(fieldName.includes("reason")) {
-      console.log("reason", this.reason.find((item) => item.value === parseInt(e.target.value)).text)
+      // console.log("reason", this.reason.find((item) => item.value === parseInt(e.target.value)).text)
       this.setState({
         selectedReasonIdx: parseInt(e.target.value),
         reason: this.reason.find((item) => item.value === parseInt(e.target.value)).text
       })
     } else {
-      console.log("urgency level", this.urgency_level.find((item) => item.value === parseInt(e.target.value)).text)
       this.setState({
         selectedUrgencyLevelIdx: parseInt(e.target.value),
         urgencyLevel: this.urgency_level.find((item) => item.value === parseInt(e.target.value)).text
@@ -92,6 +91,9 @@ class TicketForm extends React.Component {
     }
   }
 
+  /**
+   * Returns the state object
+   */
   getData() {
     return this.state
   }
