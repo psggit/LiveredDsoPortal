@@ -49,8 +49,8 @@ export default {
   permitsIcon: (
     <svg width="15px" height="16px" viewBox="0 0 15 16" version="1.1">
         <g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-            <g id="MenuBar" transform="translate(-43.000000, -103.000000)" fill="#FFFFFF">
-                <path d="M44.923319,115.716833 L47.9650337,115.716833 L50.5000874,119 L53.0351411,115.716833 L56.0768558,115.716833 C57.1436064,115.716833 58,114.900433 58,113.8835 L58,104.833333 C58,103.8164 57.1436064,103 56.0768558,103 L44.9231442,103 C43.8563936,103 43,103.833333 43,104.833333 L43,113.866501 C43,114.899701 43.8563936,115.716835 44.9231442,115.716835 L44.923319,115.716833 Z M51,105 C52.1070988,105 53,105.892937 53,107 C53,108.107063 52.1070631,109 51,109 C49.8929369,109 49,108.107063 49,107 C49,105.892937 49.8929369,105 51,105 Z M51,110 C53.2063585,110 55,111.793642 55,114 L47,114 C47,111.793642 48.7936415,110 51,110 Z" id="Fill-1"></path>
+            <g id="MenuBar" transform="translate(-27.000000, -156.000000)" fill="#FFFFFF">
+                <path d="M31.9650337,168.716833 L34.5000874,172 L37.0351411,168.716833 L40.0768558,168.716833 C41.1436064,168.716833 42,167.900433 42,166.8835 L42,157.833333 C42,156.8164 41.1436064,156 40.0768558,156 L28.9231442,156 C27.8563936,156 27,156.833333 27,157.833333 L27,166.866501 C27,167.899701 27.8563936,168.716835 28.9231442,168.716835 L31.9650337,168.716833 Z" id="Fill-1"></path>
             </g>
         </g>
     </svg>
@@ -79,11 +79,20 @@ export default {
         </g>
     </svg>
   ),
+  accountIcon: (
+    <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1">
+        <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="MenuBar" transform="translate(-26.000000, -365.000000)" fill="#FFFFFF">
+                <path d="M34.96832,365 C39.92948,365 44,369.00716 44,373.96832 C44,378.92948 39.92966,383 34.96832,383 C30.00698,383 26,378.92966 26,373.96832 C26,369.00698 30.00716,365 34.96832,365 Z M34.9661356,368 C36.6511495,368 38,369.333115 38,371 C38,372.666206 36.6518363,374 34.9661356,374 C33.3481828,374 32,372.666885 32,371 C32,369.333794 33.3481637,368 34.9661356,368 Z M40,380 L30,380 C30.7745481,372.11955 39.2260362,371.881337 40,380 Z" id="Fill-1"></path>
+            </g>
+        </g>
+    </svg>
+  ),
   supportIcon: (
     <svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1">
-        <g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-            <g id="MenuBar" transform="translate(-42.000000, -254.000000)" fill="#FFFFFF">
-                <g id="Group-5" transform="translate(42.000000, 254.000000)">
+        <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="MenuBar" transform="translate(-27.000000, -416.000000)" fill="#FFFFFF">
+                <g id="Group-5" transform="translate(27.000000, 416.000000)">
                     <path d="M11.053277,9 L14.5765427,12.5232657 C15.1411524,13.0878754 15.1411524,14.0119935 14.5765427,14.5765428 C14.0119331,15.1411524 13.0878151,15.1411524 12.5232658,14.5765428 L9,11.0532769 L11.053277,9 Z" id="Fill-1"></path>
                     <polygon id="Fill-2" points="6 5.8959039 4.8959039 7 2 4.1040961 3.1040961 3"></polygon>
                     <polyline id="Fill-3" points="2.11389316 3 1.31264322 3 0 0.886441322 0.886038876 0 2.95760546 1.3553524 3 2.11355868"></polyline>
@@ -157,14 +166,37 @@ export default {
         </svg>
     ),
     'down-small': (
-        <svg width="10px" height="5px" viewBox="0 0 10 5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-            <g id="Rule-Engine" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-                <g id="04-Rule-Engine-Edit" transform="translate(-537.000000, -429.000000)" fill="#3D70B2">
-                    <g id="Group-2" transform="translate(310.000000, 288.000000)">
-                        <polygon id="Shape" transform="translate(232.000000, 143.500000) scale(1, -1) translate(-232.000000, -143.500000) " points="227 146 232 141 237 146"></polygon>
+        <svg width="10px" height="5px" viewBox="0 0 10 5" version="1.1">
+            <g id="Support" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                <g transform="translate(-623.000000, -421.000000)" fill="#152935" id="-g-Select_Active-No-Selection-Copy-2">
+                    <g transform="translate(340.000000, 376.000000)">
+                        <polygon id="Shape" transform="translate(288.000000, 47.500000) scale(1, -1) translate(-288.000000, -47.500000) " points="283 50 288 45 293 50"></polygon>
                     </g>
                 </g>
             </g>
         </svg>
     ),
+    rectangle: (
+        <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1">
+            <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Element/Checkbox/Selected-Copy-2" stroke="#152935" stroke-width="2">
+                    <path d="M15.2222222,1 L2.77777778,1 C1.8,1 1,1.8 1,2.77777778 L1,15.2222222 C1,16.2 1.8,17 2.77777778,17 L15.2222222,17 C16.2,17 17,16.2 17,15.2222222 L17,2.77777778 C17,1.8 16.2,1 15.2222222,1 L15.2222222,1 Z" id="Shape"></path>
+                </g>
+            </g>
+        </svg>
+    ),
+    filledRectangle: (
+        <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1">
+            <g id="Support" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g transform="translate(-340.000000, -661.000000)" id="Checkboxes-Group">
+                    <g transform="translate(340.000000, 659.000000)">
+                        <g id="Element/Checkbox/Selected" transform="translate(0.000000, 2.000000)">
+                            <path d="M16,0 L2,0 C0.9,0 0,0.9 0,2 L0,16 C0,17.1 0.9,18 2,18 L16,18 C17.1,18 18,17.1 18,16 L18,2 C18,0.9 17.1,0 16,0 L16,0 Z M2,9.19230769 L3.4,7.84615385 L7,11.3076923 L14.6,4 L16,5.34615385 L7,14 L2,9.19230769 Z" id="Shape" fill="#152935"></path>
+                            <polygon id="Path" fill="#FFFFFF" points="2 9.19230769 3.4 7.84615385 7 11.3076923 14.6 4 16 5.34615385 7 14"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </svg>
+    )
 }

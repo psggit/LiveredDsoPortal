@@ -20,7 +20,7 @@ class Select extends React.Component {
           className={`select ${this.props.small ? 'small' : ''}`}
           name={this.props.name}
           onChange={this.handleChange}
-          value={this.props.value ? this.props.value : ''}
+          value={this.props.value && this.props.value >= 0  ? this.props.value : ''}
         >
           {
             this.props.name && !this.props.value &&
