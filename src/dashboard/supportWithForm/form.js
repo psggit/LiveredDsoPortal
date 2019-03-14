@@ -35,33 +35,15 @@ class TicketForm extends React.Component {
     }
 
     this.urgency_level = [
-      {
-        text: "Low",
-        value: 1
-      },
-      {
-        text: "Medium",
-        value: 2
-      },
-      {
-        text: "High",
-        value: 3
-      }
+      { text: "Low", value: 1 },
+      { text: "Medium", value: 2 },
+      { text: "High", value: 3 }
     ]
 
     this.reason = [
-      {
-        text: "MRP violation",
-        value: 1
-      },
-      {
-        text: "Late Delivery",
-        value: 2
-      },
-      {
-        text: "reason3",
-        value: 3
-      }
+      { text: "MRP violation", value: 1 },
+      { text: "Late Delivery", value: 2 },
+      { text: "reason3", value: 3 }
     ]
 
     this.handleChange = this.handleChange.bind(this)

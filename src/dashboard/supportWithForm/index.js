@@ -2,6 +2,7 @@ import React from "react"
 import PageHeader from "Components/pageheader"
 import SupportTicketForm from './form'
 import Icon from "Components/icon"
+import * as Api from "./../../api"
 
 class SupportForm extends React.Component {
 
@@ -13,6 +14,29 @@ class SupportForm extends React.Component {
 
   handleFormSubmit() {
     console.log("submit state", this.supportForm.getData())
+    const formData = this.supportForm.getData()
+    this.createComplaint({
+      name: formData.name,
+      email: formData.email,
+      //state_short_name: "TN",
+      reason: formData.reason,
+      urgency: formData.urgencyLevel,
+      message: formData.message,
+      confirmation: formData.isConfirmation,
+      dso_id: "SW123"
+    })
+  }
+
+  successCallback() {
+    console.log("success")
+  }
+
+  failureCallback() {
+    console.log("failue")
+  }
+
+  createComplaint(payloadObj, successCallback, failureCallback) {
+    Api.createComplaint(payloadObj, successCallback, failureCallback)
   }
 
   render() {
