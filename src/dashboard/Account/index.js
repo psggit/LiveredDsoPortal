@@ -1,5 +1,4 @@
 import React from 'react'
-import Layout from './../layout'
 import {accountData} from './../mock-data'
 import DataTable from '../../components/table'
 import { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } from 'constants';
@@ -34,7 +33,7 @@ class Account extends React.Component {
   render() {
     const {activeTab} = this.state
     return (
-      <Layout title="My Account">
+      <div>
         <div style={{display: 'flex', marginBottom: '40px', marginTop: '4px'}}>
           <ul className="nav">
             <li 
@@ -69,7 +68,7 @@ class Account extends React.Component {
             })
           } */}
         </DataTable>
-      </Layout>
+      </div>
     )
   }
 }

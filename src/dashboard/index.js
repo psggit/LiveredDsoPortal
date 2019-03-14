@@ -7,6 +7,8 @@ import Account from './Account'
 import unmountNotify from 'Components/notify/utils'
 import Header from 'Components/header';
 import { menuItems } from './../const/nav-items'
+import SupportForm from './supportWithForm'
+import Layout from 'Components/layout'
 import 'Sass/app.scss'
 
 const history = createHistory()
@@ -17,7 +19,7 @@ class App extends React.Component {
     this.state = {
       currentRoute: location.pathname.split('/')[2] || '',
       key: 0,
-      isLoggedIn: false
+      isLoggedIn: true
     }
   }
 
@@ -32,6 +34,7 @@ class App extends React.Component {
 
   render() {
     const { isLoggedIn } = this.state
+    
     return (
       <div
         style={{
@@ -52,37 +55,35 @@ class App extends React.Component {
             currentRoute={this.state.currentRoute}
           />
           <Router history={history}>
-            <Switch>
-              <Route
-                exact
-                path="/home/account"
-                render={
-                  props => (
-                    <Account {...props} />
-                  )
-                }
-              />
+            <Layout isLoggedIn={isLoggedIn}>
+              <Switch>
+                <Route
+                  exact
+                  path="/home/account"
+                  render={
+                    props => (
+                      <Account {...props} />
+                    )
+                  }
+                />
 
-              {/* <Route
-                exact
-                path="/home/live-ottp"
-                render={
-                  props => (
-                    <LiveOttp {...props} />
-                  )
-                }
-              />
+                <Route
+                  exact
+                  path="/home/support"
+                  component={SupportForm}
+                />
 
-              <Route
-                exact
-                path="/home/history-ottp"
-                render={
-                  props => (
-                    <HistoryOttp {...props} />
-                  )
-                }
-              /> */}
-            </Switch>
+                {/*<Route
+                  exact
+                  path="/home/history-ottp"
+                  render={
+                    props => (
+                      <HistoryOttp {...props} />
+                    )
+                  }
+                /> */}
+              </Switch>
+            </Layout>
           </Router>
         </div>
       </div>
