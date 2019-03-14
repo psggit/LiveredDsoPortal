@@ -5,6 +5,7 @@ import { POST } from "Utils/fetch"
 import { createSession } from "./session"
 import Notify from "Components/notification"
 import Header from "Components/header"
+import Label from "Components/label"
 import { validateEmail, validateTextField } from "Utils/validators"
 import './login.scss'
 
@@ -104,9 +105,7 @@ class Login extends React.Component {
           <div className="body">
             <React.Fragment>
               <div className="form-group">
-                <label style={{ color: "#152935", fontWeight: "500" }}>
-                  Email ID
-                </label>
+                <Label>Email Id</Label>
                 <input
                   spellCheck={false}
                   onKeyDown={this.handleKeyPress}
@@ -120,9 +119,7 @@ class Login extends React.Component {
                 {emailErr.status && <p className="__error">{emailErr.value}</p>}
               </div>
               <div className="form-group">
-                <label style={{ color: "#152935", fontWeight: "500" }}>
-                  Password
-                </label>
+                <Label>Password</Label>
                 <input
                   onKeyDown={this.handleKeyPress}
                   onChange={this.handlePassword}

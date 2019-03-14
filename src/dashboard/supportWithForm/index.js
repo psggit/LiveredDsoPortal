@@ -13,7 +13,7 @@ class SupportForm extends React.Component {
   }
 
   handleFormSubmit() {
-    console.log("submit state", this.supportForm.getData())
+    // console.log("submit state", this.supportForm.getData())
     const formData = this.supportForm.getData()
     this.createComplaint({
       name: formData.name,

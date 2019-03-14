@@ -19,7 +19,7 @@ const mainDivStyleWithoutSideMenu = {
   backgroundColor: '#f8f8f8', 
   height: 'calc(100vh - 76px)', 
   overflow: 'auto',
-  marginLeft: '250px' 
+  //marginLeft: '250px' 
 }
 
 
