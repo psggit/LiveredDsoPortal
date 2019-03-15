@@ -11,6 +11,7 @@ import { menuItems } from './const/nav-items'
 import SupportWithForm from './dashboard/supportWithForm'
 import SupportWithoutForm from './dashboard/supportWithoutForm'
 import Login from './login'
+import CreditManagement from "./dashboard/creditManagement"
 
 const history = createHistory()
 
@@ -124,6 +125,12 @@ class App extends React.Component {
                         render={props => <SupportWithoutForm {...props} />}
                       />
                     }
+
+                    <Route 
+                      exact 
+                      path="/home/credits" 
+                      render={props => <CreditManagement {...props} />}
+                    />
                   </Switch>
                 </Layout>
               </div>

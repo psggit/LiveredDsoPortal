@@ -9,9 +9,9 @@ class SupportForm extends React.Component {
 
   constructor() {
     super() 
-    this.state = {
-      formErr: false
-    }
+    // this.state = {
+    //   formErr: false
+    // }
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
@@ -28,9 +28,10 @@ class SupportForm extends React.Component {
         confirmation: formData.isConfirmation,
         dso_id: "SW123"
       }, this.successCallback, this.failureCallback)
-    } else {
-      this.setState({formErr: true})
-    }
+    } 
+    // else {
+    //   this.setState({formErr: true})
+    // }
   }
 
   successCallback(response) {
@@ -53,10 +54,10 @@ class SupportForm extends React.Component {
         <div className="main-container">
           <div className="ticket-form">
             <SupportTicketForm  ref={(node) => { this.supportForm = node }} handleSubmit={this.handleFormSubmit} />
-            {
+            {/* {
               this.state.formErr &&
               <p className="error-message">Please fill the required fields</p>
-            }
+            } */}
           </div>
           <div className="contact-details">
             <p className="sub-header">You can also reach us via phone/email</p>

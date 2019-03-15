@@ -74,16 +74,17 @@ class Header extends React.Component {
      
         <div className="logo">
           <Icon name="liveredLogo" />
-          {
+          <p onClick={this.mountLogoutModal}>Logout</p>
+          {/* {
             this.state.isLoggedIn &&
             <span onClick={this.openDropdown} className="icon">
               <Icon name="overflowMenu" />
             </span>
-          }
+          } */}
         </div>
       
        
-        <div
+        {/* <div
           className={`dropdown-menu ${showDropdown ? "show" : "hide"}`}
         >
           <div className="menu-item" onClick={this.handleClick}>
@@ -96,7 +97,8 @@ class Header extends React.Component {
             Logout
           </div>
         </div>
-        
+         */}
+
         {showLogoutModal && (
           <Dialog
             title="Do you want to logout?"
