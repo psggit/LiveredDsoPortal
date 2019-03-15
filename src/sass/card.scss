@@ -1,0 +1,21 @@
+.card-container {
+  width: 100%;
+  background: #fff;
+
+  .card {
+    padding: 20px 30px;
+    
+    .item {
+      word-wrap: break-word;
+    }
+
+    .value {
+      color: #152935;
+      font-size: 14px;
+    }
+  }
+
+  .card .item:not(:first-child){
+    margin-top: 26px;
+  }
+}
