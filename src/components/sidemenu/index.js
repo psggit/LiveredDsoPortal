@@ -23,7 +23,10 @@ class SideMenu extends React.Component {
           menuItems.map((item, i) => (
             <div key={i} className={`side-menu__item ${this.checkActiveClass(item.value)}`}>
               {
-                item.label !== "Seperator" &&
+                item.title &&
+                <div className="categories">{item.title}</div>
+              }
+              {
                 <a
                   href={`/home/${item.value}`}
                   onClick={(e) => { this.handleChangeRoute(e, item.value) }}
@@ -33,10 +36,6 @@ class SideMenu extends React.Component {
                   </span>
                   { item.label }
                 </a>
-              }
-              {
-                item.label === "Seperator" &&
-                <p></p>
               }
             </div>
           ))
