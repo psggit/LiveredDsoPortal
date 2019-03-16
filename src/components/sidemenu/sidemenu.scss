@@ -39,4 +39,36 @@
       padding: 30px 20px 10px 20px;
     }
   }
+
+  .footer {
+    font-size: 14px;
+    color: #fff;
+    border-top: 1px solid #f8f8f8;
+    padding: 25px 30px;
+    text-align: center;
+    bottom: 0px;
+    width: 250px;
+    position: fixed;
+    
+    .help-section {
+      display: flex;
+      align-items: center;
+    }
+    span {
+      display: inline-block;
+      width: 40px;
+    }
+
+    &:hover {
+      background: red;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    p.note {
+      margin-left: 10px;
+    }
+  }
 }

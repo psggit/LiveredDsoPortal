@@ -40,6 +40,15 @@ class SideMenu extends React.Component {
             </div>
           ))
         }
+        <div className="footer">
+          <div className="help-section">
+            <span>
+              <Icon name="cloudIcon" />
+            </span>
+            <p>Need help?</p>
+          </div>
+          <p className="note">Get in touch with us</p>
+        </div>
       </div>
     )
   }
