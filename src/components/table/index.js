@@ -1,4 +1,5 @@
 import React from "react"
+import Loader from "Components/loader"
 import "./table.scss"
 
 class Table extends React.Component {
@@ -46,12 +47,33 @@ class Table extends React.Component {
       <div className="table-wrapper">
         <table className={`${this.props.className ? 'logs' : ''}`}>
           <thead>
-            <tr key="heading">
+            <tr>
               {headings.map(this.renderHeadingRow)}
             </tr>
           </thead>
           <tbody>
-            {rows.map(this.renderRow)}
+            {
+              !this.props.loadingData && rows.length &&
+              rows.map(this.renderRow)
+            }
+            {
+              this.props.loadingData &&
+              <tr>
+                <td colSpan={this.props.headings.length}>
+                  <Loader />
+                </td>
+              </tr>
+            }
+            {
+                !this.props.loadingData &&
+                this.props.rows.length === 0 && (
+                  <tr>
+                    <td style={{ textAlign: "center" }} colSpan={this.props.headings.length}>
+                      No orders found
+                    </td>
+                  </tr>
+                )
+            }
           </tbody>
         </table>
       </div>

@@ -1,9 +1,11 @@
 import React from "react"
 import PageHeader from "Components/pageheader"
 import {creditsLog} from "./../mock-data"
-import DataTable from "Components/table"
+import DataTable from "Components/table/custom-table"
+//import DataTable from "Components/table"
 import Pagination from "Components/pagination"
 import Wrapper from "Components/contentWrapper"
+import Moment from "moment"
 import "./credits.scss"
 
 class CreditManagement extends React.Component {
@@ -82,12 +84,36 @@ class CreditManagement extends React.Component {
                 onChangePage={this.handlePageChange}
               />
             </div>
-            <DataTable
+            {/* <DataTable
               headings={this.creditLogTableHeaders}
               rows={creditsLog}
               className="logs"
               //rowClick={this.handleRowClick}
-            />
+            /> */}
+            <DataTable
+              headings={this.creditLogTableHeaders}
+              loadingData={true}
+              className="logs"
+            >
+            {
+              creditsLog.map((item, i) => {
+                return (
+                  <tr key={i}>
+                    <td>{item.id}</td>
+                    <td>{Moment(item.date).format("DD/MM/YYYY")}</td>
+                    <td>{Moment(item.date).format("h:mm A")}</td>
+                    <td>{item.uploaded_by}</td>
+                    <td>{item.authorized_by}</td>
+                    <td>{item.mode_of_payment}</td>
+                    <td>{item.total_amount}</td>
+                    <td>
+                      <div className={item.status === "Credited" ? 'green' : 'orange'}>{item.status}</div>
+                    </td>
+                  </tr>
+                )
+              })
+            }
+            </DataTable>
           </div>
         </Wrapper>
       </div>

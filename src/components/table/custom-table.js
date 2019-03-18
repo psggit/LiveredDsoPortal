@@ -1,4 +1,5 @@
 import React from "react"
+import Loader from "Components/loader"
 import "./table.scss"
 
 class CustomTable extends React.Component {
@@ -12,44 +13,45 @@ class CustomTable extends React.Component {
     const { headings } = this.props
 
     return (
-      <th className="Cell Cell-header">
+      <th key={cellIndex}>
         {headings[cellIndex]}
       </th>
     )
   }
 
-  // renderRow = (_row, rowIndex) => {
-  //   const { rows } = this.props
-
-  //   return (
-  //     <tr key={`row-${rowIndex}`}>
-  //       {
-  //         Object.keys(rows[rowIndex]).map((key) => rows[rowIndex][key]).map((item, i) => {
-  //           return (
-  //             <Cell
-  //               key={i}
-  //               content={item}
-  //             />
-  //           )
-  //         })
-  //       }
-  //     </tr>
-  //   )
-  // }
-
   render() {
     const {headings, rows} = this.props;
     return (
-      <table className="Table">
-        <thead>
-          <tr key="heading">
-            {headings.map(this.renderHeadingRow)}
-          </tr>
-        </thead>
-        <tbody>
-          {this.props.children}
-        </tbody>
-      </table>
+      <div className="table-wrapper">
+        <table className={`${this.props.className ? 'logs' : ''}`}>
+          <thead>
+            <tr>
+              {headings.map(this.renderHeadingRow)}
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.children}
+            {/* {
+              this.props.loadingData &&
+              <tr>
+                <td colSpan={this.props.headings.length}>
+                  <Loader />
+                </td>
+              </tr>
+            } */}
+            {
+              !this.props.loadingData &&
+              this.props.rows.length === 0 && (
+                <tr>
+                  <td style={{ textAlign: "center" }} colSpan={this.props.headings.length}>
+                    No orders found
+                  </td>
+                </tr>
+              )
+            }
+          </tbody>
+        </table>
+      </div>
     )
   }
 }
