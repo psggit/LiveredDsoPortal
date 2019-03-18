@@ -11,7 +11,8 @@ import { menuItems } from './const/nav-items'
 import SupportWithForm from './dashboard/supportWithForm'
 import SupportWithoutForm from './dashboard/supportWithoutForm'
 import Login from './login'
-import CreditManagement from "./dashboard/creditManagement"
+import CreditManagement from "./dashboard/creditLog"
+import AddCredits from "./dashboard/addCredits"
 
 const history = createHistory()
 
@@ -130,6 +131,12 @@ class App extends React.Component {
                       exact 
                       path="/home/credits" 
                       render={props => <CreditManagement {...props} />}
+                    />
+
+                    <Route 
+                      exact 
+                      path="/home/add-credits" 
+                      render={props => <AddCredits {...props} />}
                     />
                   </Switch>
                 </Layout>

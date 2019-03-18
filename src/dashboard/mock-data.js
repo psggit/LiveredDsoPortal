@@ -26,7 +26,7 @@ export const creditsLog = [
     authorized_by: "Ram",
     mode_of_payment: "Cheque",
     total_amount: 12000,
-    status: "Credited"
+    status: "In Process"
   },
   {
     id: 124456791,

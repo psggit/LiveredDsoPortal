@@ -43,6 +43,14 @@ input[type='text'], input[type='password'], input[type='number'], input[type='em
   }
 }
 
+input[type='file'] {
+  //display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
 textarea {
   background-color: rgba(61, 112, 178, 0.1);
 }
@@ -75,6 +83,22 @@ label {
   color: #6B7891;
   font-size: 14px;
   margin-bottom: 6px;
+}
+
+textarea {
+  width: 50%;
+  max-height: 640px;
+  border: 0;
+  padding: 10px 10px;
+  height: 150px;
+  max-height: 150px;
+  color: #222;
+  font-size: 14px;
+  background-color: rgba(128, 128, 128, 0.1);
+}
+
+textarea:focus {
+  outline: 0;
 }
 
 

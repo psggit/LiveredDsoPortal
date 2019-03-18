@@ -6,7 +6,7 @@ import DataTable from "Components/table/custom-table"
 import Pagination from "Components/pagination"
 import Wrapper from "Components/contentWrapper"
 import Moment from "moment"
-import "./credits.scss"
+import "./credit-log.scss"
 
 class CreditManagement extends React.Component {
   constructor() {
@@ -52,10 +52,10 @@ class CreditManagement extends React.Component {
   render() {
     const {activeTab} = this.state
     return (
-      <div id="CreditManagement">
+      <div id="CreditLog">
         <PageHeader pageName="Credit Management" />
         <Wrapper>
-          <div className="header">
+          <div>
             <div style={{display: 'flex', marginTop: '4px'}}>
               <ul className="nav">
                 <li 
@@ -96,6 +96,7 @@ class CreditManagement extends React.Component {
               className="logs"
             >
             {
+              creditsLog.length &&
               creditsLog.map((item, i) => {
                 return (
                   <tr key={i}>
