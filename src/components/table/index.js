@@ -13,7 +13,7 @@ class Table extends React.Component {
     const { headings } = this.props
 
     return (
-      <th className="Cell Cell-header">
+      <th>
         {headings[cellIndex]}
       </th>
     )
@@ -25,13 +25,13 @@ class Table extends React.Component {
     return (
       <tr 
         key={`row-${rowIndex}`} 
-        onClick={this.props.rowClick ? this.props.rowClick : ''}
+        onClick={this.props.rowClick ? this.props.rowClick : () => {}}
         className={`${this.props.rowClick ? 'clickable' : undefined}`}
       >
         {
           Object.keys(rows[rowIndex]).map((key) => rows[rowIndex][key]).map((item, i) => {
             return (
-              <td className="Cell">
+              <td>
                 {item}
               </td>
             )
@@ -43,16 +43,18 @@ class Table extends React.Component {
   render() {
     const {headings, rows} = this.props;
     return (
-      <table className="Table">
-        <thead>
-          <tr key="heading">
-            {headings.map(this.renderHeadingRow)}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map(this.renderRow)}
-        </tbody>
-      </table>
+      <div className="table-wrapper">
+        <table className={`${this.props.className ? 'logs' : ''}`}>
+          <thead>
+            <tr key="heading">
+              {headings.map(this.renderHeadingRow)}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map(this.renderRow)}
+          </tbody>
+        </table>
+      </div>
     )
   }
 }

@@ -1,45 +1,46 @@
-.side-menu {
-  position: fixed;
-  top: 76px;
-  left: 0;
-  width: 250px;
-  height: calc(100vh - 76px);
-  background: #2d3f49;
-  padding-top: 20px;
-  //box-shadow: 0px 0px 4px 1px rgba(21, 19, 19, 0.9);
-  .side-menu__item {
-    width: 100%;
-    background-color: #2d3f49;
-    a {
-      font-size: 14px;
-      font-weight: 400;
-      //font-family: 'Montserrat', sans-serif;
-      display: flex;
-      align-items: flex-start;
-      padding: 11px 20px;
+#sidemenu {
+  .side-menu {
+    position: fixed;
+    top: 76px;
+    left: 0;
+    width: 250px;
+    height: calc(100vh - 76px);
+    background: #2d3f49;
+    padding-top: 20px;
+    //box-shadow: 0px 0px 4px 1px rgba(21, 19, 19, 0.9);
+    .side-menu__item {
       width: 100%;
-      text-decoration: none;
-      color: #fff;
-      span {
-        display: inline-block;
-        width: 40px;
-      }
-      &.active, &:hover {
-        background-color: #2c4555;
-        a {
-          color: #fff;
+      background-color: #2d3f49;
+      a {
+        font-size: 14px;
+        font-weight: 400;
+        //font-family: 'Montserrat', sans-serif;
+        display: flex;
+        align-items: flex-start;
+        padding: 11px 20px;
+        width: 100%;
+        text-decoration: none;
+        color: #fff;
+        span {
+          display: inline-block;
+          width: 40px;
+        }
+        &.active, &:hover {
+          background-color: #2c4555;
+          a {
+            color: #fff;
+          }
         }
       }
-    }
-   
-    .categories {
-      font-size: 14px;
-      color: #dfe3e6;
-      text-align: left;
-      padding: 30px 20px 10px 20px;
+     
+      .categories {
+        font-size: 14px;
+        color: #dfe3e6;
+        text-align: left;
+        padding: 30px 20px 10px 20px;
+      }
     }
   }
-
   .footer {
     font-size: 14px;
     color: #fff;
@@ -49,7 +50,7 @@
     bottom: 0px;
     width: 250px;
     position: fixed;
-    
+
     .help-section {
       display: flex;
       align-items: center;
@@ -60,7 +61,7 @@
     }
 
     &:hover {
-      background: red;
+      background: #d0021b;
     }
 
     p {
@@ -70,5 +71,5 @@
     p.note {
       margin-left: 10px;
     }
-  }
+  }  
 }
