@@ -13,6 +13,7 @@ import SupportWithoutForm from './dashboard/supportWithoutForm'
 import Login from './login'
 import CreditManagement from "./dashboard/creditLog"
 import AddCredits from "./dashboard/addCredits"
+import Reports from "./dashboard/reports"
 
 const history = createHistory()
 
@@ -137,6 +138,12 @@ class App extends React.Component {
                       exact 
                       path="/home/add-credits" 
                       render={props => <AddCredits {...props} />}
+                    />
+
+                    <Route 
+                      exact 
+                      path="/home/reports" 
+                      render={props => <Reports {...props} />}
                     />
                   </Switch>
                 </Layout>

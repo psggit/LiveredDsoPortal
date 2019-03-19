@@ -72,6 +72,11 @@ class TicketForm extends React.Component {
     }
   }
 
+  // handleChange(fieldStatusObj) {
+  //   console.log("data", fieldStatusObj)
+  //   this.setState({ [fieldStatusObj.fieldName]: fieldStatusObj.fieldValue })
+  // }
+
   handleTextareaChange(e) {
     this.setState({message: e.target.value})
   }

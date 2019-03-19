@@ -12,6 +12,7 @@ class Select extends React.Component {
     this.props.onChange(e)
   }
   render() {
+    //console.log("props", this.props)
     return (
       <div className="select--container">
         <Icon name="down-small" size="10"/>
