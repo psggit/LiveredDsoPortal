@@ -14,10 +14,8 @@
       padding: 10px 20px 30px 20px;
       border-radius: 10px;
       border-bottom: 1px solid #dfe3e6;
-      //margin-bottom: 40px;
       width: 280px;
       h5 {
-        //margin: 20px;
         font-size: 16px;
         font-weight: 600;
       }
@@ -52,25 +50,30 @@
       color: #5f5f6e;
     }
 
-//     input.form-control
-// {
-    
-//     border:none;
-//   margin-bottom:0px;
-//     border-radius: 0px;
-//     border-bottom: 1px solid #ddd;
-//     box-shadow: none;
-// }
-// .form-control:focus
-// {
-//     border-color: #ff4d0d;
-//     box-shadow: none;
-//     outline: none;
-// }
-    .fileUpload {
-        position: relative;
-        overflow: hidden;
+    .form-input {
+      margin-bottom: 25px;
     }
+
+    .input-group {
+      display: flex;
+      margin-bottom: 6px;
+    }
+    .upload-icon {
+      left: 0px;
+      position: absolute;
+      cursor: pointer;
+      svg {
+        width: 30px;
+        height: 40px;
+        cursor: pointer;
+      }
+    }
+
+    .fileUpload {
+      position: relative;
+      overflow: hidden;
+    }
+
     .fileUpload input.upload {
       position: absolute;
       top: 0;
@@ -80,7 +83,7 @@
       font-size: 20px;
       cursor: pointer;
       opacity: 0;
-      filter: alpha(opacity=0);
+      //filter: alpha(opacity=0);
     }
   }
 }

@@ -11,7 +11,7 @@ class AddCredits extends React.Component {
 
     this.state = {
       activeTab: 'add-credits',
-      isImageUploaded: false,
+      //isImageUploaded: false,
       isImageUploading: false,
       isImageSelected: false,
       data: ''
@@ -31,23 +31,40 @@ class AddCredits extends React.Component {
     this.setState({ activeTab: activeTabName })
   }
 
+  /**
+   * Upload and set state if file size is less than 50MB
+   */
   handleUploadChange(e) {
-    const file = e.target.files[0]
-    console.log("on change")
-    this.setState({
-      data: file,
-      isImageSelected: true
+    this.resetUploadImage()
+    var FileSize = e.target.files[0].size / 1024 / 1024; // in MB
+    if (FileSize <= 50) {
+      const file = e.target.files[0]
+      console.log("on change")
+      this.setState({
+        data: file,
+        isImageSelected: true
+      })
+      this.submitUploadedImage()
+    } else {
+      console.log("File size exceeded")
+    }
+  }
+
+  /**
+   * Resets the image selection and uploading state
+   */
+  resetUploadImage() {
+    this.setState({ 
+      //isImageUploaded: false, 
+      isImageSelected: false, 
+      isImageUploading: false
     })
   }
 
-  resetUploadImage() {
-    this.setState({ isImageUploaded: false, isImageSelected: false, isImageUploading: false, image_url: '' })
-  }
-
+  
   submitUploadedImage() {
     const formData = new FormData()
     formData.append('file', this.state.data)
-    console.log("submit")
     this.setState({ isImageUploading: true, isImageSelected: false })
   }
 
@@ -90,60 +107,26 @@ class AddCredits extends React.Component {
             </div>
             <div className="upload-section">
               <h2>Let us know about your payment</h2>
-              {/* <div class="input-container">
-                <input type="file" id="real-input" onChange={this.handleUploadChange} />
-                <span className="upload" onClick={this.submitUploadedImage}>
-                  <Icon name="rightArrow" />
-                </span>
-                <span class="file-info">Upload a file</span>
-              </div> */}
-              <div class="form-group">
+            
+              <div className="form-input">
+                <label>
+                  Upload Document <span>*</span>
+                </label>
                 <div class="input-group">
                   <input type="text" className="form-control" value={this.state.data.name} readonly />
                   <div className="input-group-btn">
-                    <span className="fileUpload btn btn-success">
-                      {/* <span className="upl" id="upload" onClick={this.submitUploadedImage}>Upload single file</span> */}
-                      <span className="upl" id="upload" onClick={this.submitUploadedImage}>
+                    <span className="fileUpload">
+                      <span className="upload-icon" id="upload">
                         <Icon name="rightArrow" />
                       </span>
                       <input type="file" className="upload up" id="up" onChange={this.handleUploadChange} />
                     </span>
                   </div>
                 </div>
-              </div>
-            
-              {/* <div >
-                <input
-                  onChange={this.handleUploadChange}
-                  type="file"
-                  style={{
-                    marginTop: '15px',
-                    padding: '0',
-                    border: '0'
-                  }}
-                />
-
-                <button
-                  //disabled={!this.state.isImageSelected || this.state.isImageUploading}
-                  onClick={this.submitUploadedImage}
-                  style={{
-                    width: '100%',
-                    padding: '10px',
-                    borderRadius: '4px',
-                    cursor: this.state.isImageUploading ? 'progress' : 'pointer'
-                  }}
-                >
-                  Upload
-                </button>
-              </div> */}
-              <div className="form-group">
-                <label>
-                  Upload Document <span>*</span>
-                </label>
                 <p className="note">Max size 50KB. Supported formats jpg, png, gif, pdf, doc.</p>
               </div>
 
-              <div className="form-group">
+              <div className="form-input">
                 <label>
                   Message
                 </label>
