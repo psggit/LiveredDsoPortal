@@ -31,6 +31,7 @@
         width: 100%;
         text-decoration: none;
         color: #fff;
+        position: relative;
         span {
           display: inline-block;
           width: 40px;
@@ -40,9 +41,22 @@
           a {
             color: #fff;
           }
+          .highlight {
+            display: block;
+          }
         }
       }
      
+      .highlight {
+        position: absolute;
+        background: #d0021b;
+        width: 10px;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+        display: none;
+      }
+
       .categories {
         font-size: 14px;
         color: #dfe3e6;
@@ -63,26 +77,37 @@
     position: fixed;
     background: #2d3f48;
     margin-top: 60px;
+    display: flex;
+    align-items: baseline;
+    padding-left: 20px;
 
-    .help-section {
-      display: flex;
-      align-items: center;
+    // .help-section {
+    //   display: flex;
+    //   align-items: center;
+    // }
+    // span {
+    //   display: inline-block;
+    //   width: 40px;
+    // }
+    .icon-section {
+      text-align: start;
+      margin-right: 20px;
     }
-    span {
-      display: inline-block;
-      width: 40px;
+
+    .text-section {
+      text-align: left;
     }
 
     &:hover {
       background: #d0021b;
     }
 
-    p {
-      text-align: center;
-    }
+    // p {
+    //   text-align: center;
+    // }
 
-    p.note {
-      margin-left: 10px;
-    }
+    // p.note {
+    //   margin-left: 10px;
+    // }
   }  
 }

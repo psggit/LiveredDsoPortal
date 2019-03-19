@@ -28,28 +28,34 @@ class SideMenu extends React.Component {
                   <div className="categories">{item.title}</div>
                 }
                 {
-                  <a
-                    href={`/home/${item.value}`}
-                    onClick={(e) => { this.handleChangeRoute(e, item.value) }}
-                  >
-                    <span>
-                      <Icon name={item.icon} />
-                    </span>
-                    { item.label }
-                  </a>
+                  <React.Fragment>
+                    <a
+                      href={`/home/${item.value}`}
+                      onClick={(e) => { this.handleChangeRoute(e, item.value) }}
+                    >
+                      <span>
+                        <Icon name={item.icon} />
+                      </span>
+                      { item.label }
+                      <div className="highlight"></div>
+                    </a>
+                   
+                  </React.Fragment>
                 }
               </div>
             ))
           }
         </div>
         <div className="footer">
-          <div className="help-section">
+          <div className="icon-section">
             <span>
               <Icon name="cloudIcon" />
             </span>
-            <p>Need help?</p>
           </div>
-          <p className="note">Get in touch with us</p>
+          <div className="text-section">
+            <p>Need help?</p>
+            <p className="note">Get in touch with us</p>
+          </div>
         </div>
       </div>
     )
