@@ -241,4 +241,27 @@ export default {
             </g>
         </svg>
     ),
+    filledCircle: (
+        <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1">
+            <g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                <g id="Component/Radio-Button/Pieces/Selected" transform="translate(-3.000000, -3.000000)">
+                    <g id="Radio-Button-Selected" transform="translate(3.000000, 3.000000)">
+                        <circle id="Outline" stroke="#3D70B2" strokeWidth="2" fill="#FFFFFF" cx="9" cy="9" r="8"></circle>
+                        <circle id="Dot" fill="#3D70B2" cx="9" cy="9" r="4"></circle>
+                    </g>
+                </g>
+            </g>
+        </svg>
+    ),
+    circle: (
+        <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1">
+            <g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                <g id="Component/Radio-Button/Pieces/Unselected" transform="translate(-3.000000, -3.000000)" fill="#FFFFFF" stroke="#5A6872" strokeWidth="2">
+                    <g id="Radio---Unselected" transform="translate(3.000000, 3.000000)">
+                        <circle id="Outline" cx="9" cy="9" r="8"></circle>
+                    </g>
+                </g>
+            </g>
+        </svg>
+    )
 }

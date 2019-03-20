@@ -1,0 +1,14 @@
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group button:not(:last-child) {
+  margin-right: 20px;
+}
+
+.form-group .__error {
+  color: #e71d32;
+  font-size: 12px;
+  margin-top: 5px;
+}

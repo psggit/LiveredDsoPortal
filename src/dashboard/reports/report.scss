@@ -1,0 +1,40 @@
+#reports {
+  .form-wrapper {
+    background: #dfe3e6;
+    max-width: 700px;
+    padding: 30px 25px;
+
+    .file-type {
+      display: flex;
+      align-items: center;
+
+      input, label {
+        margin-right: 10px;
+      }
+
+      .circle {
+        margin-right: 10px; 
+        display: inline-block;
+        vertical-align: middle; 
+        cursor: pointer;
+      }
+
+      .value {
+        //width: calc(100% - 24px); 
+        display: inline-block;
+        cursor: pointer;
+        margin-right: 20px;
+      }
+    }
+  }
+
+  input, select {
+    background: white;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}

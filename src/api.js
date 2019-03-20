@@ -4,10 +4,16 @@ import Notify from "Components/notify"
 export function createComplaint (payloadObj, successCallback, failureCallback) {
   console.log("data", payloadObj)
   return POST({
-      api: 'http://192.168.5.86:3002/livered/createDsoComplaints',
+      api: 'http://192.168.5.63:3000/livered/ottpReports',
       handleError: true,
       prependBaseUrl: false,
-      data: payloadObj
+      data: ({
+        "data_type":"PastOttps",
+        "state":"TN",
+        "city_id":"1",
+        "time_range":"7days",
+        "file_name":"abc"
+      })
   })
   .then((json) => {
       Notify("success", "Complaint created")

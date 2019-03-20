@@ -2,6 +2,7 @@ import React from "react"
 import Wrapper from "Components/contentWrapper"
 import PageHeader from "Components/pageheader"
 import ReportForm from "./reportForm"
+import "./report.scss"
 
 class Reports extends React.Component {
   constructor() {
@@ -16,9 +17,12 @@ class Reports extends React.Component {
     return (
       <div id="reports">
         <PageHeader pageName="Reports" />
-        <Wrapper>
+        {/* <Wrapper> */}
+        <div className="form-wrapper">
           <ReportForm ref={(node) => this.reportForm=(node)} handleSubmit={this.handleSubmit} />
-        </Wrapper>
+        </div>
+          
+        {/* </Wrapper> */}
       </div>
     )
   }
