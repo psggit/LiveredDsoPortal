@@ -22,15 +22,18 @@ export function createComplaint (payloadObj, successCallback, failureCallback) {
 
 export function generateReport (payloadObj, successCallback, failureCallback) {
     console.log("data", payloadObj)
-    return POST({
-        api: 'http://192.168.5.63:3000/livered/ottpReports',
-        handleError: true,
-        prependBaseUrl: false,
-        data: payloadObj
-    })
-    .then((json) => {
-        //Notify("success", "Complaint created")
-        successCallback()
+    // return POST({
+    //     api: 'http://192.168.5.63:3000/livered/ottpReports',
+    //     handleError: true,
+    //     prependBaseUrl: false,
+    //     data: payloadObj
+    // })
+    fetch(`http://192.168.5.63:3000/livered/ottpReports`, {method: 'post', body: JSON.stringify(payloadObj)})
+    .then((response) => {
+        var reader = response.body.getReader();
+        reader.read().then(function(result) {
+            successCallback(result)
+        })
     })
     .catch(err => {
         console.log("Error in creating report", err)

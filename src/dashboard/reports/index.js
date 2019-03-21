@@ -24,7 +24,7 @@ class Reports extends React.Component {
     this.generateReport({
       data_type: formData.dataType,
       state: stateShortName,
-      city_id: formData.selectedCityIdx,
+      city_id: formData.selectedCityIdx.toString(),
       time_range: formData.timeRange,
       file_name: formData.reportName,
       file_type: formData.fileType
@@ -32,13 +32,23 @@ class Reports extends React.Component {
   }
 
   generateReport(payload) {
-    Api.generateReport ({
-      payload
-    }, this.successCallback, this.failureCallback)
+    Api.generateReport (payload, this.successCallback, this.failureCallback)
   }
 
-  successCallback() {
+  successCallback(response) {
     this.setState({requestingReport: false})
+    const formData = this.reportForm.getData()
+    if(formData.fileType === "csv") {
+      const filename = formData.reportName ? `${formData.reportName}.csv` : "export.csv"
+      console.log("res", response, new TextDecoder("utf-8").decode(response.value))
+      const blob = new Blob([new TextDecoder("utf-8").decode(response.value)], { type: 'text/csv' });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
     console.log("success callback")
   }
 

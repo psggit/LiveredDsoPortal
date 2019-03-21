@@ -5,7 +5,6 @@ import Select from "Components/select"
 import Icon from "Components/icon"
 import Button from "Components/button"
 import TextInput from "Components/form-inputs/text-input"
-import EmailInput from "Components/form-inputs/email-input"
 import "Sass/form.scss"
 
 class ReportForm extends React.Component {
@@ -70,6 +69,7 @@ class ReportForm extends React.Component {
     this.getData = this.getData.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.isFormValid = this.isFormValid.bind(this)
+    this.setFileType = this.setFileType.bind(this)
   }
 
   handleChange(fieldStatusObj) {
@@ -154,6 +154,14 @@ class ReportForm extends React.Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  setFileType(fileType) {
+    if(fileType === 'pdf') {
+      this.setState({ selectedPdf: !this.state.selectedPdf, fileType: 'pdf', selectedCsv: false})
+    } else {
+      this.setState({ selectedCsv: !this.state.selectedCsv, fileType: 'csv', selectedPdf: false})
+    }
+  }
+
   render() {
     const {dataTypeErr, timeRangeErr, fileTypeErr} = this.state
     return (
@@ -229,7 +237,7 @@ class ReportForm extends React.Component {
           <Label>File Type *</Label>
           <div className="file-type">
             <span 
-              onClick={() => { this.setState({ selectedPdf: !this.state.selectedPdf, fileType: 'pdf'}) } } 
+              onClick={() => this.setFileType('pdf')} 
               className="circle"
             >
               {
@@ -239,13 +247,13 @@ class ReportForm extends React.Component {
               }
             </span>
             <span 
-              onClick={() => { this.setState({ selectedPdf: !this.state.selectedPdf, fileType: 'pdf'}) } } 
+              onClick={() => this.setFileType('pdf')} 
               className="value"
             > 
               pdf 
             </span>
             <span 
-              onClick={() => { this.setState({ selectedCsv: !this.state.selectedCsv, fileType: 'csv'}) } } 
+              onClick={() => this.setFileType('csv')} 
               className="circle"
             >
               {
@@ -256,7 +264,7 @@ class ReportForm extends React.Component {
             </span>
             <span 
               className="value" 
-              onClick={() => { this.setState({ selectedCsv: !this.state.selectedCsv, fileType: 'csv'}) } }
+              onClick={() => this.setFileType('csv')}
             > 
               csv 
             </span>
