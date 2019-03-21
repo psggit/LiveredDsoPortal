@@ -22,6 +22,12 @@
       width: 225px;
     }
 
+    .label {
+      span {
+        color: #d0021b;
+      }
+    }
+
     .file-type {
       display: flex;
       align-items: center;
@@ -52,12 +58,12 @@
   }
 
   select option:hover {
-    background: red;
+    background: #d0021b;
   }
 
   .error-message {
     margin-top: 5px;
-    color: red;
+    color: #d0021b;
   }
 
   .row {

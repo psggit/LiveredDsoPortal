@@ -14,6 +14,7 @@ import Login from './login'
 import CreditManagement from "./dashboard/creditLog"
 import AddCredits from "./dashboard/addCredits"
 import Reports from "./dashboard/reports"
+import Organization from "./dashboard/organization"
 
 const history = createHistory()
 
@@ -136,8 +137,8 @@ class App extends React.Component {
 
                     <Route 
                       exact 
-                      path="/home/add-credits" 
-                      render={props => <AddCredits {...props} />}
+                      path="/home/organization" 
+                      render={props => <Organization {...props} />}
                     />
 
                     <Route 

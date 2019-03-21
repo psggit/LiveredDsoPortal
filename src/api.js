@@ -1,4 +1,4 @@
-import { POST } from 'Utils/fetch'
+import { POST, GET } from 'Utils/fetch'
 import Notify from "Components/notify"
 
 export function createComplaint (payloadObj, successCallback, failureCallback) {
@@ -56,4 +56,23 @@ export function generateCreditReport (payloadObj, successCallback, failureCallba
         failureCallback()
     })
 }
+
+export function fetchCreditLog (payload, successCallback, failureCallback) {
+    // console.log("data", payloadObj)
+    return POST({
+        api: 'http://192.168.5.63:3004/livered/getDsoCreditLog',
+        handleError: true,
+        prependBaseUrl: false,
+        data: payload
+    })
+    .then((json) => {
+        //Notify("success", "Complaint created")
+        successCallback(json)
+    })
+    .catch(err => {
+        console.log("Error in fetching credit log", err)
+        err.response.json().then(json => { Notify("danger", json.error) })
+        //failureCallback()
+    })
+  }
 

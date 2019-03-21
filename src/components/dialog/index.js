@@ -29,18 +29,39 @@ import Icon from './../icon'
     return (
       <div className="overlay-container">
         <div className="dialog--container">
-          <div className="dialog--body">
-            {
-              this.props.title
-              ? (
-                <div className="dialog--title-bar">
-                  <p>
-                    { this.props.title }
-                  </p>
+        <div className="dialog--body">
+            <div className="header">
+              {
+                this.props.icon &&
+                <div className="column1">
+                  <Icon name={this.props.icon} />
                 </div>
-              )
-              : ''
-            }
+              }
+              <div  className={`column2 ${this.props.icon ? 'text' : undefined}`}>
+                {
+                  this.props.title
+                  ? (
+                    <div className="dialog--title-bar">
+                      <p>
+                        { this.props.title }
+                      </p>
+                    </div>
+                  )
+                  : ''
+                }
+                {/* {
+                  this.props.subtitle
+                  ? (
+                    <div className="dialog--subtitle-bar">
+                      <p>
+                        { this.props.subtitle }
+                      </p>
+                    </div>
+                  )
+                  : ''
+                } */}
+              </div>
+            </div>
             { this.props.children }
           </div>
           <div className="dialog--footer">

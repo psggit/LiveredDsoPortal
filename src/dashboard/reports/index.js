@@ -5,16 +5,25 @@ import ReportForm from "./reportForm"
 import "./report.scss"
 import * as Api from "./../../api"
 import {stateShortName} from "Utils/static-data"
+import Dialog from "Components/dialog"
+import Button from "Components/button"
 
 class Reports extends React.Component {
   constructor() {
     super()
     this.state = {
-      requestingReport: false
+      requestingReport: false,
+      showSuccessDialog: false,
+      reportFormKey: 0
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.successCallback = this.successCallback.bind(this)
     this.failureCallback = this.failureCallback.bind(this)
+    this.unMountModal = this.unMountModal.bind(this)
+  }
+
+  unMountModal() {
+    this.setState({reportFormKey: this.state.reportFormKey + 1, showSuccessDialog:false})
   }
 
   handleSubmit() {
@@ -40,7 +49,7 @@ class Reports extends React.Component {
   }
 
   successCallback(response) {
-    this.setState({requestingReport: false})
+    this.setState({requestingReport: false, showSuccessDialog: true})
     const formData = this.reportForm.getData()
     const filename = formData.reportName ? `${formData.reportName}.${formData.fileType}` : `export.${formData.fileType}`
     const data = formData.fileType === "csv" ? new TextDecoder("utf-8").decode(response.value) : response.value
@@ -54,6 +63,8 @@ class Reports extends React.Component {
     console.log("success callback")
   }
 
+  
+
   failureCallback() {
     this.setState({requestingReport: false})
     console.log("failure callback")
@@ -61,7 +72,7 @@ class Reports extends React.Component {
 
   render() {
     return (
-      <div id="reports">
+      <div id="reports" key={this.state.reportFormKey}>
         <PageHeader pageName="Reports" />
         {/* <Wrapper> */}
         <div className="form-wrapper">
@@ -71,6 +82,18 @@ class Reports extends React.Component {
             disableRequestReport={this.state.requestingReport}
           />
         </div>
+        {this.state.showSuccessDialog && (
+          <Dialog
+            title="Your request has been successfully downloaded"
+            icon="success"
+            onClick={this.unMountModal}
+            actions={[
+              <Button onClick={() => this.unMountModal()} primary>
+                Done
+              </Button>,``
+            ]}
+          />
+        )}
       </div>
     )
   }

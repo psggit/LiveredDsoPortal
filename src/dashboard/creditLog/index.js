@@ -7,6 +7,8 @@ import Pagination from "Components/pagination"
 import Wrapper from "Components/contentWrapper"
 import Moment from "moment"
 import "./credit-log.scss"
+import * as Api from "./../../api"
+import { getQueryObj, getQueryUri } from "Utils/url-utils"
 
 class CreditManagement extends React.Component {
   constructor() {
@@ -15,20 +17,49 @@ class CreditManagement extends React.Component {
     this.state = {
       activeTab: 'credit-log',
       activePage: 1,
-      limit: 10
+      limit: 10,
+      creditLogs: [],
+      creditLogCount: 0
     }
+
+    this.pageLimit = 10
 
     this.creditLogTableHeaders = [
       'Transaction ID',
       'Date',
       'Time',
-      'Uploaded By',
-      'Authorized By',
+      // 'Uploaded By',
+      // 'Authorized By',
       'Mode of Payment',
       'Total Amount',
-      'Status'
+      // 'Status'
     ]
     this.setActiveTab = this.setActiveTab.bind(this)
+    this.successCallback = this.successCallback.bind(this)
+    this.handlePageChange = this.handlePageChange.bind(this)
+  }
+
+  componentDidMount() {
+    const queryUri = location.search.slice(1)
+    const queryObj = getQueryObj(queryUri)
+
+    Object.entries(queryObj).forEach((item) => {
+      this.setState({ [item[0]]: item[1] })
+    })
+
+    this.fetchCreditLog({
+      limit: queryObj.limit ? parseInt(queryObj.limit) : this.state.limit ,
+      offset: queryObj.activePage ? parseInt(queryObj.limit * (queryObj.activePage - 1)) : 0
+    })
+  }
+
+  fetchCreditLog(payload) {
+    Api.fetchCreditLog(payload, this.successCallback)
+  }
+
+  successCallback(response) {
+    console.log("response", response)
+    this.setState({creditLogs: response.credit_log, creditLogCount: response.count})
   }
 
   /**
@@ -46,11 +77,30 @@ class CreditManagement extends React.Component {
    * @param {Integer} pagerObj.pageSize - Used as limit to fetch next set of credit log
    */
   handlePageChange(pagerObj) {
-   console.log("page change", pagerObj)
+    console.log("page change", pagerObj)
+    this.setState({
+      activePage: pagerObj.activePage,
+      limit: pagerObj.pageSize
+    })
+    this.fetchCreditLog({
+      limit: pagerObj.pageSize,
+      offset: pagerObj.activePage * (pagerObj.activePage - 1)
+    })
+
+    let queryParamsObj = {
+      activePage: pagerObj.activePage,
+      limit: pagerObj.pageSize
+    }
+
+    history.pushState(
+      queryParamsObj,
+      "credits",
+      `/home/credits?${getQueryUri(queryParamsObj)}`
+    )
   }
 
   render() {
-    const {activeTab} = this.state
+    const {activeTab, creditLogs, creditLogCount} = this.state
     return (
       <div id="CreditLog">
         <PageHeader pageName="Credit Management" />
@@ -64,12 +114,12 @@ class CreditManagement extends React.Component {
                 >
                   <a href="/home/credit-log">Credit Log</a>
                 </li>
-                <li
+                {/* <li
                   onClick={() => this.setActiveTab("add-credits")}
                   className={`${activeTab === "add-credits" ? 'active' : ''}`}
                 >
                   <a href="/home/add-credits">Add Credits</a>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
@@ -80,7 +130,7 @@ class CreditManagement extends React.Component {
               <Pagination
                 activePage={this.state.activePage}
                 pageSize={this.state.limit}
-                totalItemsCount={100}
+                totalItemsCount={creditLogCount}
                 onChangePage={this.handlePageChange}
               />
             </div>
@@ -96,20 +146,20 @@ class CreditManagement extends React.Component {
               className="logs"
             >
             {
-              creditsLog.length &&
-              creditsLog.map((item, i) => {
+              creditLogs.length &&
+              creditLogs.map((item, i) => {
                 return (
                   <tr key={i}>
-                    <td>{item.id}</td>
-                    <td>{Moment(item.date).format("DD/MM/YYYY")}</td>
-                    <td>{Moment(item.date).format("h:mm A")}</td>
-                    <td>{item.uploaded_by}</td>
-                    <td>{item.authorized_by}</td>
-                    <td>{item.mode_of_payment}</td>
-                    <td>{item.total_amount}</td>
-                    <td>
+                    <td>{item.TransactionID}</td>
+                    <td>{Moment(item.CreatedAt).format("DD/MM/YYYY")}</td>
+                    <td>{Moment(item.CreatedAt).format("h:mm A")}</td>
+                    {/* <td>{item.uploaded_by}</td>
+                    <td>{item.authorized_by}</td> */}
+                    <td>{item.PaymentMode}</td>
+                    <td>{item.Amount}</td>
+                    {/* <td>
                       <div className={item.status === "Credited" ? 'green' : 'orange'}>{item.status}</div>
-                    </td>
+                    </td> */}
                   </tr>
                 )
               })
