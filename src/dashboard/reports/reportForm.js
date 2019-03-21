@@ -24,7 +24,19 @@ class ReportForm extends React.Component {
       selectedCityIdx: "",
       selectedTimeRangeIdx: "",
       selectedPdf: false,
-      selectedCsv: false
+      selectedCsv: false,
+      dataTypeErr: {
+        value: "",
+        status: false
+      },
+      timeRangeErr: {
+        value: "",
+        status: false
+      },
+      fileTypeErr: {
+        value: "",
+        status: false
+      }
     }
 
     this.dataType = [
@@ -56,51 +68,16 @@ class ReportForm extends React.Component {
     this.handleSelectChange = this.handleSelectChange.bind(this)
     this.handleFileTypeChange = this.handleFileTypeChange.bind(this)
     this.getData = this.getData.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.isFormValid = this.isFormValid.bind(this)
   }
-
-  // handleChange(fieldStatusObj) {
-  //   const errName = `${fieldStatusObj.fieldName}Err`
-  //   if (!fieldStatusObj.status) {
-  //     this.setState({
-  //       [fieldStatusObj.fieldName]: fieldStatusObj.fieldValue,
-  //       [errName]: {
-  //         status: fieldStatusObj.status,
-  //         value: fieldStatusObj.value
-  //       }
-  //     })
-  //   } else {
-  //     this.setState({
-  //       [errName]: {
-  //         status: fieldStatusObj.status,
-  //         value: fieldStatusObj.value
-  //       }
-  //     })
-  //   }
-  // }
 
   handleChange(fieldStatusObj) {
     console.log("data", fieldStatusObj)
     this.setState({ [fieldStatusObj.fieldName]: fieldStatusObj.fieldValue })
   }
 
-  // handleTextareaChange(e) {
-  //   this.setState({message: e.target.value})
-  // }
-
   handleSelectChange(e) {
-    // if(fieldName.includes("reason")) {
-    //   // console.log("reason", this.reason.find((item) => item.value === parseInt(e.target.value)).text)
-    //   this.setState({
-    //     selectedReasonIdx: parseInt(e.target.value),
-    //     reason: this.reason.find((item) => item.value === parseInt(e.target.value)).text
-    //   })
-    // } else {
-    //   this.setState({
-    //     selectedUrgencyLevelIdx: parseInt(e.target.value),
-    //     urgencyLevel: this.urgency_level.find((item) => item.value === parseInt(e.target.value)).text
-    //   })
-    // }
-    console.log("name", e.target.name, e.target.value, this.dataType.find((item) => item.value === parseInt(e.target.value)).text)
     switch(e.target.name) {
       case 'dataType':
         this.setState({
@@ -139,11 +116,46 @@ class ReportForm extends React.Component {
     return this.state
   }
 
+  isFormValid() {
+    if(this.state.dataType.length === 0) {
+      this.setState({
+        dataTypeErr: {
+          value: "Data type is required",
+          status: true
+        }
+      })
+      return false;
+    } else if(this.state.timeRange.length === 0) {
+      this.setState({
+        timeRangeErr: {
+          value: "Time range is required",
+          status: true
+        }
+      })
+      return false;
+    } else if(this.state.fileType.length === 0) {
+      this.setState({
+        fileTypeErr: {
+          value: "File type is required",
+          status: true
+        }
+      })
+      return false;
+    } 
+  }
+
+  handleSubmit() {
+    if(!this.isFormValid()) {
+      this.props.handleSubmit()
+    }
+  }
+
   handleFileTypeChange(e) {
     this.setState({ [e.target.name]: e.target.value })
   }
 
   render() {
+    const {dataTypeErr, timeRangeErr, fileTypeErr} = this.state
     return (
       <React.Fragment>
           <div className="form-group">
@@ -152,10 +164,15 @@ class ReportForm extends React.Component {
             </Label>
             <Select 
               options={this.dataType} 
-              name="dataType"  
+              name="dataType"
+              className="large"
               value={this.state.selectedDataTypeIdx}
               onChange={this.handleSelectChange} 
             />
+            {
+              dataTypeErr.status &&
+              <p className="error-message">* {dataTypeErr.value}</p>
+            }
           </div>
           <div className="row">
             <div className="form-group">
@@ -164,7 +181,8 @@ class ReportForm extends React.Component {
               </Label>
               <Select 
                 options={this.stateList} 
-                name="state"  
+                name="state"
+                small 
                 value={this.state.selectedStateIdx}
                 onChange={this.handleSelectChange} 
               />
@@ -173,7 +191,8 @@ class ReportForm extends React.Component {
               {/* <label></label> */}
               <Select 
                 options={this.city} 
-                name="city" 
+                name="city"
+                small
                 value={this.state.selectedCityIdx}
                 onChange={this.handleSelectChange} 
               />
@@ -181,44 +200,80 @@ class ReportForm extends React.Component {
         </div>
         <div className="form-group">
           <Label>
-            Time range <span>*</span>
+            Time Range <span>*</span>
           </Label>
-          <Select 
-            options={this.timeRange} 
-            name="timeRange"  
-            value={this.state.selectedTimeRangeIdx}
-            onChange={this.handleSelectChange} 
-          />
+          <div className="timerange-wrapper">
+            <Select 
+              options={this.timeRange} 
+              name="timeRange" 
+              small
+              value={this.state.selectedTimeRangeIdx}
+              onChange={this.handleSelectChange} 
+            />
+            {
+              timeRangeErr.status &&
+              <p className="error-message">* {timeRangeErr.value}</p>
+            }
+          </div>
         </div>
         <div className="form-group">
           <Label>
-            Report Name (Opt)
+            Report Name (Optional)
           </Label>
-          <TextInput name="reportName" onChange={this.handleChange} />
+          <TextInput 
+            name="reportName" 
+            onChange={this.handleChange} 
+          />
         </div>
         <div className="form-group">
-          <Label>Gender *</Label>
+          <Label>File Type *</Label>
           <div className="file-type">
-            <span onClick={() => { this.setState({ selectedPdf: !this.state.selectedPdf}) } } className="circle">
+            <span 
+              onClick={() => { this.setState({ selectedPdf: !this.state.selectedPdf, fileType: 'pdf'}) } } 
+              className="circle"
+            >
               {
                 !this.state.selectedPdf
                 ? <Icon name="circle" />
                 : <Icon name="filledCircle" />
               }
             </span>
-            <span onClick={() => { this.setState({ selectedPdf: !this.state.selectedPdf}) } } className="value"> pdf </span>
-             <span onClick={() => { this.setState({ selectedCsv: !this.state.selectedCsv}) } } className="circle">
+            <span 
+              onClick={() => { this.setState({ selectedPdf: !this.state.selectedPdf, fileType: 'pdf'}) } } 
+              className="value"
+            > 
+              pdf 
+            </span>
+            <span 
+              onClick={() => { this.setState({ selectedCsv: !this.state.selectedCsv, fileType: 'csv'}) } } 
+              className="circle"
+            >
               {
                 !this.state.selectedCsv
                 ? <Icon name="circle" />
                 : <Icon name="filledCircle" />
               }
             </span>
-            <span className="value" onClick={() => { this.setState({ selectedCsv: !this.state.selectedCsv}) } }> Csv </span>
+            <span 
+              className="value" 
+              onClick={() => { this.setState({ selectedCsv: !this.state.selectedCsv, fileType: 'csv'}) } }
+            > 
+              csv 
+            </span>
           </div>
+          {
+            fileTypeErr.status &&
+            <p className="error-message">* {fileTypeErr.value}</p>
+          }
         </div>
         <div className="form-group">
-          <Button primary>Request Report</Button>
+          <Button 
+            primary 
+            onClick={this.handleSubmit}
+            disabled={this.props.disableRequestReport}
+          >
+            Request Report
+          </Button>
         </div>
       </React.Fragment>
     )

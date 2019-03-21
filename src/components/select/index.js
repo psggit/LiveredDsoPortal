@@ -15,10 +15,12 @@ class Select extends React.Component {
     //console.log("props", this.props)
     return (
       <div className="select--container">
-        <Icon name="down-small" size="10"/>
+        <span>
+          <Icon name="down-small" size="10"/>
+        </span>
         <select
           placeholder={this.props.placeholder}
-          className={`select ${this.props.small ? 'small' : ''}`}
+          className={`select ${this.props.small ? 'small' : 'large'}`}
           name={this.props.name}
           onChange={this.handleChange}
           value={this.props.value && this.props.value >= 0  ? this.props.value : ''}
