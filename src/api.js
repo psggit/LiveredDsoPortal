@@ -20,7 +20,7 @@ export function createComplaint (payloadObj, successCallback, failureCallback) {
   })
 }
 
-export function generateReport (payloadObj, successCallback, failureCallback) {
+export function generateOttpReport (payloadObj, successCallback, failureCallback) {
     console.log("data", payloadObj)
     // return POST({
     //     api: 'http://192.168.5.63:3000/livered/ottpReports',
@@ -36,8 +36,24 @@ export function generateReport (payloadObj, successCallback, failureCallback) {
         })
     })
     .catch(err => {
-        console.log("Error in creating report", err)
+        console.log("Error in creating ottp report", err)
         //err.response.json().then(json => { Notify("danger", json.error) })
         failureCallback()
     })
 }
+
+export function generateCreditReport (payloadObj, successCallback, failureCallback) {
+    console.log("data", payloadObj)
+    fetch(`http://192.168.5.63:3004/livered/creditReports`, {method: 'post', body: JSON.stringify(payloadObj)})
+    .then((response) => {
+        var reader = response.body.getReader();
+        reader.read().then(function(result) {
+            successCallback(result)
+        })
+    })
+    .catch(err => {
+        console.log("Error in creating credit report", err)
+        failureCallback()
+    })
+}
+

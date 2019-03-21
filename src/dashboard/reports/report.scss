@@ -51,6 +51,10 @@
     width: 100%;
   }
 
+  select option:hover {
+    background: red;
+  }
+
   .error-message {
     margin-top: 5px;
     color: red;

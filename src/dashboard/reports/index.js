@@ -31,24 +31,26 @@ class Reports extends React.Component {
     })
   }
 
-  generateReport(payload) {
-    Api.generateReport (payload, this.successCallback, this.failureCallback)
+  generateReport(payloadObj) {
+    if(payloadObj.data_type.includes("OTTP")) {
+      Api.generateOttpReport (payloadObj, this.successCallback, this.failureCallback)
+    } else {
+      Api.generateCreditReport (payloadObj, this.successCallback, this.failureCallback)
+    }
   }
 
   successCallback(response) {
     this.setState({requestingReport: false})
     const formData = this.reportForm.getData()
-    if(formData.fileType === "csv") {
-      const filename = formData.reportName ? `${formData.reportName}.csv` : "export.csv"
-      console.log("res", response, new TextDecoder("utf-8").decode(response.value))
-      const blob = new Blob([new TextDecoder("utf-8").decode(response.value)], { type: 'text/csv' });
-      const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(blob);
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
+    const filename = formData.reportName ? `${formData.reportName}.${formData.fileType}` : `export.${formData.fileType}`
+    const data = formData.fileType === "csv" ? new TextDecoder("utf-8").decode(response.value) : response.value
+    const blob = new Blob([data], { type: `text/${formData.fileType}` });
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
     console.log("success callback")
   }
 
