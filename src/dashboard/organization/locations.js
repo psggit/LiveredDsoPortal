@@ -8,10 +8,14 @@ class Locations extends React.Component {
     super()
 
     this.locationsTableHeaders = [
-      'City/Town',
-      'State',
-      'Service Started On',
-      'Delivery Service Status'
+      // 'City/Town',
+      // 'State',
+      // 'Service Started On',
+      // 'Delivery Service Status'
+      {title: "City/Town", icon: ""},
+      {title: "State", icon: ""}, 
+      {title: "Service Started On", icon: "info"},
+      {title: "Delivery Service Status", icon: "info"}
     ]
   }
   

@@ -1,20 +1,22 @@
 import React from "react"
 import Loader from "Components/loader"
 import "./table.scss"
+import Icon from "./../icon"
 
 class CustomTable extends React.Component {
   constructor() {
     super()
     this.renderHeadingRow = this.renderHeadingRow.bind(this);
-    //this.renderRow = this.renderRow.bind(this);
   }
 
-  renderHeadingRow = (_cell, cellIndex) => {
-    const { headings } = this.props
-
+  renderHeadingRow = (item, i) => {
     return (
-      <th key={cellIndex}>
-        {headings[cellIndex]}
+      <th key={i}>
+        {item.title}
+        {
+          item.icon &&
+          <Icon name={item.icon} />
+        }
       </th>
     )
   }
@@ -26,7 +28,11 @@ class CustomTable extends React.Component {
         <table className={`${this.props.className ? 'logs' : ''}`}>
           <thead>
             <tr>
-              {headings.map(this.renderHeadingRow)}
+              {
+                headings.map((item,i) => {
+                  return this.renderHeadingRow(item, i)
+                })
+              }
             </tr>
           </thead>
           <tbody>

@@ -25,15 +25,19 @@ class CreditManagement extends React.Component {
     this.pageLimit = 10
 
     this.creditLogTableHeaders = [
-      'Transaction ID',
-      'Date',
-      'Time',
-      // 'Uploaded By',
-      // 'Authorized By',
-      'Mode of Payment',
-      'Total Amount',
-      // 'Status'
+      // 'Transaction ID',
+      // 'Date',
+      // 'Time',
+      // 'Mode of Payment',
+      // 'Total Amount',
+  
+      {title: "Transaction ID", icon: ""},
+      {title: "Date", icon: ""},
+      {title: "Time", icon: ""},
+      {title: "Mode of Payment", icon: ""},
+      {title: "Total Amount", icon: ""},
     ]
+
     this.setActiveTab = this.setActiveTab.bind(this)
     this.successCallback = this.successCallback.bind(this)
     this.handlePageChange = this.handlePageChange.bind(this)
