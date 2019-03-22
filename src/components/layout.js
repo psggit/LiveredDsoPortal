@@ -24,7 +24,6 @@ const mainDivStyleWithoutSideMenu = {
 
 
 const Layout = ({ isLoggedIn, children }) => {
-  
   const style = isLoggedIn ? mainDivStyleWithSideMenu : mainDivStyleWithoutSideMenu
 
   return (

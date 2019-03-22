@@ -20,7 +20,7 @@ class Account extends React.Component {
         <PageHeader pageName="My Account" />
         <Wrapper>
           <h4>My Profile</h4>
-          <div style={{display: 'flex', borderBottom: '1px solid #dfe3e6'}}>
+          <div className="profile-container">
             <ProfileInfo
               name="RaviKumar"
               designation="Senior Partner Manager"

@@ -8,14 +8,15 @@ import SideMenu from 'Components/sidemenu'
 import 'Sass/app.scss'
 import Layout from 'Components/layout'
 import { menuItems } from './const/nav-items'
-import SupportWithForm from './dashboard/supportWithForm'
-import SupportWithoutForm from './dashboard/supportWithoutForm'
+//import Support from './dashboard/supportWithForm'
+import Support from './dashboard/supportWithoutForm'
 import Login from './login'
 import CreditManagement from "./dashboard/creditLog"
 import AddCredits from "./dashboard/addCredits"
 import Reports from "./dashboard/reports"
 import Organization from "./dashboard/organization"
 import Account from "./dashboard/Account"
+import Api from "./dashboard/api"
 
 const history = createHistory()
 
@@ -112,23 +113,22 @@ class App extends React.Component {
                       }
                     />
 
-                    {
+                    {/* {
                       this.state.isLoggedIn &&
                       <Route 
                         exact 
                         path="/home/support" 
                         render={props => <SupportWithForm {...props} isLoggedIn={this.state.isLoggedIn} />}
                       />
-                    }
+                    } */}
 
-                    {
-                      !this.state.isLoggedIn &&
-                      <Route 
-                        exact 
-                        path="/home/support" 
-                        render={props => <SupportWithoutForm {...props} />}
-                      />
-                    }
+                   
+                    <Route 
+                      exact 
+                      path="/home/support" 
+                      render={props => <Support isLoggedIn={isLoggedIn} {...props} />}
+                    />
+                    
 
                     <Route 
                       exact 
@@ -146,6 +146,12 @@ class App extends React.Component {
                       exact 
                       path="/home/reports" 
                       render={props => <Reports {...props} />}
+                    />
+
+                    <Route 
+                      exact 
+                      path="/home/api" 
+                      render={props => <Api {...props} />}
                     />
                   </Switch>
                 </Layout>

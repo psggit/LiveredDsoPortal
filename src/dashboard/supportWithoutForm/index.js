@@ -1,11 +1,16 @@
 import React from "react"
 import './supportWithoutForm.scss'
 import Icon from "Components/icon"
+import PageHeader from "Components/pageheader"
 
 class Support extends React.Component {
   render() {
     return (
       <div id="support">
+        {
+          this.props.isLoggedIn &&
+          <PageHeader pageName="Get in touch" />
+        }
         <div className="body">
           <p className="title-text">For any support, please contact us</p>
           <div className="content">

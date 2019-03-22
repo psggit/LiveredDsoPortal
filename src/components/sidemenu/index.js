@@ -3,6 +3,12 @@ import './sidemenu.scss'
 import Icon from "./../icon"
 
 class SideMenu extends React.Component {
+
+  constructor() {
+    super()
+
+    this.navigateToSupport = this.navigateToSupport.bind(this)
+  }
   checkActiveClass(value) {
     if (this.props.currentRoute === value) {
       return 'active'
@@ -13,6 +19,10 @@ class SideMenu extends React.Component {
   handleChangeRoute(e, currentRoute) {
     e.preventDefault()
     this.props.history.push(`/home/${currentRoute}`)
+  }
+
+  navigateToSupport() {
+    this.props.history.push(`/home/support`)
   }
 
   render() {
@@ -46,7 +56,7 @@ class SideMenu extends React.Component {
             ))
           }
         </div>
-        <div className="footer">
+        <div className="footer" onClick={this.navigateToSupport}>
           <div className="icon-section">
             <span>
               <Icon name="cloudIcon" />
