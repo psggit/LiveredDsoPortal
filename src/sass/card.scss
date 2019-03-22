@@ -1,21 +1,23 @@
 .card-container {
-  width: 100%;
+  width: 50%;
   background: #fff;
-
-  .card {
-    padding: 20px 30px;
+  padding: 20px 30px;
     
-    .item {
-      word-wrap: break-word;
-    }
-
-    .value {
-      color: #152935;
-      font-size: 14px;
-    }
+  .item {
+    word-wrap: break-word;
   }
 
-  .card .item:not(:first-child) {
+  .value {
+    color: #152935;
+    font-size: 14px;
+  }
+
+  .label {
+    font-size: 13px;
+    color: #4a90e2;
+  }
+  
+  .item:not(:first-child) {
     margin-top: 26px;
   }
 }

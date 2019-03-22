@@ -4,7 +4,7 @@ import Wrapper from "Components/contentWrapper"
 import ProfileInfo from "./profileCard"
 import AddressInfo from "./addressCard"
 
-class Organization extends React.Component {
+class Locations extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -64,4 +64,4 @@ class Organization extends React.Component {
   }
 }
 
-export default Organization
+export default Locations
