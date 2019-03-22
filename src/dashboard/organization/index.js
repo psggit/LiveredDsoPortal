@@ -1,8 +1,8 @@
 import React from "react"
 import PageHeader from "Components/pageheader"
 import Wrapper from "Components/contentWrapper"
-import ProfileInfo from "./profileCard"
-import AddressInfo from "./addressCard"
+import ProfileInfo from "./organizationProfileCard"
+import AddressInfo from "./organizationAddressCard"
 import Locations from "./locations"
 
 class Organization extends React.Component {

@@ -1,5 +1,5 @@
 import { POST, GET } from 'Utils/fetch'
-import Notify from "Components/notify"
+//import Notify from "Components/notify"
 
 export function createComplaint (payloadObj, successCallback, failureCallback) {
   console.log("data", payloadObj)

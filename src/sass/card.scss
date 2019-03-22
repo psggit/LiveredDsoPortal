@@ -1,7 +1,7 @@
 .card-container {
   width: 50%;
   background: #fff;
-  padding: 20px 30px;
+  padding: 20px 30px 40px 30px;
     
   .item {
     word-wrap: break-word;
@@ -10,6 +10,12 @@
   .value {
     color: #152935;
     font-size: 14px;
+  }
+
+  .link {
+    color: #000;
+    text-decoration: underline;
+    cursor: pointer;
   }
 
   .label {

@@ -15,6 +15,7 @@ import CreditManagement from "./dashboard/creditLog"
 import AddCredits from "./dashboard/addCredits"
 import Reports from "./dashboard/reports"
 import Organization from "./dashboard/organization"
+import Account from "./dashboard/Account"
 
 const history = createHistory()
 
