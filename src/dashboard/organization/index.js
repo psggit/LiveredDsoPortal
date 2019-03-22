@@ -3,6 +3,7 @@ import PageHeader from "Components/pageheader"
 import Wrapper from "Components/contentWrapper"
 import ProfileInfo from "./profileCard"
 import AddressInfo from "./addressCard"
+import Locations from "./locations"
 
 class Organization extends React.Component {
   constructor() {
@@ -10,6 +11,7 @@ class Organization extends React.Component {
     this.state = {
       activeTab: "company-profile"
     }
+  
     this.setActiveTab = this.setActiveTab.bind(this)
   }
 
@@ -33,31 +35,40 @@ class Organization extends React.Component {
                 onClick={() => this.setActiveTab("company-profile")} 
                 className={`${activeTab === "company-profile" ? 'active' : ''}`}
               >
-                <a href="/home/company-profile">Company Profile</a>
+                <a>Company Profile</a>
               </li>
               <li
                 onClick={() => this.setActiveTab("locations")}
                 className={`${activeTab === "locations" ? 'active' : ''}`}
               >
-                <a href="/home/locations">Locations</a>
+                <a>Locations</a>
               </li>
             </ul>
           </div>
-          <div style={{display: 'flex'}}>
-            <ProfileInfo 
-              dsoName="Swiggy"
-              validationStatus="Validated"
-              entityType="Private Limited"
-              availableLocations="Chennai, Mumbai, Hyderabad, Benguluru, Kolkata, Pune, Agra"
-            />
-            <AddressInfo 
-              headOffice="Bengaluru"
-              address="No 5, Sri Sagar St, Indira Nagar, Bengaluru 560094"
-              name="Saurabh"
-              contact="9840677625"
-              email="saurabh@gmail.com"
-            />
-          </div>
+          {
+            activeTab === "company-profile" &&
+            <div style={{display: 'flex'}}>
+              <ProfileInfo 
+                dsoName="Swiggy"
+                validationStatus="Validated"
+                entityType="Private Limited"
+                availableLocations="Chennai, Mumbai, Hyderabad, Benguluru, Kolkata, Pune, Agra"
+              />
+              <AddressInfo 
+                headOffice="Bengaluru"
+                address="No 5, Sri Sagar St, Indira Nagar, Bengaluru 560094"
+                name="Saurabh"
+                contact="9840677625"
+                email="saurabh@gmail.com"
+              />
+            </div>
+          }
+          {
+            activeTab === "locations" &&
+            <div style={{padding: '20px 30px'}} >
+              <Locations />
+            </div>
+          }
         </Wrapper>
       </div>
     )

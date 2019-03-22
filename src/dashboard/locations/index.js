@@ -8,7 +8,7 @@ class Locations extends React.Component {
   constructor() {
     super()
     this.state = {
-      activeTab: "company-profile"
+      activeTab: "locations"
     }
     this.setActiveTab = this.setActiveTab.bind(this)
   }
@@ -24,7 +24,7 @@ class Locations extends React.Component {
   render() {
     const {activeTab} = this.state
     return(
-      <div id="Organization">
+      <div id="Locations">
         <PageHeader pageName="Organization" />
         <Wrapper>
           <div style={{display: 'flex', marginTop: '4px'}}>
@@ -42,21 +42,6 @@ class Locations extends React.Component {
                 <a href="/home/locations">Locations</a>
               </li>
             </ul>
-          </div>
-          <div style={{display: 'flex'}}>
-            <ProfileInfo 
-              dsoName="Swiggy"
-              validationStatus="Validated"
-              entityType="Private Limited"
-              availableLocations="Chennai, Mumbai, Hyderabad, Benguluru, Kolkata, Pune, Agra"
-            />
-            <AddressInfo 
-              headOffice="Bengaluru"
-              address="No 5, Sri Sagar St, Indira Nagar, Bengaluru 560094"
-              name="Saurabh"
-              contact="9840677625"
-              email="saurabh@gmail.com"
-            />
           </div>
         </Wrapper>
       </div>

@@ -41,7 +41,7 @@ class CustomTable extends React.Component {
             } */}
             {
               !this.props.loadingData &&
-              this.props.rows.length === 0 && (
+              this.props.children.length === 0 && (
                 <tr>
                   <td style={{ textAlign: "center" }} colSpan={this.props.headings.length}>
                     No orders found

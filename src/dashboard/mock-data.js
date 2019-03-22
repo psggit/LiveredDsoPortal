@@ -59,3 +59,24 @@ export const creditsLog = [
     status: "Credited"
   }
 ]
+
+export const locationsData = [
+  {
+    city: "Bengaluru",
+    state: "Karnataka",
+    started_on: "2019-12-10T12:04:05Z",
+    service_status: "Enabled"
+  },
+  {
+    city: "Bengaluru",
+    state: "Karnataka",
+    started_on: "2019-12-10T12:04:05Z",
+    service_status: "Enabled"
+  },
+  {
+    city: "Bengaluru",
+    state: "Karnataka",
+    started_on: "2019-12-10T12:04:05Z",
+    service_status: "Enabled"
+  }
+]

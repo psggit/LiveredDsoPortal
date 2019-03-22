@@ -13,14 +13,20 @@
   }
   
   table tr th {
-    background: #fff;
-    border-bottom: 1px solid #5f5f6e;
+    background: #f8f8f8;
+    border-bottom: 1px solid #dfe3e6;
+    
     //border-right: 1px solid #D6DAE3;
     color: #000;
     text-align: left;
     padding: 12px;
     font-weight: 400;
     font-size: 14px;
+  }
+
+  table.logs tr th {
+    background: #fff;
+    border-bottom: 1px solid #5f5f6e;
   }
   
   table.logs tbody tr:nth-child(odd) {
