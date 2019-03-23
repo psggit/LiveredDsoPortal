@@ -22,10 +22,16 @@ class Reports extends React.Component {
     this.unMountModal = this.unMountModal.bind(this)
   }
 
+  /**
+   * Unmounts the report successfully downloaded modal
+   */
   unMountModal() {
     this.setState({reportFormKey: this.state.reportFormKey + 1, showSuccessDialog:false})
   }
-
+  
+  /**
+   * Formas payload and invokes tha generate report api
+   */
   handleSubmit() {
     const formData = this.reportForm.getData()
     console.log("report form data", this.reportForm.getData(), stateShortName)
@@ -40,6 +46,10 @@ class Reports extends React.Component {
     })
   }
 
+  /**
+   * Baed on data_type request appropriate api service
+   * @param {Object} payloadObj - payload object
+   */
   generateReport(payloadObj) {
     if(payloadObj.data_type.includes("OTTP")) {
       Api.generateOttpReport (payloadObj, this.successCallback, this.failureCallback)
@@ -48,6 +58,10 @@ class Reports extends React.Component {
     }
   }
 
+  /**
+   * Based on file type downloads appropriate report
+   * @param {Object} response - Api response
+   */
   successCallback(response) {
     this.setState({requestingReport: false, showSuccessDialog: true})
     const formData = this.reportForm.getData()
@@ -63,8 +77,9 @@ class Reports extends React.Component {
     console.log("success callback")
   }
 
-  
-
+  /**
+   * Enables the Reques report button
+   */
   failureCallback() {
     this.setState({requestingReport: false})
     console.log("failure callback")

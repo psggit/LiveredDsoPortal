@@ -26,12 +26,6 @@ class CreditManagement extends React.Component {
     this.pageLimit = 10
 
     this.creditLogTableHeaders = [
-      // 'Transaction ID',
-      // 'Date',
-      // 'Time',
-      // 'Mode of Payment',
-      // 'Total Amount',
-  
       {title: "Transaction ID", icon: ""},
       {title: "Date", icon: ""},
       {title: "Time", icon: ""},
@@ -64,7 +58,7 @@ class CreditManagement extends React.Component {
   }
 
   successCallback(response) {
-    console.log("response", response)
+    // console.log("response", response)
     this.setState({
       creditLogs: response.credit_log, 
       creditLogCount: response.count,
@@ -87,7 +81,6 @@ class CreditManagement extends React.Component {
    * @param {Integer} pagerObj.pageSize - Used as limit to fetch next set of credit log
    */
   handlePageChange(pagerObj) {
-    console.log("page change", pagerObj)
     this.setState({
       activePage: pagerObj.activePage,
       limit: pagerObj.pageSize
@@ -124,12 +117,6 @@ class CreditManagement extends React.Component {
                 >
                   <a href="/home/credit-log">Credit Log</a>
                 </li>
-                {/* <li
-                  onClick={() => this.setActiveTab("add-credits")}
-                  className={`${activeTab === "add-credits" ? 'active' : ''}`}
-                >
-                  <a href="/home/add-credits">Add Credits</a>
-                </li> */}
               </ul>
             </div>
           </div>
@@ -144,12 +131,6 @@ class CreditManagement extends React.Component {
                 onChangePage={this.handlePageChange}
               />
             </div>
-            {/* <DataTable
-              headings={this.creditLogTableHeaders}
-              rows={creditsLog}
-              className="logs"
-              //rowClick={this.handleRowClick}
-            /> */}
             <DataTable
               headings={this.creditLogTableHeaders}
               loadingData={loadingCreditLogs}
@@ -164,13 +145,8 @@ class CreditManagement extends React.Component {
                     <td>{item.TransactionID}</td>
                     <td>{Moment(item.CreatedAt).format("DD/MM/YYYY")}</td>
                     <td>{Moment(item.CreatedAt).format("h:mm A")}</td>
-                    {/* <td>{item.uploaded_by}</td>
-                    <td>{item.authorized_by}</td> */}
                     <td>{item.PaymentMode}</td>
                     <td>{item.Amount}</td>
-                    {/* <td>
-                      <div className={item.status === "Credited" ? 'green' : 'orange'}>{item.status}</div>
-                    </td> */}
                   </tr>
                 )
               })

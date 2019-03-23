@@ -8,10 +8,6 @@ class Locations extends React.Component {
     super()
 
     this.locationsTableHeaders = [
-      // 'City/Town',
-      // 'State',
-      // 'Service Started On',
-      // 'Delivery Service Status'
       {title: "City/Town", icon: ""},
       {title: "State", icon: ""}, 
       {title: "Service Started On", icon: "info", tooltipText: "Service started on date when delivery services began in a particular city"},
