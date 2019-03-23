@@ -57,7 +57,7 @@ export function generateCreditReport (payloadObj, successCallback, failureCallba
     })
 }
 
-export function fetchCreditLog (payload, successCallback, failureCallback) {
+export function fetchCreditLog (payload, successCallback) {
     // console.log("data", payloadObj)
     return POST({
         api: 'http://192.168.5.63:3004/livered/getDsoCreditLog',
@@ -71,8 +71,28 @@ export function fetchCreditLog (payload, successCallback, failureCallback) {
     })
     .catch(err => {
         console.log("Error in fetching credit log", err)
-        err.response.json().then(json => { Notify("danger", json.error) })
+        //err.response.json().then(json => { Notify("danger", json.error) })
         //failureCallback()
     })
   }
+
+  export function fetchCompanyProfileDetails (payload, successCallback) {
+    // console.log("data", payloadObj)
+    return POST({
+        api: 'http://192.168.5.63:3002/livered/dsoDetails',
+        handleError: true,
+        prependBaseUrl: false,
+        data: payload
+    })
+    .then((json) => {
+        //Notify("success", "Complaint created")
+        successCallback(json)
+    })
+    .catch(err => {
+        console.log("Error in fetching company profile details", err)
+        //err.response.json().then(json => { Notify("danger", json.error) })
+        //failureCallback()
+    })
+  }
+
 

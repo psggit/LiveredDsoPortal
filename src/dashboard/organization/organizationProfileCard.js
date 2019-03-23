@@ -10,7 +10,7 @@ const ProfileCard = ({dsoName, validationStatus, entityType, availableLocations}
 
     <div className="item">
       <p className="label">Validation Status</p>
-      <p className="value">{validationStatus}</p>
+      <p className="value">{validationStatus === "true" ? 'Validated' : 'Not Validated' }</p>
     </div>
 
     <div className="item">

@@ -18,7 +18,7 @@ class Locations extends React.Component {
       {title: "Delivery Service Status", icon: "info", tooltipText: "Whether delivery services are enabled or disabled in a particular city"}
     ]
   }
-  
+
   render() {
     return(
       <div>

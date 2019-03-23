@@ -4,15 +4,35 @@ import Wrapper from "Components/contentWrapper"
 import ProfileInfo from "./organizationProfileCard"
 import AddressInfo from "./organizationAddressCard"
 import Locations from "./locations"
+import * as Api from "./../../api"
 
 class Organization extends React.Component {
   constructor() {
     super()
     this.state = {
-      activeTab: "company-profile"
+      activeTab: "company-profile",
+      loadingProfileDetails: true,
+      profileDetails: {}
     }
   
     this.setActiveTab = this.setActiveTab.bind(this)
+    this.fetchCompanyProfileDetails = this.fetchCompanyProfileDetails.bind(this)
+    this.successCallback = this.successCallback.bind(this)
+  }
+
+  componentDidMount() {
+    this.fetchCompanyProfileDetails() 
+  }
+
+  fetchCompanyProfileDetails() {
+    this.setState({loadingProfileDetails: true})
+    Api.fetchCompanyProfileDetails({
+      id: "SW123"
+    }, this.successCallback)
+  }
+
+  successCallback(response) {
+    this.setState({ profileDetails: response.dso, loadingProfileDetails: false })
   }
 
   /**
@@ -24,7 +44,7 @@ class Organization extends React.Component {
   }
 
   render() {
-    const {activeTab} = this.state
+    const {activeTab, profileDetails, loadingProfileDetails} = this.state
     return(
       <div id="Organization">
         <PageHeader pageName="Organization" />
@@ -47,19 +67,20 @@ class Organization extends React.Component {
           </div>
           {
             activeTab === "company-profile" &&
+            !loadingProfileDetails &&
             <div style={{display: 'flex'}}>
               <ProfileInfo 
-                dsoName="Swiggy"
-                validationStatus="Validated"
-                entityType="Private Limited"
-                availableLocations="Chennai, Mumbai, Hyderabad, Benguluru, Kolkata, Pune, Agra"
+                dsoName={profileDetails.dso_name}
+                validationStatus={profileDetails.is_validated}
+                entityType=""
+                availableLocations={profileDetails.locations}
               />
               <AddressInfo 
-                headOffice="Bengaluru"
-                address="No 5, Sri Sagar St, Indira Nagar, Bengaluru 560094"
-                name="Saurabh"
-                contact="9840677625"
-                email="saurabh@gmail.com"
+                headOffice={profileDetails.head_office.city}
+                address={profileDetails.head_office.address}
+                name={profileDetails.head_office.contact.name}
+                contact={profileDetails.head_office.contact.phone}
+                email={profileDetails.head_office.contact.email}
               />
             </div>
           }
