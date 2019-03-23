@@ -87,7 +87,7 @@ class CreditManagement extends React.Component {
     })
     this.fetchCreditLog({
       limit: pagerObj.pageSize,
-      offset: pagerObj.activePage * (pagerObj.activePage - 1)
+      offset: pagerObj.pageSize * (pagerObj.activePage - 1)
     })
 
     let queryParamsObj = {

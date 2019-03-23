@@ -42,8 +42,8 @@ class ReportForm extends React.Component {
       { text: "Transport Permits History (OTTPs)", value: 1 },
       { text: "Cancelled Transport Permits (OTTPs)", value: 2 },
       { text: "Credit History", value: 3 },
-      { text: "User Log (list of all users)", value: 4 },
-      { text: "Audit Log", value: 5 }
+      // { text: "User Log (list of all users)", value: 4 },
+      // { text: "Audit Log", value: 5 }
     ]
 
     this.timeRange = [
@@ -65,19 +65,32 @@ class ReportForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSelectChange = this.handleSelectChange.bind(this)
-    this.handleFileTypeChange = this.handleFileTypeChange.bind(this)
     this.getData = this.getData.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.isFormValid = this.isFormValid.bind(this)
     this.setFileType = this.setFileType.bind(this)
   }
 
+  /**
+   * Sets the textfield value
+   * @param {Object} fieldStatusObj - Text field value
+   */
   handleChange(fieldStatusObj) {
-    console.log("data", fieldStatusObj)
     this.setState({ [fieldStatusObj.fieldName]: fieldStatusObj.fieldValue })
   }
 
+  /**
+   * Sets the dropdown value
+   * @param {Object} e 
+   */
   handleSelectChange(e) {
+    const errName = `${e.target.name}Err`
+    this.setState({
+      [errName]: {
+        value: "",
+        status: false
+      }
+    })
     switch(e.target.name) {
       case 'dataType':
         this.setState({
@@ -116,6 +129,9 @@ class ReportForm extends React.Component {
     return this.state
   }
 
+  /**
+   * Validates the report form
+   */
   isFormValid() {
     if(this.state.dataType.length === 0) {
       this.setState({
@@ -142,19 +158,29 @@ class ReportForm extends React.Component {
       })
       return false;
     } 
+    return true;
   }
 
+  /**
+   * Submits the report request if form is valid
+   */
   handleSubmit() {
-    if(!this.isFormValid()) {
+    if(this.isFormValid()) {
       this.props.handleSubmit()
     }
   }
 
-  handleFileTypeChange(e) {
-    this.setState({ [e.target.name]: e.target.value })
-  }
-
+  /**
+   * Sets the file type
+   * @param {String} fileType 
+   */
   setFileType(fileType) {
+    this.setState({
+      fileTypeErr: {
+        value: "",
+        status: false
+      }
+    })
     if(fileType === 'pdf') {
       this.setState({ selectedPdf: !this.state.selectedPdf, fileType: 'pdf', selectedCsv: false})
     } else {

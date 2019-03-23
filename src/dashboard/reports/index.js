@@ -59,11 +59,10 @@ class Reports extends React.Component {
   }
 
   /**
-   * Based on file type downloads appropriate report
+   * Based on file type downloads appropriate report from the api response
    * @param {Object} response - Api response
    */
   successCallback(response) {
-    this.setState({requestingReport: false, showSuccessDialog: true})
     const formData = this.reportForm.getData()
     const filename = formData.reportName ? `${formData.reportName}.${formData.fileType}` : `export.${formData.fileType}`
     const data = formData.fileType === "csv" ? new TextDecoder("utf-8").decode(response.value) : response.value
@@ -75,10 +74,11 @@ class Reports extends React.Component {
     link.click();
     document.body.removeChild(link);
     console.log("success callback")
+    this.setState({requestingReport: false, showSuccessDialog: true})
   }
 
   /**
-   * Enables the Reques report button
+   * Enables the Request report button
    */
   failureCallback() {
     this.setState({requestingReport: false})
