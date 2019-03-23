@@ -1,0 +1,32 @@
+#account {
+  h4 {
+    padding: 20px 0 0px 30px;
+    font-weight: 600;
+  }
+
+  .profile-container {
+    display: flex;
+    border-bottom: 1px solid #dfe3e6;
+  }
+
+  .notification-container {
+    padding: 20px 30px 40px 30px;
+    width: 100%;
+    background: #fff;
+
+    .channel {
+      display: flex;
+      align-items: center;
+      margin-top: 15px;
+      .icon {
+        margin-right: 10px;
+      }
+      p {
+        font-size: 16px;
+      }
+    }
+    .label {
+      color: #4a90e2;
+    }
+  }
+}
