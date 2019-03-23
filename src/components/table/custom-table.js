@@ -42,20 +42,20 @@ class CustomTable extends React.Component {
           </thead>
           <tbody>
             {this.props.children}
-            {/* {
+            {
               this.props.loadingData &&
               <tr>
                 <td colSpan={this.props.headings.length}>
                   <Loader />
                 </td>
               </tr>
-            } */}
+            }
             {
               !this.props.loadingData &&
               this.props.children.length === 0 && (
                 <tr>
                   <td style={{ textAlign: "center" }} colSpan={this.props.headings.length}>
-                    No orders found
+                    No records found
                   </td>
                 </tr>
               )

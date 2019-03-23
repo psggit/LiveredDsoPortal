@@ -19,7 +19,8 @@ class CreditManagement extends React.Component {
       activePage: 1,
       limit: 10,
       creditLogs: [],
-      creditLogCount: 0
+      creditLogCount: 0,
+      loadingCreditLogs: false
     }
 
     this.pageLimit = 10
@@ -58,12 +59,17 @@ class CreditManagement extends React.Component {
   }
 
   fetchCreditLog(payload) {
+    this.setState({loadingCreditLogs: true})
     Api.fetchCreditLog(payload, this.successCallback)
   }
 
   successCallback(response) {
     console.log("response", response)
-    this.setState({creditLogs: response.credit_log, creditLogCount: response.count})
+    this.setState({
+      creditLogs: response.credit_log, 
+      creditLogCount: response.count,
+      loadingCreditLogs: false
+    })
   }
 
   /**
@@ -104,7 +110,7 @@ class CreditManagement extends React.Component {
   }
 
   render() {
-    const {activeTab, creditLogs, creditLogCount} = this.state
+    const {activeTab, creditLogs, creditLogCount, loadingCreditLogs} = this.state
     return (
       <div id="CreditLog">
         <PageHeader pageName="Credit Management" />
@@ -146,10 +152,11 @@ class CreditManagement extends React.Component {
             /> */}
             <DataTable
               headings={this.creditLogTableHeaders}
-              loadingData={true}
+              loadingData={loadingCreditLogs}
               className="logs"
             >
             {
+              !loadingCreditLogs &&
               creditLogs.length &&
               creditLogs.map((item, i) => {
                 return (
