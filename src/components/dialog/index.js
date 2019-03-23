@@ -49,7 +49,7 @@ import Icon from './../icon'
                   )
                   : ''
                 }
-                {/* {
+                {
                   this.props.subtitle
                   ? (
                     <div className="dialog--subtitle-bar">
@@ -59,7 +59,11 @@ import Icon from './../icon'
                     </div>
                   )
                   : ''
-                } */}
+                }
+                {
+                  this.props.inputBox &&
+                  <input type="text" />
+                }
               </div>
             </div>
             { this.props.children }
