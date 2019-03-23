@@ -15,7 +15,12 @@ class CustomTable extends React.Component {
         {item.title}
         {
           item.icon &&
-          <Icon name={item.icon} />
+          <span className="info"  style={{ position: "relative", marginLeft: "12px", verticalAlign: "middle"}}>
+            <Icon name={item.icon} /> 
+            <span className="tooltip-text">
+              {item.tooltipText}
+            </span>
+          </span>
         }
       </th>
     )

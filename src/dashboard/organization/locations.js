@@ -14,8 +14,8 @@ class Locations extends React.Component {
       // 'Delivery Service Status'
       {title: "City/Town", icon: ""},
       {title: "State", icon: ""}, 
-      {title: "Service Started On", icon: "info"},
-      {title: "Delivery Service Status", icon: "info"}
+      {title: "Service Started On", icon: "info", tooltipText: "Service started on date when delivery services began in a particular city"},
+      {title: "Delivery Service Status", icon: "info", tooltipText: "Whether delivery services are enabled or disabled in a particular city"}
     ]
   }
   
