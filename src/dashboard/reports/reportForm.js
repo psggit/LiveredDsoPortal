@@ -260,7 +260,7 @@ class ReportForm extends React.Component {
           />
         </div>
         <div className="form-group">
-          <Label>File Type *</Label>
+          <Label>File Type <span>*</span></Label>
           <div className="file-type">
             <span 
               onClick={() => this.setFileType('pdf')} 
@@ -306,7 +306,7 @@ class ReportForm extends React.Component {
             onClick={this.handleSubmit}
             disabled={this.props.disableRequestReport}
           >
-            Request Report
+            Download Report
           </Button>
         </div>
       </React.Fragment>

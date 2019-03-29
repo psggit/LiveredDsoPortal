@@ -4,7 +4,7 @@ import { POST, GET } from 'Utils/fetch'
 export function createComplaint (payloadObj, successCallback, failureCallback) {
   console.log("data", payloadObj)
   return POST({
-      api: 'http://192.168.5.63:3000/livered/createDsoComplaints',
+      api: 'http://192.168.1.57:3000/livered/createDsoComplaints',
       handleError: true,
       prependBaseUrl: false,
       data: payloadObj
@@ -28,7 +28,7 @@ export function generateOttpReport (payloadObj, successCallback, failureCallback
     //     prependBaseUrl: false,
     //     data: payloadObj
     // })
-    fetch(`http://192.168.5.63:3000/livered/ottpReports`, {method: 'post', body: JSON.stringify(payloadObj)})
+    fetch(`http://192.168.1.57:3000/livered/ottpReports`, {method: 'post', body: JSON.stringify(payloadObj)})
     .then((response) => {
         var reader = response.body.getReader();
         reader.read().then(function(result) {
@@ -44,7 +44,7 @@ export function generateOttpReport (payloadObj, successCallback, failureCallback
 
 export function generateCreditReport (payloadObj, successCallback, failureCallback) {
     console.log("data", payloadObj)
-    fetch(`http://192.168.5.63:3004/livered/creditReports`, {method: 'post', body: JSON.stringify(payloadObj)})
+    fetch(`http://192.168.1.57:3004/livered/creditReports`, {method: 'post', body: JSON.stringify(payloadObj)})
     .then((response) => {
         var reader = response.body.getReader();
         reader.read().then(function(result) {
@@ -60,7 +60,7 @@ export function generateCreditReport (payloadObj, successCallback, failureCallba
 export function fetchCreditLog (payload, successCallback) {
     // console.log("data", payloadObj)
     return POST({
-        api: 'http://192.168.5.63:3004/livered/getDsoCreditLog',
+        api: 'http://192.168.1.57:3004/livered/getDsoCreditLog',
         handleError: true,
         prependBaseUrl: false,
         data: payload
@@ -79,7 +79,7 @@ export function fetchCreditLog (payload, successCallback) {
   export function fetchCompanyProfileDetails (payload, successCallback) {
     // console.log("data", payloadObj)
     return POST({
-        api: 'http://192.168.5.63:3002/livered/dsoDetails',
+        api: 'http://192.168.1.57:3002/livered/dsoDetails',
         handleError: true,
         prependBaseUrl: false,
         data: payload

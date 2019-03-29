@@ -68,20 +68,22 @@ class Api extends React.Component {
             <Button primary onClick={() => this.mountApiKeyModal("generate")}>
               Generate Api
               <span style={{marginLeft: '10px', verticalAlign: '-webkit-baseline-middle'}}>
-                <Icon name="channelTick" /> 
+                <Icon name="plusIcon" /> 
               </span>
             </Button>
           </span>
         </span>
         <Wrapper>
           <div className="body">
+          {
+            apiKeyData.length > 0 ?
+            <React.Fragment>
             <DataTable
               headings={this.apiTableHeaders}
               loadingData={false}
               className="logs"
             >
             {
-              apiKeyData.length &&
               apiKeyData.map((item, i) => {
                 return (
                   <tr key={i}>
@@ -94,12 +96,15 @@ class Api extends React.Component {
                     </td>
                   </tr>
                 )
-              })
+              })           
             }
             </DataTable>
             <div style={{marginTop: '60px'}}>
               <Button danger>API Documentation</Button>
             </div>
+            </React.Fragment>
+            : <div> Currently no APIs available </div>
+          }
           </div>
         </Wrapper>
         {generateKey && (
