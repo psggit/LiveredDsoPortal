@@ -13,21 +13,21 @@ class Reports extends React.Component {
     super()
     this.state = {
       requestingReport: false,
-      showSuccessDialog: false,
+      //showSuccessDialog: false,
       reportFormKey: 0
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.successCallback = this.successCallback.bind(this)
     this.failureCallback = this.failureCallback.bind(this)
-    this.unMountModal = this.unMountModal.bind(this)
+    //this.unMountModal = this.unMountModal.bind(this)
   }
 
   /**
    * Unmounts the report successfully downloaded modal
    */
-  unMountModal() {
-    this.setState({reportFormKey: this.state.reportFormKey + 1, showSuccessDialog:false})
-  }
+  // unMountModal() {
+  //   this.setState({reportFormKey: this.state.reportFormKey + 1, showSuccessDialog:false})
+  // }
   
   /**
    * Formas payload and invokes tha generate report api
@@ -97,7 +97,7 @@ class Reports extends React.Component {
             disableRequestReport={this.state.requestingReport}
           />
         </div>
-        {this.state.showSuccessDialog && (
+        {/* {this.state.showSuccessDialog && (
           <Dialog
             title="Your request has been successfully downloaded"
             icon="success"
@@ -108,7 +108,7 @@ class Reports extends React.Component {
               </Button>,``
             ]}
           />
-        )}
+        )} */}
       </div>
     )
   }
