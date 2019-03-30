@@ -1,5 +1,6 @@
 import React from "react"
 import "Sass/card.scss"
+import PropTypes from "prop-types"
 
 const AccountProfile = ({name, designation, password}) => (
   <div className="card-container">
@@ -24,3 +25,15 @@ const AccountProfile = ({name, designation, password}) => (
 )
 
 export default AccountProfile
+
+AccountProfile.defaultProps = {
+  name: undefined,
+  designation: undefined,
+  password: undefined    
+}
+
+AccountProfile.propTypes = {
+  name: PropTypes.string.isRequired,
+  designation: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired
+}

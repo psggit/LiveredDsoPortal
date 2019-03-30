@@ -1,5 +1,6 @@
 import React from "react"
 import "Sass/card.scss"
+import PropTypes from "prop-types"
 
 const AddressCard = ({headOffice, address, name, contact, email}) => (
   <div className="card-container">
@@ -23,3 +24,19 @@ const AddressCard = ({headOffice, address, name, contact, email}) => (
 )
 
 export default AddressCard
+
+AddressCard.defaultProps = {
+  headOffice: undefined,
+  address: undefined,
+  name: undefined,
+  contact: undefined,
+  email: undefined    
+}
+
+AddressCard.propTypes = {
+  headOffice: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  contact: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired
+}

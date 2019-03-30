@@ -1,5 +1,6 @@
 import React from "react"
 import "Sass/card.scss"
+import PropTypes from "prop-types"
 
 const ProfileCard = ({dsoName, validationStatus, entityType, availableLocations}) => (
   <div className="card-container">
@@ -26,3 +27,17 @@ const ProfileCard = ({dsoName, validationStatus, entityType, availableLocations}
 )
 
 export default ProfileCard
+
+ProfileCard.defaultProps = {
+  dsoName: undefined,
+  validationStatus: undefined,
+  entityType: undefined,
+  availableLocations: undefined
+}
+
+ProfileCard.propTypes = {
+  dsoName: PropTypes.string.isRequired,
+  validationStatus: PropTypes.string.isRequired,
+  entityType: PropTypes.string,
+  availableLocations: PropTypes.string.isRequired
+}

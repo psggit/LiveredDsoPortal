@@ -1,5 +1,6 @@
 import React from "react"
 import "Sass/card.scss"
+import PropTypes from "prop-types"
 
 const AccountContactInfo = ({email, phone}) => (
   <div className="card-container">
@@ -16,3 +17,13 @@ const AccountContactInfo = ({email, phone}) => (
 )
 
 export default AccountContactInfo
+
+AccountContactInfo.defaultProps = {
+  email: undefined,
+  phone: undefined 
+}
+
+AccountContactInfo.propTypes = {
+  name: PropTypes.string.isRequired,
+  designation: PropTypes.string.isRequired
+}
