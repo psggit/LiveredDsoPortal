@@ -8,7 +8,11 @@ import Icon from './../icon'
 
   constructor() {
     super()
+    this.state = {
+      text: ""
+    }
     this.handlePress = this.handlePress.bind(this)
+    this.handleTextChange = this.handleTextChange.bind(this)
   }
 
   componentDidMount() {
@@ -23,6 +27,10 @@ import Icon from './../icon'
     if (e.target.className === 'overlay-container') {
       this.props.onClick()
     }
+  }
+
+  handleTextChange(e) {
+    this.setState({text: e.target.value})
   }
 
   render() {
@@ -62,7 +70,7 @@ import Icon from './../icon'
                 }
                 {
                   this.props.inputBox &&
-                  <input type="text" />
+                  <input type="text" onChange={this.handleTextChange} />
                 }
               </div>
             </div>

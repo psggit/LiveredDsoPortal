@@ -1,5 +1,6 @@
 import React from "react"
 import Button from "Components/button"
+import Dialog from "Components/dialog"
 //import "@sass/_animation.scss"
 import { POST } from "Utils/fetch"
 import { createSession } from "./session"
@@ -19,6 +20,8 @@ class Login extends React.Component {
       password: "",
       isSubmitting: false,
       showLoginErr: false,
+      showForgotPasswordModal: false,
+      showSuccessMessageModal: false,
       emailErr: {
         value: "",
         status: false
@@ -34,6 +37,7 @@ class Login extends React.Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleClick = this.handleClick.bind(this)
+    this.mountModal = this.mountModal.bind(this)
   }
 
   handleKeyPress(e) {
@@ -80,6 +84,19 @@ class Login extends React.Component {
     location.href="/home/support"
   }
 
+  resetPassword(text) {
+    console.log("email", text)
+    this.setState({showForgotPasswordModal: false, showSuccessMessageModal: true})
+  }
+
+  mountModal() {
+    this.setState({ showForgotPasswordModal: true })
+  }
+
+  unMountModal(modalName) {
+    this.setState({ [modalName]: false })
+  }
+
   render() {
     const { emailErr, passwordErr } = this.state
     return (
@@ -123,6 +140,7 @@ class Login extends React.Component {
                       Login
                     </Button>
                   </div>
+                  <p onClick={this.mountModal}>Forgot your password?</p>
                 </form>
               </React.Fragment>
             </div>
@@ -133,6 +151,34 @@ class Login extends React.Component {
             )}
           </div>
         </div>
+        {this.state.showForgotPasswordModal && (
+          <Dialog
+            title="Forgot your password?"
+            subtitle="Enter your email address to reset your password"
+            inputBox={true}
+            onClick={() => this.unMountModal('showForgotPasswordModal')}
+            actions={[
+              <Button onClick={() => this.resetPassword(this.state.text)} primary>
+                Submit
+              </Button>,
+              <Button onClick={() => this.unMountModal('showForgotPasswordModal')} secondary>
+                Cancel
+              </Button>
+            ]}
+          />
+        )}
+        {this.state.showSuccessMessageModal && (
+          <Dialog
+            title="Please check your email to reset your password"
+            icon="success"
+            onClick={() => this.unMountModal('showSuccessMessageModal')}
+            actions={[
+              <Button onClick={() => this.unMountModal('showSuccessMessageModal')} primary>
+                Done
+              </Button>,``
+            ]}
+          />
+        )}
       </React.Fragment>
     )
   }
