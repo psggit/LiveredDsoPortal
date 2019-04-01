@@ -18,9 +18,6 @@ const AccountProfile = ({name, designation, password}) => (
       <p className="label">Password</p>
       <p className="value">{password}</p>
     </div>
-    <div className="item">
-      <p class="link">Reset Password</p>
-    </div>
   </div>
 )
 
@@ -29,7 +26,7 @@ export default AccountProfile
 AccountProfile.defaultProps = {
   name: undefined,
   designation: undefined,
-  password: undefined    
+  password: undefined
 }
 
 AccountProfile.propTypes = {

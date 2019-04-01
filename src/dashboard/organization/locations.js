@@ -10,7 +10,7 @@ class Locations extends React.Component {
     this.locationsTableHeaders = [
       {title: "City/Town", icon: ""},
       {title: "State", icon: ""}, 
-      {title: "Service Started On", icon: "info", tooltipText: "Service started on date when delivery services began in a particular city"},
+      // {title: "Service Started On", icon: "info", tooltipText: "Service started on date when delivery services began in a particular city"},
       {title: "Delivery Service Status", icon: "info", tooltipText: "Whether delivery services are enabled or disabled in a particular city"}
     ]
   }
@@ -29,7 +29,7 @@ class Locations extends React.Component {
             return (
               <tr key={i}>
                 <td>{item.city}</td>
-                <td>{Moment(item.started_on).format("DD/MM/YYYY")}</td>
+                {/* <td>{Moment(item.started_on).format("DD/MM/YYYY")}</td> */}
                 <td>{item.state}</td>
                 <td>{item.service_status}</td>
               </tr>

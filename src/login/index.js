@@ -18,6 +18,7 @@ class Login extends React.Component {
     this.state = {
       email: "",
       password: "",
+      forgotPasswordEmail: "",
       isSubmitting: false,
       showLoginErr: false,
       showForgotPasswordModal: false,
@@ -38,6 +39,8 @@ class Login extends React.Component {
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleClick = this.handleClick.bind(this)
     this.mountModal = this.mountModal.bind(this)
+    this.handleTextChange = this.handleTextChange.bind(this)
+    this.resetPassword = this.resetPassword.bind(this)
   }
 
   handleKeyPress(e) {
@@ -84,8 +87,8 @@ class Login extends React.Component {
     location.href="/home/support"
   }
 
-  resetPassword(text) {
-    console.log("email", text)
+  resetPassword() {
+    console.log("email", this.state.forgotPasswordEmail)
     this.setState({showForgotPasswordModal: false, showSuccessMessageModal: true})
   }
 
@@ -95,6 +98,10 @@ class Login extends React.Component {
 
   unMountModal(modalName) {
     this.setState({ [modalName]: false })
+  }
+
+  handleTextChange(e) {
+    this.setState({forgotPasswordEmail: e.target.value})
   }
 
   render() {
@@ -150,22 +157,32 @@ class Login extends React.Component {
               </p>
             )}
           </div>
+          <p style={{ 
+              textAlign: "center", 
+              marginTop: "24px",
+              cursor: "pointer",
+            }}
+            onClick={this.handleClick}
+          >
+            Having trouble? Contact Support
+          </p>
         </div>
         {this.state.showForgotPasswordModal && (
           <Dialog
             title="Forgot your password?"
             subtitle="Enter your email address to reset your password"
-            inputBox={true}
             onClick={() => this.unMountModal('showForgotPasswordModal')}
             actions={[
-              <Button onClick={() => this.resetPassword(this.state.text)} primary>
+              <Button onClick={() => this.resetPassword()} primary>
                 Submit
               </Button>,
               <Button onClick={() => this.unMountModal('showForgotPasswordModal')} secondary>
                 Cancel
               </Button>
             ]}
-          />
+          >
+            <input type="text" onChange={this.handleTextChange} />  
+          </Dialog>
         )}
         {this.state.showSuccessMessageModal && (
           <Dialog

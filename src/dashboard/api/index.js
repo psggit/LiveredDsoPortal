@@ -15,7 +15,8 @@ class Api extends React.Component {
 
     this.state = {
       generateKey: false,
-      deleteKey: false
+      deleteKey: false,
+      apiKey: ""
     }
 
     this.apiTableHeaders = [
@@ -30,6 +31,11 @@ class Api extends React.Component {
     this.mountApiKeyModal = this.mountApiKeyModal.bind(this)
     this.unMountApiKeyModal = this.unMountApiKeyModal.bind(this)
     this.deleteApiKey = this.deleteApiKey.bind(this)
+    this.handleTextChange = this.handleTextChange.bind(this)
+  }
+
+  handleTextChange(e) {
+    this.setState({apiKey: e.target.value})
   }
 
   deleteApiKey() {
@@ -39,7 +45,7 @@ class Api extends React.Component {
 
   generateApiKey() {
     this.setState({ generateKey: false })
-    console.log("Generate api key")
+    console.log("Generate api key", this.state.apiKey)
   }
 
   mountApiKeyModal(action) {
@@ -111,7 +117,7 @@ class Api extends React.Component {
           <Dialog
             title="Generate New API Key"
             subtitle="New API Key created"
-            inputBox={true}
+            //inputBox={true}
             onClick={() => this.unMountApiKeyModal("generate")}
             actions={[
               <Button onClick={() => this.generateApiKey()} primary>
@@ -121,11 +127,13 @@ class Api extends React.Component {
                 Cancel
               </Button>
             ]}
-          />
+          >
+             <input type="text" onChange={this.handleTextChange} />
+          </Dialog>
         )}
         {deleteKey && (
           <Dialog
-            title={`Do you want to delete "API Key ${1}"`}
+            title={`Sure you want to delete ${1}`}
             onClick={() => this.unMountApiKeyModal("delete")}
             actions={[
               <Button onClick={() => this.deleteApiKey()} primary>
