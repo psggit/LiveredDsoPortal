@@ -1,5 +1,6 @@
 import React from "react"
 import Icon from 'Components/icon'
+import PropTypes from "prop-types"
 
 class Pagination extends React.Component {
   constructor() {
@@ -23,35 +24,7 @@ class Pagination extends React.Component {
       {
         text: "100",
         value: "3"
-      },
-      // {
-      //   text: "7",
-      //   value: "4"
-      // },
-      // {
-      //   text: "6",
-      //   value: "5"
-      // },
-      // {
-      //   text: "5",
-      //   value: "6"
-      // },
-      // {
-      //   text: "4",
-      //   value: "7"
-      // },
-      // {
-      //   text: "3",
-      //   value: "8"
-      // },
-      // {
-      //   text: "2",
-      //   value: "9"
-      // },
-      // {
-      //   text: "1",
-      //   value: "10"
-      // }
+      }
     ]
 
     this.updateActivePage = this.updateActivePage.bind(this)
@@ -217,3 +190,17 @@ class Pagination extends React.Component {
 }
 
 export default Pagination
+
+Pagination.defaultProps = {
+  activePage: 1,
+  pageSize: 10,
+  totalItemsCount: undefined,
+  onChangePage: undefined
+}
+
+Pagination.propTypes = {
+  activePage: PropTypes.number,
+  pageSize: PropTypes.number,
+  totalItemsCount: PropTypes.number.isRequired,
+  onChangePage: PropTypes.func.isRequired
+}

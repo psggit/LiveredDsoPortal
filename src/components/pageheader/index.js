@@ -1,5 +1,6 @@
 import React from 'react'
 import Icon from './../icon'
+import PropTypes from "prop-types"
 
 const PageHeader = ({ pageName }) => (
   <div style={{ display: 'flex', alignItems: 'center', marginBottom: '26px' }}>
@@ -9,3 +10,11 @@ const PageHeader = ({ pageName }) => (
 )
 
 export default PageHeader
+
+PageHeader.defaultProps = {
+  pageName: undefined
+}
+
+PageHeader.propTypes = {
+  pageName: PropTypes.string.isRequired
+}

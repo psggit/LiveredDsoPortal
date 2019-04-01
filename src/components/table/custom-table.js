@@ -2,6 +2,7 @@ import React from "react"
 import Loader from "Components/loader"
 import "./table.scss"
 import Icon from "./../icon"
+import PropTypes from "prop-types"
 
 class CustomTable extends React.Component {
   constructor() {
@@ -68,4 +69,14 @@ class CustomTable extends React.Component {
 }
 
 export default CustomTable
+
+CustomTable.defaultProps = {
+  loadingData: undefined,
+  headings: undefined
+}
+
+CustomTable.propTypes = {
+  loadingData: PropTypes.bool,
+  headings: PropTypes.array.isRequired
+}
 

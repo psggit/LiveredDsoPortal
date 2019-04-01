@@ -1,6 +1,7 @@
 import React from "react"
 import Loader from "Components/loader"
 import "./table.scss"
+import PropTypes from "prop-types"
 
 class Table extends React.Component {
 
@@ -82,3 +83,15 @@ class Table extends React.Component {
 }
 
 export default Table
+
+Table.defaultProps = {
+  loadingData: undefined,
+  rows: undefined,
+  headings: undefined
+}
+
+Table.propTypes = {
+  loadingData: PropTypes.bool,
+  rows: PropTypes.array.isRequired,
+  headings: PropTypes.array.isRequired
+}

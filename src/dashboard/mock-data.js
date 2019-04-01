@@ -82,5 +82,10 @@ export const locationsData = [
 ]
 
 export const apiKeyData = [
-  
+  {
+    name: "Default",
+    api_key: "zadKLNz.Dzvjfgklaglfhai",
+    created_at: "2019-12-10T12:04:05Z",
+    generated_by: "Alan"
+  }  
 ]

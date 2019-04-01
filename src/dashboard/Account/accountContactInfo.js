@@ -24,6 +24,6 @@ AccountContactInfo.defaultProps = {
 }
 
 AccountContactInfo.propTypes = {
-  name: PropTypes.string.isRequired,
-  designation: PropTypes.string.isRequired
+  email: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired
 }
