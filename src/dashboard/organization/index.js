@@ -3,6 +3,7 @@ import PageHeader from "Components/pageheader"
 import Wrapper from "Components/contentWrapper"
 import ProfileInfo from "./organizationProfileCard"
 import AddressInfo from "./organizationAddressCard"
+import LiveredInfo from "./liveredDetailsCard"
 import Locations from "./locations"
 import * as Api from "./../../api"
 
@@ -68,21 +69,29 @@ class Organization extends React.Component {
           {
             activeTab === "company-profile" &&
             !loadingProfileDetails &&
-            <div style={{display: 'flex'}}>
-              <ProfileInfo 
-                dsoName={profileDetails.dso_name}
-                validationStatus={profileDetails.is_validated}
-                entityType=""
-                availableLocations={profileDetails.locations}
-              />
-              <AddressInfo 
-                headOffice={profileDetails.head_office.city}
-                address={profileDetails.head_office.address}
-                name={profileDetails.head_office.contact.name}
-                contact={profileDetails.head_office.contact.phone}
-                email={profileDetails.head_office.contact.email}
-              />
-            </div>
+            <React.Fragment>
+              <div className="profile-details" style={{display: 'flex', borderBottom: '1px solid #dfe3e6'}}>
+                <ProfileInfo 
+                  dsoName={profileDetails.dso_name}
+                  validationStatus={profileDetails.is_validated}
+                  entityType=""
+                  availableLocations={profileDetails.locations}
+                />
+                <AddressInfo 
+                  headOffice={profileDetails.head_office.city}
+                  address={profileDetails.head_office.address}
+                  name={profileDetails.head_office.contact.name}
+                  contact={profileDetails.head_office.contact.phone}
+                  email={profileDetails.head_office.contact.email}
+                />
+              </div>
+              <div className="livered-details">
+                <LiveredInfo
+                  isValidated={profileDetails.is_validated}
+                  category={""}
+                />
+              </div>
+            </React.Fragment>
           }
           {
             activeTab === "locations" &&

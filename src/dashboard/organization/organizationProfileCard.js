@@ -4,6 +4,7 @@ import PropTypes from "prop-types"
 
 const ProfileCard = ({dsoName, validationStatus, entityType, availableLocations}) => (
   <div className="card-container">
+    <h3>Profile</h3>
     <div className="item">
       <p className="label">Name of Entity</p>
       <p className="value">{dsoName}</p>
@@ -19,10 +20,10 @@ const ProfileCard = ({dsoName, validationStatus, entityType, availableLocations}
       <p className="value">{entityType}</p>
     </div>
 
-    <div className="item">
+    {/* <div className="item">
       <p className="label">Locations present in</p>
       <p className="value">{availableLocations}</p>
-    </div>
+    </div> */}
   </div>
 )
 
