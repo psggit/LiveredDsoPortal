@@ -14,7 +14,9 @@ class Reports extends React.Component {
     this.state = {
       requestingReport: false,
       //showSuccessDialog: false,
-      reportFormKey: 0
+      reportFormKey: 0,
+      cityList: [],
+      stateList: []
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.successCallback = this.successCallback.bind(this)
@@ -22,12 +24,39 @@ class Reports extends React.Component {
     //this.unMountModal = this.unMountModal.bind(this)
   }
 
-  /**
-   * Unmounts the report successfully downloaded modal
-   */
-  // unMountModal() {
-  //   this.setState({reportFormKey: this.state.reportFormKey + 1, showSuccessDialog:false})
-  // }
+  componentDidMount() {
+    this.fetchCityAndStates()
+  }
+
+  formatResponse(response) {
+    const cityList = response.cities.map((item) => {
+      return {
+        text: item.city_name,
+        value: item.id,
+        stateId: item.StateId
+      }
+    })
+
+    const stateList = response.states.map((item) => {
+      return {
+        text: item.state_name,
+        value: item.id
+      }
+    })
+
+    this.setState({stateList, cityList})
+  }
+
+  fetchCityAndStates() {
+    Api.fetchCityAndStates()
+      .then((response) => {
+        console.log("response", response)
+        this.formatResponse(response)
+      })
+      .catch((err) => {
+        console.log("Error in fetching state and cities")
+      })
+  }
   
   /**
    * Formas payload and invokes tha generate report api
@@ -95,6 +124,8 @@ class Reports extends React.Component {
             ref={(node) => this.reportForm=(node)} 
             handleSubmit={this.handleSubmit} 
             disableRequestReport={this.state.requestingReport}
+            cityList={this.state.cityList}
+            stateList={this.state.stateList}
           />
         </div>
         {/* {this.state.showSuccessDialog && (

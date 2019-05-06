@@ -2,7 +2,7 @@ import React from "react"
 import "Sass/card.scss"
 import PropTypes from "prop-types"
 
-const ProfileCard = ({dsoName, validationStatus, entityType, availableLocations}) => (
+const ProfileCard = ({dsoName, entityType}) => (
   <div className="card-container">
     <h3>Profile</h3>
     <div className="item">
@@ -10,10 +10,10 @@ const ProfileCard = ({dsoName, validationStatus, entityType, availableLocations}
       <p className="value">{dsoName}</p>
     </div>
 
-    <div className="item">
+    {/* <div className="item">
       <p className="label">Validation Status</p>
       <p className="value">{validationStatus === "true" ? 'Validated' : 'Not Validated' }</p>
-    </div>
+    </div> */}
 
     <div className="item">
       <p className="label">Type of Entity</p>

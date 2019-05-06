@@ -24,6 +24,8 @@ class ReportForm extends React.Component {
       selectedTimeRangeIdx: "",
       selectedPdf: false,
       selectedCsv: false,
+      cityList: [],
+      stateList: [],
       dataTypeErr: {
         value: "",
         status: false
@@ -53,15 +55,15 @@ class ReportForm extends React.Component {
       { text: "Last 3 months", value: 4 }
     ]
 
-    this.stateList = [
-      { state_short_name: "TN", text: "Tamilnadu", value: 1 },
-      { state_short_name: "KA", text: "Bangalore", value: 2 }
-    ]
+    // this.stateList = [
+    //   { state_short_name: "TN", text: "Tamilnadu", value: 1 },
+    //   { state_short_name: "KA", text: "Bangalore", value: 2 }
+    // ]
 
-    this.city = [
-      { text: "Chennai", value: 1 },
-      { text: "Erode", value: 2 }
-    ]
+    // this.city = [
+    //   { text: "Chennai", value: 1 },
+    //   { text: "Erode", value: 2 }
+    // ]
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSelectChange = this.handleSelectChange.bind(this)
@@ -69,6 +71,17 @@ class ReportForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.isFormValid = this.isFormValid.bind(this)
     this.setFileType = this.setFileType.bind(this)
+    this.updateCityList = this.updateCityList.bind(this)
+  }
+
+  componentWillReceiveProps(newProps) {
+    console.log("new", newProps, "props", this.props)
+    if(this.props.cityList !== newProps.cityList) {
+      this.setState({cityList: newProps.cityList})
+    }
+    if(this.props.stateList !== newProps.stateList) {
+      this.setState({stateList: newProps.stateList})
+    }
   }
 
   /**
@@ -77,6 +90,19 @@ class ReportForm extends React.Component {
    */
   handleChange(fieldStatusObj) {
     this.setState({ [fieldStatusObj.fieldName]: fieldStatusObj.fieldValue })
+  }
+
+  /**
+   * return the cityList array for a given stateId
+   * @param {String} stateId 
+   */
+  updateCityList(stateId) {
+    const cityList = this.props.cityList.filter((item) => {
+      if(parseInt(item.stateId) === parseInt(stateId)) {
+        return item
+      }
+    })
+    this.setState({cityList})
   }
 
   /**
@@ -102,14 +128,15 @@ class ReportForm extends React.Component {
       case 'state':
         this.setState({
           selectedStateIdx: parseInt(e.target.value),
-          state: this.stateList.find((item) => item.value === parseInt(e.target.value)).text
+          state: this.props.stateList.find((item) => item.value === parseInt(e.target.value)).text
         })
+        this.updateCityList(e.target.value)
       break;
 
       case 'city':
         this.setState({
           selectedCityIdx: parseInt(e.target.value),
-          city: this.city.find((item) => item.value === parseInt(e.target.value)).text
+          city: this.props.cityList.find((item) => item.value === parseInt(e.target.value)).text
         })
       break;
 
@@ -214,7 +241,7 @@ class ReportForm extends React.Component {
                 Location
               </Label>
               <Select 
-                options={this.stateList} 
+                options={this.state.stateList} 
                 name="state"
                 small 
                 value={this.state.selectedStateIdx}
@@ -224,7 +251,7 @@ class ReportForm extends React.Component {
             <div className="form-group">
               {/* <label></label> */}
               <Select 
-                options={this.city} 
+                options={this.state.cityList} 
                 name="city"
                 small
                 value={this.state.selectedCityIdx}

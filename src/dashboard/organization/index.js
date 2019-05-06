@@ -73,9 +73,7 @@ class Organization extends React.Component {
               <div className="profile-details" style={{display: 'flex', borderBottom: '1px solid #dfe3e6'}}>
                 <ProfileInfo 
                   dsoName={profileDetails.dso_name}
-                  validationStatus={profileDetails.is_validated}
-                  entityType=""
-                  availableLocations={profileDetails.locations}
+                  entityType={profileDetails.entity_type}
                 />
                 <AddressInfo 
                   headOffice={profileDetails.head_office.city}
@@ -88,7 +86,7 @@ class Organization extends React.Component {
               <div className="livered-details">
                 <LiveredInfo
                   isValidated={profileDetails.is_validated}
-                  category={""}
+                  category={profileDetails.category}
                 />
               </div>
             </React.Fragment>

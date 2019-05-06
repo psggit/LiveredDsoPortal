@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from "react-dom"
-import createHistory from 'history/createBrowserHistory'
+import { createBrowserHistory as createHistory } from 'history'
 import { Route, Switch } from 'react-router-dom'
 import { Router } from 'react-router'
 import Header from 'Components/header'

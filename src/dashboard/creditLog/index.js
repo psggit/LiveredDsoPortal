@@ -142,11 +142,11 @@ class CreditManagement extends React.Component {
               creditLogs.map((item, i) => {
                 return (
                   <tr key={i}>
-                    <td>{item.TransactionID}</td>
-                    <td>{Moment(item.CreatedAt).format("DD/MM/YYYY")}</td>
-                    <td>{Moment(item.CreatedAt).format("h:mm A")}</td>
-                    <td>{item.PaymentMode}</td>
-                    <td>{item.Amount}</td>
+                    <td>{item.transaction_id}</td>
+                    <td>{Moment(item.created_at).format("DD/MM/YYYY")}</td>
+                    <td>{Moment(item.created_at).format("h:mm A")}</td>
+                    <td>{item.payment_mode}</td>
+                    <td>{item.amount}</td>
                   </tr>
                 )
               })
