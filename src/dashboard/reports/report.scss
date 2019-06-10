@@ -4,7 +4,7 @@
     max-width: 700px;
     padding: 30px 25px;
 
-    .select--container {
+    //.select--container {
       // width: 100%;
       // .large {
       //   width: 100%;
@@ -12,15 +12,15 @@
       // .small {
       //   width: 225px;
       // }
-    }
+    //}
 
     span {
       font-size: 14px;
     }
 
-    .timerange-wrapper {
-      width: 225px;
-    }
+    // .timerange-wrapper {
+    //   width: 225px;
+    // }
 
     .label {
       span {
@@ -28,35 +28,35 @@
       }
     }
 
-    .file-type {
-      display: flex;
-      align-items: center;
+    // .file-type {
+    //   display: flex;
+    //   align-items: center;
 
-      input, label {
-        margin-right: 10px;
-      }
+    //   input, label {
+    //     margin-right: 10px;
+    //   }
 
-      .circle {
-        margin-right: 10px; 
-        display: inline-block;
-        vertical-align: middle; 
-        cursor: pointer;
-      }
+    //   .circle {
+    //     margin-right: 10px; 
+    //     display: inline-block;
+    //     vertical-align: middle; 
+    //     cursor: pointer;
+    //   }
 
-      .value {
-        //width: calc(100% - 24px); 
-        display: inline-block;
-        cursor: pointer;
-        margin-right: 20px;
-      }
-    }
+    //   .value {
+    //     //width: calc(100% - 24px); 
+    //     display: inline-block;
+    //     cursor: pointer;
+    //     margin-right: 20px;
+    //   }
+    // }
   }
 
   input, select {
     background: white;
     //width: 100%;
   }
-  
+
   .calendar-icon {
     color: rgba(0, 0, 0, 0);
     opacity: 1;
@@ -74,9 +74,9 @@
     }
   }
 
-  select option:hover {
-    background: #d0021b;
-  }
+  // select option:hover {
+  //   background: #d0021b;
+  // }
 
   .error-message {
     margin-top: 5px;

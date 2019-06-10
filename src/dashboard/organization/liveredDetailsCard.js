@@ -1,18 +1,63 @@
 import React from "react"
 import "Sass/card.scss"
 import PropTypes from "prop-types"
+import Moment from "moment"
+import Label from "Components/label"
 
-const LiveredDetailsCard = ({isValidated, category}) => (
+const LiveredDetailsCard = ({ licenseType, licenseStatus, licenseExpiry, deliveryStatus, stateServicable }) => (
   <div className="card-container">
     <h3>LiveRed Details</h3>
-    <div className="item">
-      <p className="label">Delivery Validation Status</p>
-      <p className="value">{isValidated === "true" ? "Validated" : "Not Validated"}</p>
-    </div>
+    <div className="row">
+      <div className="column">
+        <div className="item">
+          <Label
+            icon="info"
+            tooltipText="Type of License for a delivery operator"
+          >
+            License Type
+          </Label>
+          <p className="value">{licenseType}</p>
+        </div>
 
-    <div className="item">
-      <p className="label">Category</p>
-      <p className="value">{category}</p>
+        <div className="item">
+          <Label
+            icon="info"
+            tooltipText="Current status of delivery operator’s license to delivery liquor"
+          >
+            License Status
+          </Label>
+          <p className="value">{licenseStatus ? "Active" : "Inactive"}</p>
+        </div>
+        <div className="item">
+          <Label
+            icon="info"
+            tooltipText="Expiry date of delivery operator’s license to delivery liquor"
+          >
+            License Expiry
+          </Label>
+          <p className="value">{Moment(licenseExpiry).format("DD-MM-YYYY")}</p>
+        </div>
+      </div>
+      <div className="column">
+        <div className="item">
+          <Label
+            icon="info"
+            tooltipText="Current status of delivery operations for a delivery operator. Exceptions prevail for specific cities based on special restrictions"
+          >
+            Delivery Status
+          </Label>
+          <p className="value">{deliveryStatus ? "Validated" : "Not Validated"}</p>
+        </div>
+        <div className="item">
+          <Label
+            icon="info"
+            tooltipText="States where delivery operations are serviceable"
+          >
+            States Servicable
+          </Label>
+          <p className="value">{stateServicable}</p>
+        </div>
+      </div>
     </div>
   </div>
 )

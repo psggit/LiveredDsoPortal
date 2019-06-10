@@ -16,8 +16,8 @@ class CustomTable extends React.Component {
         {item.title}
         {
           item.icon &&
-          <span className="info"  style={{ position: "relative", marginLeft: "12px", verticalAlign: "middle"}}>
-            <Icon name={item.icon} /> 
+          <span className="info" style={{ position: "relative", marginLeft: "12px", verticalAlign: "middle" }}>
+            <Icon name={item.icon} />
             <span className="tooltip-text">
               {item.tooltipText}
             </span>
@@ -28,14 +28,14 @@ class CustomTable extends React.Component {
   }
 
   render() {
-    const {headings, rows} = this.props;
+    const { headings, rows } = this.props;
     return (
       <div className="table-wrapper">
         <table className={`${this.props.className ? 'logs' : ''}`}>
           <thead>
             <tr>
               {
-                headings.map((item,i) => {
+                headings.map((item, i) => {
                   return this.renderHeadingRow(item, i)
                 })
               }
@@ -53,10 +53,11 @@ class CustomTable extends React.Component {
             }
             {
               !this.props.loadingData &&
-              this.props.children.length === 0 && (
+              //Object.keys(children) === undefined || 
+              Object.keys(this.props.children).length === 0 && (
                 <tr>
                   <td style={{ textAlign: "center" }} colSpan={this.props.headings.length}>
-                    No records found
+                    {this.props.message}
                   </td>
                 </tr>
               )

@@ -1,6 +1,34 @@
 import React from "react"
 
 export default {
+	'search': (
+		<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+			<g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+				<g id="Component/Search/Small/Enabled" transform="translate(-8.000000, -8.000000)" fill="#5A6872" fillRule="nonzero">
+					<g id="Search/Small">
+						<g id="UI-Icon/search/$ui-05" transform="translate(8.000000, 8.000000)">
+							<path d="M6.5,12 C9.53756612,12 12,9.53756612 12,6.5 C12,3.46243388 9.53756612,1 6.5,1 C3.46243388,1 1,3.46243388 1,6.5 C1,9.53756612 3.46243388,12 6.5,12 Z M11.435871,10.7295043 L15.9988346,15.2874096 L15.29212,15.9949085 L10.7287073,11.4365544 C9.59199315,12.4111864 8.11475897,13 6.5,13 C2.91014913,13 -4.54747351e-13,10.0898509 -4.54747351e-13,6.5 C-4.54747351e-13,2.91014913 2.91014913,0 6.5,0 C10.0898509,0 13,2.91014913 13,6.5 C13,8.11513637 12.4109111,9.59268367 11.435871,10.7295043 Z" id="Search"></path>
+						</g>
+					</g>
+				</g>
+			</g>
+		</svg>
+	),
+	cross: (
+		<svg width="10px" height="10px" viewBox="0 0 10 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+			<g id="Rule-Engine" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+				<g id="04-Pop-up---are-you-sure" transform="translate(-471.000000, -19.000000)" fill="#8C9BA5">
+					<g id="Transactional-Modal" transform="translate(-3.000000, 0.000000)">
+						<g id="Passive-Modal_Label">
+							<g id="close-cancel-error_32" transform="translate(474.000000, 19.000000)">
+								<polygon id="Shape" points="8.76117049 6.21724894e-15 5 3.76117049 1.23882951 6.21724894e-15 6.21724894e-15 1.23882951 3.76117049 5 6.21724894e-15 8.76117049 1.23882951 10 5 6.23882951 8.76117049 10 10 8.76117049 6.23882951 5 10 1.23882951"></polygon>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</svg>
+	),
 	liveredLogo: (
 		<svg width="130px" height="44px" viewBox="0 0 130 44" version="1.1">
 			<g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -13,6 +41,36 @@ export default {
 							<text id="LiveRed" fontFamily="Montserrat-Bold, Montserrat" fontSize="31" fontWeight="bold" fill="#D0021B">
 								<tspan x="0.513" y="30">LiveRed</tspan>
 							</text>
+						</g>
+					</g>
+				</g>
+			</g>
+		</svg>
+	),
+	active: (
+		<svg width="8px" height="8px" viewBox="0 0 8 8" version="1.1">
+			<g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+				<g id="Component/Data-Table/Tall/Default" transform="translate(-840.000000, -78.000000)" fill="#8BC34A">
+					<g id="Column-6" transform="translate(839.000000, 16.000000)">
+						<g id="Circle" transform="translate(0.921993, 62.000000)">
+							<ellipse id="Oval-3" cx="4.52721088" cy="4" rx="3.52721088" ry="4"></ellipse>
+						</g>
+					</g>
+				</g>
+			</g>
+		</svg>
+	),
+	expired: (
+		<svg width="8px" height="8px" viewBox="0 0 8 8" version="1.1">
+			<g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+				<g id="Component/Data-Table/Tall/Default" transform="translate(-840.000000, -141.000000)" fill="#D0021B">
+					<g id="Data-Table---Tall" transform="translate(5.000000, 0.000000)">
+						<g id="Columns" transform="translate(13.000000, 9.000000)">
+							<g id="Column-6" transform="translate(821.000000, 6.000000)">
+								<g id="Circle" transform="translate(0.921993, 62.000000)">
+									<ellipse id="Oval-3-Copy-11" cx="4.40136054" cy="68" rx="3.52721088" ry="4"></ellipse>
+								</g>
+							</g>
 						</g>
 					</g>
 				</g>
@@ -133,14 +191,17 @@ export default {
 		</svg>
 	),
 	calendarIcon: (
-		<svg width="14" height="16">
-			<defs>
-				<clipPath id="clip_0">
-					<rect x="-1347" y="-328" width="1440" height="1124" clipRule="evenodd" />
-				</clipPath>
-			</defs>
-			<g clipPath="url(#clip_0)">
-				<path fill="rgb(0,180,160)" stroke="none" d="M3 0L4 0L4 1L3 1L3 0ZM3 2L3 1L1.5 1C0.671573 1 0 1.67157 0 2.5L0 5L1 5L1 6L0 6L0 14.5C0 15.3284 0.671573 16 1.5 16L12.5 16C13.3284 16 14 15.3284 14 14.5L14 6L13 6L13 5L14 5L14 2.5C14 1.67157 13.3284 1 12.5 1L11 1L11 0L10 0L10 1L4 1L4 2L3 2ZM10 2L10 1L11 1L11 2L10 2ZM10 2L10 4L11 4L11 2L12.5 2C12.7761 2 13 2.22386 13 2.5L13 5L1 5L1 2.5C1 2.22386 1.22386 2 1.5 2L3 2L3 4L4 4L4 2L10 2ZM13 6L1 6L1 14.5C1 14.7761 1.22386 15 1.5 15L12.5 15C12.7761 15 13 14.7761 13 14.5L13 6Z" fillRule="evenodd" />
+		<svg width="14px" height="16px" viewBox="0 0 14 16" version="1.1" >
+			<g id="Reports-1.0" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+				<g id="Reports-Download-Report-Dropdown" transform="translate(-488.000000, -529.000000)" fill="#152935" fillRule="nonzero">
+					<g id="Group-10" transform="translate(340.000000, 490.000000)">
+						<g id="Group-4">
+							<g id="Group-5" transform="translate(0.000000, 27.000000)">
+								<path d="M148,17 L162,17 L162,18 L148,18 L148,17 Z M151,12 L152,12 L152,16 L151,16 L151,12 Z M158,12 L159,12 L159,16 L158,16 L158,12 Z M148,14.5 C148,13.6715729 148.671573,13 149.5,13 L160.5,13 C161.328427,13 162,13.6715729 162,14.5 L162,26.5 C162,27.3284271 161.328427,28 160.5,28 L149.5,28 C148.671573,28 148,27.3284271 148,26.5 L148,14.5 Z M149,14.5 L149,26.5 C149,26.7761424 149.223858,27 149.5,27 L160.5,27 C160.776142,27 161,26.7761424 161,26.5 L161,14.5 C161,14.2238576 160.776142,14 160.5,14 L149.5,14 C149.223858,14 149,14.2238576 149,14.5 Z" id="square"></path>
+							</g>
+						</g>
+					</g>
+				</g>
 			</g>
 		</svg>
 	),

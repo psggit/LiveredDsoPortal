@@ -1,5 +1,5 @@
 import React from "react"
-import {locationsData} from "./../mock-data"
+import { locationsData } from "./../mock-data"
 import DataTable from "Components/table/custom-table"
 import Moment from "moment"
 import * as Api from "./../../api"
@@ -9,28 +9,29 @@ class Locations extends React.Component {
     super()
 
     this.locationsTableHeaders = [
-      {title: "City/Town", icon: ""},
-      {title: "State", icon: ""},
-      {title: "Delivery Service Status", icon: "info", tooltipText: "Whether delivery services are enabled or disabled in a particular city"}
+      { title: "City/Town", icon: "" },
+      { title: "State", icon: "" },
+      { title: "Delivery Service Status", icon: "info", tooltipText: "Whether delivery services are enabled or disabled in a particular city" }
     ]
 
     this.state = {
-      locationsData: []
+      locationsData: [],
+      loadingLocations: false
     }
 
     this.fetchLocations = this.fetchLocations.bind(this)
   }
 
   componentDidMount() {
-    this.fetchLocations() 
+    this.fetchLocations()
   }
 
   fetchLocations() {
-    this.setState({loadingProfileDetails: true})
+    this.setState({ loadingLocations: true })
     Api.fetchLocations({})
       .then((response) => {
         console.log("res", response)
-        this.setState({locationsData: response.locations})
+        this.setState({ locationsData: response.locations, loadingLocations: false })
       })
       .catch((err) => {
         console.log("Error in fetching locations", err)
@@ -38,26 +39,25 @@ class Locations extends React.Component {
   }
 
   render() {
-    const {locationsData} = this.state
-    return(
+    const { locationsData, loadingLocations } = this.state
+    return (
       <div>
         <DataTable
           headings={this.locationsTableHeaders}
-          loadingData={false}
-          //className="logs"
+          loadingData={loadingLocations}
         >
-        {
-          locationsData.length &&
-          locationsData.map((item, i) => {
-            return (
-              <tr key={i}>
-                <td>{item.city}</td>
-                <td>{item.state}</td>
-                <td>{item.service_status ? 'Enabled' : 'Disabled'}</td>
-              </tr>
-            )
-          })
-        }
+          {
+            locationsData.length > 0 &&
+            locationsData.map((item, i) => {
+              return (
+                <tr key={i}>
+                  <td>{item.city}</td>
+                  <td>{item.state}</td>
+                  <td>{item.service_status ? 'Enabled' : 'Disabled'}</td>
+                </tr>
+              )
+            })
+          }
         </DataTable>
       </div>
     )

@@ -3,6 +3,7 @@ export const menuItems = [
   { label: 'Credit Log', value: 'credits', icon: 'creditsIcon', title: "" },
   { label: 'Reports', value: 'reports', icon: 'reportsIcon', title: "" },
   { label: 'Organization', value: 'organization', icon: 'orgIcon', title: "" },
+  { label: 'User Log', value: 'user-log', icon: 'orgIcon', title: "" },
   { label: 'My Account', value: 'account', icon: 'accountIcon', title: "" },
 ]
 

@@ -16,6 +16,7 @@ import AddCredits from "./dashboard/addCredits"
 import Reports from "./dashboard/reports"
 import Organization from "./dashboard/organization"
 import Account from "./dashboard/Account"
+import UserLog from "./dashboard/userLog"
 import Api from "./dashboard/api"
 
 const history = createHistory()
@@ -71,12 +72,12 @@ class App extends React.Component {
   }
 
   render() {
-    const {isLoggedIn} = this.state
-  
+    const { isLoggedIn } = this.state
+
     return (
       <Router history={history}>
         <div>
-          
+
           {/* <Route exact path="/" component={Login} /> */}
           <Route exact path="/login" component={Login} />
           {
@@ -122,35 +123,40 @@ class App extends React.Component {
                       />
                     } */}
 
-                   
-                    <Route 
-                      exact 
-                      path="/home/support" 
+
+                    <Route
+                      exact
+                      path="/home/support"
                       render={props => <Support isLoggedIn={isLoggedIn} {...props} />}
                     />
-                    
 
-                    <Route 
-                      exact 
-                      path="/home/credits" 
+                    <Route
+                      exact
+                      path="/home/user-log"
+                      render={props => <UserLog {...props} />}
+                    />
+
+                    <Route
+                      exact
+                      path="/home/credits"
                       render={props => <CreditManagement {...props} />}
                     />
 
-                    <Route 
-                      exact 
-                      path="/home/organization" 
+                    <Route
+                      exact
+                      path="/home/organization"
                       render={props => <Organization {...props} />}
                     />
 
-                    <Route 
-                      exact 
-                      path="/home/reports" 
+                    <Route
+                      exact
+                      path="/home/reports"
                       render={props => <Reports {...props} />}
                     />
 
-                    <Route 
-                      exact 
-                      path="/home/api" 
+                    <Route
+                      exact
+                      path="/home/api"
                       render={props => <Api {...props} />}
                     />
                   </Switch>

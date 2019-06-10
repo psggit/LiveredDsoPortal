@@ -2,7 +2,6 @@ import React from "react"
 import PageHeader from "Components/pageheader"
 import Wrapper from "Components/contentWrapper"
 import ProfileInfo from "./organizationProfileCard"
-import AddressInfo from "./organizationAddressCard"
 import LiveredInfo from "./liveredDetailsCard"
 import Locations from "./locations"
 import * as Api from "./../../api"
@@ -15,20 +14,20 @@ class Organization extends React.Component {
       loadingProfileDetails: true,
       profileDetails: {}
     }
-  
+
     this.setActiveTab = this.setActiveTab.bind(this)
     this.fetchCompanyProfileDetails = this.fetchCompanyProfileDetails.bind(this)
     this.successCallback = this.successCallback.bind(this)
   }
 
   componentDidMount() {
-    this.fetchCompanyProfileDetails() 
+    this.fetchCompanyProfileDetails()
   }
 
   fetchCompanyProfileDetails() {
-    this.setState({loadingProfileDetails: true})
+    this.setState({ loadingProfileDetails: true })
     Api.fetchCompanyProfileDetails({
-      id: "SW123"
+      dso_id: "SW123"
     }, this.successCallback)
   }
 
@@ -45,15 +44,15 @@ class Organization extends React.Component {
   }
 
   render() {
-    const {activeTab, profileDetails, loadingProfileDetails} = this.state
-    return(
+    const { activeTab, profileDetails, loadingProfileDetails } = this.state
+    return (
       <div id="Organization">
         <PageHeader pageName="Organization" />
         <Wrapper>
-          <div style={{display: 'flex', marginTop: '4px'}}>
+          <div style={{ display: 'flex', marginTop: '4px' }}>
             <ul className="nav">
-              <li 
-                onClick={() => this.setActiveTab("company-profile")} 
+              <li
+                onClick={() => this.setActiveTab("company-profile")}
                 className={`${activeTab === "company-profile" ? 'active' : ''}`}
               >
                 <a>Company Profile</a>
@@ -70,12 +69,10 @@ class Organization extends React.Component {
             activeTab === "company-profile" &&
             !loadingProfileDetails &&
             <React.Fragment>
-              <div className="profile-details" style={{display: 'flex', borderBottom: '1px solid #dfe3e6'}}>
-                <ProfileInfo 
+              <div className="profile-details" style={{ borderBottom: '1px solid #dfe3e6' }}>
+                <ProfileInfo
                   dsoName={profileDetails.dso_name}
                   entityType={profileDetails.entity_type}
-                />
-                <AddressInfo 
                   headOffice={profileDetails.head_office.city}
                   address={profileDetails.head_office.address}
                   name={profileDetails.head_office.contact.name}
@@ -85,15 +82,18 @@ class Organization extends React.Component {
               </div>
               <div className="livered-details">
                 <LiveredInfo
-                  isValidated={profileDetails.is_validated}
-                  category={profileDetails.category}
+                  licenseType={profileDetails.license_type}
+                  licenseStatus={profileDetails.license_status}
+                  licenseExpiry={profileDetails.license_expiry}
+                  deliveryStatus={profileDetails.is_validated}
+                  stateServicable={profileDetails.state_servicable}
                 />
               </div>
             </React.Fragment>
           }
           {
             activeTab === "locations" &&
-            <div style={{padding: '20px 30px'}} >
+            <div style={{ padding: '20px 30px' }} >
               <Locations />
             </div>
           }

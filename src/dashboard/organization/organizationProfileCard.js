@@ -2,29 +2,44 @@ import React from "react"
 import "Sass/card.scss"
 import PropTypes from "prop-types"
 
-const ProfileCard = ({dsoName, entityType}) => (
-  <div className="card-container">
-    <h3>Profile</h3>
-    <div className="item">
-      <p className="label">Name of Entity</p>
-      <p className="value">{dsoName}</p>
+const ProfileCard = ({ dsoName, entityType, headOffice, address, name, contact, email }) => (
+  <React.Fragment>
+    <div className="card-container">
+      <h3>Profile</h3>
+      <div className="row">
+        <div className="column">
+          <div className="item">
+            <p className="label">
+              Name of Entity
+            </p>
+            <p className="value">{dsoName}</p>
+          </div>
+          <div className="item">
+            <p className="label">Type of Entity</p>
+            <p className="value">{entityType}</p>
+          </div>
+        </div>
+        <div className="column">
+          <div className="item">
+            <p className="label">Head Office</p>
+            <p className="value">{headOffice}</p>
+          </div>
+
+          <div className="item">
+            <p className="label">Address</p>
+            <p className="value">{address}</p>
+          </div>
+
+          <div className="item">
+            <p className="label">Contact</p>
+            <p className="value">{name}</p>
+            <p className="value">{contact}</p>
+            <p className="value">{email}</p>
+          </div>
+        </div>
+      </div>
     </div>
-
-    {/* <div className="item">
-      <p className="label">Validation Status</p>
-      <p className="value">{validationStatus === "true" ? 'Validated' : 'Not Validated' }</p>
-    </div> */}
-
-    <div className="item">
-      <p className="label">Type of Entity</p>
-      <p className="value">{entityType}</p>
-    </div>
-
-    {/* <div className="item">
-      <p className="label">Locations present in</p>
-      <p className="value">{availableLocations}</p>
-    </div> */}
-  </div>
+  </React.Fragment>
 )
 
 export default ProfileCard

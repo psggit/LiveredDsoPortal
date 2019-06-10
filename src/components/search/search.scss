@@ -1,0 +1,36 @@
+.search--box {
+  position: relative;
+  width: 250px;
+  // svg {
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 8px;
+  //   transform: translateY(-50%);
+  // }
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
+  .search {
+    left: 8px;
+  }
+
+  .cross {
+    right: 8px;
+  }
+
+  input {
+    border: 0;
+    background-color: #fff;
+    border: 1px solid #ebebeb;
+    height: 40px;
+    width: 250px;
+    padding: 0 25px 0 32px !important;
+    &:focus {
+      outline: 0;
+    }
+  }
+}

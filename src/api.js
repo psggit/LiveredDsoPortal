@@ -24,6 +24,15 @@ export function createComplaint(payloadObj, successCallback, failureCallback) {
 		})
 }
 
+export function fetchUserLog(payloadObj) {
+	return POST({
+		api: `${dso}/livered/dso/listDsoUsers`,
+		handleError: true,
+		prependBaseUrl: false,
+		data: payloadObj
+	})
+}
+
 export function generateOttpReport(payloadObj, successCallback, failureCallback) {
 	console.log("data", payloadObj)
 	// return POST({

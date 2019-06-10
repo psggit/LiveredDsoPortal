@@ -105,9 +105,9 @@ class CreditManagement extends React.Component {
     const { activeTab, creditLogs, creditLogCount, loadingCreditLogs } = this.state
     return (
       <div id="CreditLog">
-        <PageHeader pageName="Credit Management" />
+        <PageHeader pageName="Credit Log" />
         <Wrapper>
-          <div>
+          {/* <div>
             <div style={{ display: 'flex', marginTop: '4px' }}>
               <ul className="nav">
                 <li
@@ -118,7 +118,7 @@ class CreditManagement extends React.Component {
                 </li>
               </ul>
             </div>
-          </div>
+          </div> */}
           <div className="body">
             <p>CURRENT BALANCE</p>
             <h2>₹ 2,00,000</h2>
