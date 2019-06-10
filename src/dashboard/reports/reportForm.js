@@ -9,7 +9,7 @@ import "Sass/form.scss"
 
 class ReportForm extends React.Component {
   constructor() {
-    super() 
+    super()
     this.state = {
       dataType: "",
       state: "",
@@ -67,6 +67,7 @@ class ReportForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSelectChange = this.handleSelectChange.bind(this)
+    this.handleTextFieldChange = this.handleTextFieldChange.bind(this)
     this.getData = this.getData.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.isFormValid = this.isFormValid.bind(this)
@@ -75,12 +76,11 @@ class ReportForm extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log("new", newProps, "props", this.props)
-    if(this.props.cityList !== newProps.cityList) {
-      this.setState({cityList: newProps.cityList})
+    if (this.props.cityList !== newProps.cityList) {
+      this.setState({ cityList: newProps.cityList })
     }
-    if(this.props.stateList !== newProps.stateList) {
-      this.setState({stateList: newProps.stateList})
+    if (this.props.stateList !== newProps.stateList) {
+      this.setState({ stateList: newProps.stateList })
     }
   }
 
@@ -98,11 +98,11 @@ class ReportForm extends React.Component {
    */
   updateCityList(stateId) {
     const cityList = this.props.cityList.filter((item) => {
-      if(parseInt(item.stateId) === parseInt(stateId)) {
+      if (parseInt(item.stateId) === parseInt(stateId)) {
         return item
       }
     })
-    this.setState({cityList})
+    this.setState({ cityList })
   }
 
   /**
@@ -117,13 +117,13 @@ class ReportForm extends React.Component {
         status: false
       }
     })
-    switch(e.target.name) {
+    switch (e.target.name) {
       case 'dataType':
         this.setState({
           selectedDataTypeIdx: parseInt(e.target.value),
           dataType: this.dataType.find((item) => item.value === parseInt(e.target.value)).text
         })
-      break;
+        break;
 
       case 'state':
         this.setState({
@@ -131,21 +131,21 @@ class ReportForm extends React.Component {
           state: this.props.stateList.find((item) => item.value === parseInt(e.target.value)).text
         })
         this.updateCityList(e.target.value)
-      break;
+        break;
 
       case 'city':
         this.setState({
           selectedCityIdx: parseInt(e.target.value),
           city: this.props.cityList.find((item) => item.value === parseInt(e.target.value)).text
         })
-      break;
+        break;
 
       case 'timeRange':
         this.setState({
           selectedTimeRangeIdx: parseInt(e.target.value),
           timeRange: this.timeRange.find((item) => item.value === parseInt(e.target.value)).text
         })
-      break;
+        break;
     }
   }
 
@@ -156,11 +156,15 @@ class ReportForm extends React.Component {
     return this.state
   }
 
+  handleTextFieldChange(e) {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
   /**
    * Validates the report form
    */
   isFormValid() {
-    if(this.state.dataType.length === 0) {
+    if (this.state.dataType.length === 0) {
       this.setState({
         dataTypeErr: {
           value: "Data type is required",
@@ -168,7 +172,7 @@ class ReportForm extends React.Component {
         }
       })
       return false;
-    } else if(this.state.timeRange.length === 0) {
+    } else if (this.state.timeRange.length === 0) {
       this.setState({
         timeRangeErr: {
           value: "Time range is required",
@@ -176,7 +180,7 @@ class ReportForm extends React.Component {
         }
       })
       return false;
-    } else if(this.state.fileType.length === 0) {
+    } else if (this.state.fileType.length === 0) {
       this.setState({
         fileTypeErr: {
           value: "File type is required",
@@ -184,17 +188,18 @@ class ReportForm extends React.Component {
         }
       })
       return false;
-    } 
+    }
     return true;
   }
 
   /**
    * Submits the report request if form is valid
    */
-  handleSubmit() {
-    if(this.isFormValid()) {
-      this.props.handleSubmit()
-    }
+  handleSubmit(e) {
+    e.preventDefault()
+    //if (this.isFormValid()) {
+    this.props.handleSubmit()
+    //}
   }
 
   /**
@@ -208,135 +213,163 @@ class ReportForm extends React.Component {
         status: false
       }
     })
-    if(fileType === 'pdf') {
-      this.setState({ selectedPdf: !this.state.selectedPdf, fileType: 'pdf', selectedCsv: false})
+    if (fileType === 'pdf') {
+      this.setState({ selectedPdf: !this.state.selectedPdf, fileType: 'pdf', selectedCsv: false })
     } else {
-      this.setState({ selectedCsv: !this.state.selectedCsv, fileType: 'csv', selectedPdf: false})
+      this.setState({ selectedCsv: !this.state.selectedCsv, fileType: 'csv', selectedPdf: false })
     }
   }
 
   render() {
-    const {dataTypeErr, timeRangeErr, fileTypeErr} = this.state
+    const { dataTypeErr, timeRangeErr, fileTypeErr } = this.state
     return (
-      <React.Fragment>
-          <div className="form-group">
-            <Label>
-              Data Type <span>*</span>
-            </Label>
-            <Select 
-              options={this.dataType} 
-              name="dataType"
-              className="large"
-              value={this.state.selectedDataTypeIdx}
-              onChange={this.handleSelectChange} 
-            />
-            {
-              dataTypeErr.status &&
-              <p className="error-message">* {dataTypeErr.value}</p>
-            }
-          </div>
-          <div className="row">
-            <div className="form-group">
-              <Label>
-                Location
-              </Label>
-              <Select 
-                options={this.state.stateList} 
-                name="state"
-                small 
-                value={this.state.selectedStateIdx}
-                onChange={this.handleSelectChange} 
-              />
-            </div>
-            <div className="form-group">
-              {/* <label></label> */}
-              <Select 
-                options={this.state.cityList} 
-                name="city"
-                small
-                value={this.state.selectedCityIdx}
-                onChange={this.handleSelectChange} 
-              />
-            </div>
+      <form onSubmit={this.handleSubmit}>
+        <div className="form-group">
+          <Label>
+            Data Type <span>*</span>
+          </Label>
+          <Select
+            options={this.dataType}
+            name="dataType"
+            className="large"
+            required
+            value={this.state.selectedDataTypeIdx}
+            onChange={this.handleSelectChange}
+          />
+          {
+            dataTypeErr.status &&
+            <p className="error-message">* {dataTypeErr.value}</p>
+          }
+        </div>
+        {/* <div className="row"> */}
+        <div className="form-group">
+          <Label>State</Label>
+          <Select
+            options={this.state.stateList}
+            name="state"
+            small
+            required
+            value={this.state.selectedStateIdx}
+            onChange={this.handleSelectChange}
+          />
         </div>
         <div className="form-group">
+          <Label>City</Label>
+          <Select
+            options={this.state.cityList}
+            name="city"
+            small
+            value={this.state.selectedCityIdx}
+            onChange={this.handleSelectChange}
+          />
+        </div>
+        <div className="form-group" style={{ position: 'relative' }}>
+          <span className="calendar-icon">
+            <Icon name="calendarIcon" />
+          </span>
+          <Label>From <span>*</span></Label>
+          <input
+            type="date"
+            max="9999-12-31"
+            name="fromDate"
+            className="small"
+            required
+            onChange={this.handleTextFieldChange}
+          />
+        </div>
+        <div className="form-group" style={{ position: 'relative' }}>
+          <span className="calendar-icon">
+            <Icon name="calendarIcon" />
+          </span>
+          <Label>To <span>*</span></Label>
+          <input
+            type="date"
+            max="9999-12-31"
+            name="toDate"
+            className="small"
+            required
+            onChange={this.handleTextFieldChange}
+          />
+        </div>
+        {/* </div> */}
+        {/* <div className="form-group">
           <Label>
             Time Range <span>*</span>
           </Label>
           <div className="timerange-wrapper">
-            <Select 
-              options={this.timeRange} 
-              name="timeRange" 
+            <Select
+              options={this.timeRange}
+              name="timeRange"
               small
               value={this.state.selectedTimeRangeIdx}
-              onChange={this.handleSelectChange} 
+              onChange={this.handleSelectChange}
             />
             {
               timeRangeErr.status &&
               <p className="error-message">* {timeRangeErr.value}</p>
             }
           </div>
-        </div>
+        </div> */}
         <div className="form-group">
           <Label>
             Report Name (Optional)
           </Label>
-          <TextInput 
-            name="reportName" 
-            onChange={this.handleChange} 
+          <TextInput
+            name="reportName"
+            onChange={this.handleChange}
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <Label>File Type <span>*</span></Label>
           <div className="file-type">
-            <span 
-              onClick={() => this.setFileType('pdf')} 
+            <span
+              onClick={() => this.setFileType('pdf')}
               className="circle"
             >
               {
                 !this.state.selectedPdf
-                ? <Icon name="circle" />
-                : <Icon name="filledCircle" />
+                  ? <Icon name="circle" />
+                  : <Icon name="filledCircle" />
               }
             </span>
-            <span 
-              onClick={() => this.setFileType('pdf')} 
+            <span
+              onClick={() => this.setFileType('pdf')}
               className="value"
-            > 
-              pdf 
+            >
+              pdf
             </span>
-            <span 
-              onClick={() => this.setFileType('csv')} 
+            <span
+              onClick={() => this.setFileType('csv')}
               className="circle"
             >
               {
                 !this.state.selectedCsv
-                ? <Icon name="circle" />
-                : <Icon name="filledCircle" />
+                  ? <Icon name="circle" />
+                  : <Icon name="filledCircle" />
               }
             </span>
-            <span 
-              className="value" 
+            <span
+              className="value"
               onClick={() => this.setFileType('csv')}
-            > 
-              csv 
+            >
+              csv
             </span>
           </div>
           {
             fileTypeErr.status &&
             <p className="error-message">* {fileTypeErr.value}</p>
           }
-        </div>
+        </div> */}
         <div className="form-group">
-          <Button 
-            primary 
-            onClick={this.handleSubmit}
+          <Button
+            primary
+            // onClick={this.handleSubmit}
             disabled={this.props.disableRequestReport}
           >
             Download Report
           </Button>
         </div>
-      </React.Fragment>
+      </form>
     )
   }
 }

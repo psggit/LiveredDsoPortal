@@ -1,6 +1,6 @@
 import React from "react"
 import PageHeader from "Components/pageheader"
-import {creditsLog} from "./../mock-data"
+import { creditsLog } from "./../mock-data"
 import DataTable from "Components/table/custom-table"
 //import DataTable from "Components/table"
 import Pagination from "Components/pagination"
@@ -26,11 +26,10 @@ class CreditManagement extends React.Component {
     this.pageLimit = 10
 
     this.creditLogTableHeaders = [
-      {title: "Transaction ID", icon: ""},
-      {title: "Date", icon: ""},
-      {title: "Time", icon: ""},
-      {title: "Mode of Payment", icon: ""},
-      {title: "Total Amount", icon: ""},
+      { title: "Transaction ID", icon: "" },
+      { title: "Date", icon: "" },
+      { title: "Time", icon: "" },
+      { title: "Total Amount", icon: "" },
     ]
 
     this.setActiveTab = this.setActiveTab.bind(this)
@@ -47,20 +46,20 @@ class CreditManagement extends React.Component {
     })
 
     this.fetchCreditLog({
-      limit: queryObj.limit ? parseInt(queryObj.limit) : this.state.limit ,
+      limit: queryObj.limit ? parseInt(queryObj.limit) : this.state.limit,
       offset: queryObj.activePage ? parseInt(queryObj.limit * (queryObj.activePage - 1)) : 0
     })
   }
 
   fetchCreditLog(payload) {
-    this.setState({loadingCreditLogs: true})
+    this.setState({ loadingCreditLogs: true })
     Api.fetchCreditLog(payload, this.successCallback)
   }
 
   successCallback(response) {
     // console.log("response", response)
     this.setState({
-      creditLogs: response.credit_log, 
+      creditLogs: response.credit_log,
       creditLogCount: response.count,
       loadingCreditLogs: false
     })
@@ -103,16 +102,16 @@ class CreditManagement extends React.Component {
   }
 
   render() {
-    const {activeTab, creditLogs, creditLogCount, loadingCreditLogs} = this.state
+    const { activeTab, creditLogs, creditLogCount, loadingCreditLogs } = this.state
     return (
       <div id="CreditLog">
         <PageHeader pageName="Credit Management" />
         <Wrapper>
           <div>
-            <div style={{display: 'flex', marginTop: '4px'}}>
+            <div style={{ display: 'flex', marginTop: '4px' }}>
               <ul className="nav">
-                <li 
-                  onClick={() => this.setActiveTab("credit-log")} 
+                <li
+                  onClick={() => this.setActiveTab("credit-log")}
                   className={`${activeTab === "credit-log" ? 'active' : ''}`}
                 >
                   <a href="/home/credit-log">Credit Log</a>
@@ -136,21 +135,20 @@ class CreditManagement extends React.Component {
               loadingData={loadingCreditLogs}
               className="logs"
             >
-            {
-              !loadingCreditLogs &&
-              creditLogs.length &&
-              creditLogs.map((item, i) => {
-                return (
-                  <tr key={i}>
-                    <td>{item.transaction_id}</td>
-                    <td>{Moment(item.created_at).format("DD/MM/YYYY")}</td>
-                    <td>{Moment(item.created_at).format("h:mm A")}</td>
-                    <td>{item.payment_mode}</td>
-                    <td>{item.amount}</td>
-                  </tr>
-                )
-              })
-            }
+              {
+                !loadingCreditLogs &&
+                creditLogs.length &&
+                creditLogs.map((item, i) => {
+                  return (
+                    <tr key={i}>
+                      <td>{item.transaction_id}</td>
+                      <td>{Moment(item.created_at).format("DD/MM/YYYY")}</td>
+                      <td>{Moment(item.created_at).format("h:mm A")}</td>
+                      <td>{item.amount}</td>
+                    </tr>
+                  )
+                })
+              }
             </DataTable>
           </div>
         </Wrapper>

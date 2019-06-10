@@ -4,7 +4,7 @@ import PageHeader from "Components/pageheader"
 import ReportForm from "./reportForm"
 import "./report.scss"
 import * as Api from "./../../api"
-import {stateShortName} from "Utils/static-data"
+import { stateShortName } from "Utils/static-data"
 import Dialog from "Components/dialog"
 import Button from "Components/button"
 
@@ -21,7 +21,6 @@ class Reports extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.successCallback = this.successCallback.bind(this)
     this.failureCallback = this.failureCallback.bind(this)
-    //this.unMountModal = this.unMountModal.bind(this)
   }
 
   componentDidMount() {
@@ -44,34 +43,34 @@ class Reports extends React.Component {
       }
     })
 
-    this.setState({stateList, cityList})
+    this.setState({ stateList, cityList })
   }
 
   fetchCityAndStates() {
     Api.fetchCityAndStates()
       .then((response) => {
-        console.log("response", response)
         this.formatResponse(response)
       })
       .catch((err) => {
         console.log("Error in fetching state and cities")
       })
   }
-  
+
   /**
    * Formas payload and invokes tha generate report api
    */
   handleSubmit() {
     const formData = this.reportForm.getData()
     console.log("report form data", this.reportForm.getData(), stateShortName)
-    this.setState({requestingReport: true})
+    this.setState({ requestingReport: true })
     this.generateReport({
       data_type: formData.dataType,
       state: stateShortName,
+      state_id: formData.selectedStateIdx.toString(),
       city_id: formData.selectedCityIdx.toString(),
-      time_range: formData.timeRange,
       file_name: formData.reportName,
-      file_type: formData.fileType
+      from_date: formData.fromDate,
+      to_date: formData.toDate
     })
   }
 
@@ -80,10 +79,10 @@ class Reports extends React.Component {
    * @param {Object} payloadObj - payload object
    */
   generateReport(payloadObj) {
-    if(payloadObj.data_type.includes("OTTP")) {
-      Api.generateOttpReport (payloadObj, this.successCallback, this.failureCallback)
+    if (payloadObj.data_type.includes("OTTP")) {
+      Api.generateOttpReport(payloadObj, this.successCallback, this.failureCallback)
     } else {
-      Api.generateCreditReport (payloadObj, this.successCallback, this.failureCallback)
+      Api.generateCreditReport(payloadObj, this.successCallback, this.failureCallback)
     }
   }
 
@@ -93,24 +92,23 @@ class Reports extends React.Component {
    */
   successCallback(response) {
     const formData = this.reportForm.getData()
-    const filename = formData.reportName ? `${formData.reportName}.${formData.fileType}` : `export.${formData.fileType}`
-    const data = formData.fileType === "csv" ? new TextDecoder("utf-8").decode(response.value) : response.value
-    const blob = new Blob([data], { type: `text/${formData.fileType}` });
+    const filename = formData.reportName ? `${formData.reportName}.csv` : `export.csv`
+    const data = new TextDecoder("utf-8").decode(response.value)
+    const blob = new Blob([data], { type: `text/csv` });
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
     link.download = filename;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    console.log("success callback")
-    this.setState({requestingReport: false, showSuccessDialog: true})
+    this.setState({ requestingReport: false, showSuccessDialog: true })
   }
 
   /**
    * Enables the Request report button
    */
   failureCallback() {
-    this.setState({requestingReport: false})
+    this.setState({ requestingReport: false })
     console.log("failure callback")
   }
 
@@ -120,9 +118,9 @@ class Reports extends React.Component {
         <PageHeader pageName="Reports" />
         {/* <Wrapper> */}
         <div className="form-wrapper">
-          <ReportForm 
-            ref={(node) => this.reportForm=(node)} 
-            handleSubmit={this.handleSubmit} 
+          <ReportForm
+            ref={(node) => this.reportForm = (node)}
+            handleSubmit={this.handleSubmit}
             disableRequestReport={this.state.requestingReport}
             cityList={this.state.cityList}
             stateList={this.state.stateList}

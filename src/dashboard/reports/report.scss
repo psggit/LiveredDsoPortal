@@ -5,13 +5,13 @@
     padding: 30px 25px;
 
     .select--container {
-      width: 100%;
-      .large {
-        width: 100%;
-      }
-      .small {
-        width: 225px;
-      }
+      // width: 100%;
+      // .large {
+      //   width: 100%;
+      // }
+      // .small {
+      //   width: 225px;
+      // }
     }
 
     span {
@@ -54,7 +54,24 @@
 
   input, select {
     background: white;
-    width: 100%;
+    //width: 100%;
+  }
+  
+  .calendar-icon {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    width: 20px;
+    height: 38px;
+    position: absolute;
+    left : 10px;
+    top: 35px;
+  }
+
+  input {
+    width: 400px;
+    &.small {
+      width: 225px !important;
+    }
   }
 
   select option:hover {

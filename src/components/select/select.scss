@@ -14,7 +14,10 @@
     outline: 0;
   }
   &.small {
-    width: 90px;
+    width: 225px !important;
+  }
+  &.large {
+    width: 400px !important;
   }
 }
 
