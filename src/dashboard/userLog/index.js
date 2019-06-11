@@ -20,7 +20,7 @@ class UserLog extends React.Component {
     this.state = {
       activePage: 1,
       limit: 10,
-      dsoName: "",
+      name: "",
       userLogs: [],
       userLogCount: 0,
       loadingUserLogs: false,
@@ -36,7 +36,7 @@ class UserLog extends React.Component {
     ]
     this.handlePageChange = this.handlePageChange.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
-    this.setDsoName = this.setDsoName.bind(this)
+    this.setName = this.setName.bind(this)
     this.fetchUserLog = this.fetchUserLog.bind(this)
     this.clearSearchResults = this.clearSearchResults.bind(this)
   }
@@ -48,10 +48,10 @@ class UserLog extends React.Component {
     Object.entries(queryObj).forEach((item) => {
       this.setState({ [item[0]]: item[1] })
     })
-
-    if (queryObj.filter) {
+    const isSearchAlreadyApplied = queryObj.filter ? JSON.parse(decodeURI(queryObj.filter)).find((item) => item.filterby === "name") ? true : false : false
+    if (isSearchAlreadyApplied) {
       this.setState({
-        dsoName: JSON.parse(decodeURI(queryObj.filter)).find((item) => item.filterby === "name").value
+        name: JSON.parse(decodeURI(queryObj.filter)).find((item) => item.filterby === "name").value
       })
     }
 
@@ -80,7 +80,7 @@ class UserLog extends React.Component {
   handleSearch(e) {
     const filterObj = {
       filterby: "name",
-      value: this.state.dsoName
+      value: this.state.name
     }
     const isSearchAlreadyApplied = this.state.filter ? this.state.filter.find((item) => item.filterby === "name") ? true : false : false
 
@@ -92,6 +92,7 @@ class UserLog extends React.Component {
     const payload = {
       activePage: 1,
       limit: 10,
+      offset: 0,
       filter: [...filter, filterObj]
     }
 
@@ -119,15 +120,15 @@ class UserLog extends React.Component {
     })
 
     this.fetchUserLog({
-      limit: pagerObj.pageSize,
-      offset: pagerObj.pageSize * (pagerObj.activePage - 1),
+      limit: parseInt(pagerObj.pageSize),
+      offset: pagerObj.pageSize * (parseInt(pagerObj.activePage) - 1),
       filter: this.state.filter
     })
 
     queryParamsObj = {
       limit: pagerObj.pageSize,
-      offset: pagerObj.pageSize * (pagerObj.activePage - 1),
-      filter: this.state.filter
+      activePage: pagerObj.activePage,
+      filter: JSON.stringify(this.state.filter)
     }
 
     history.pushState(
@@ -137,9 +138,9 @@ class UserLog extends React.Component {
     )
   }
 
-  setDsoName(searchText) {
+  setName(searchText) {
     this.setState({
-      dsoName: searchText
+      name: searchText
     })
   }
 
@@ -147,7 +148,7 @@ class UserLog extends React.Component {
     if (this.state.filter.length > 0) {
       this.setState({
         filter: this.filter,
-        dsoName: ""
+        name: ""
       });
       this.props.history.push(`/home/user-log`)
       this.fetchUserLog({
@@ -159,16 +160,16 @@ class UserLog extends React.Component {
   }
 
   render() {
-    const { userLogs, loadingUserLogs, userLogCount, dsoName } = this.state
+    const { userLogs, loadingUserLogs, userLogCount, name } = this.state
     return (
       <div id="userLog">
         <PageHeader pageName="User Log" />
         <Wrapper>
           <div className="body">
             <Search
-              placeholder="Search by dso name"
-              setSearchText={this.setDsoName}
-              searchText={dsoName}
+              placeholder="Search by name"
+              setSearchText={this.setName}
+              searchText={name}
               handleSearch={this.handleSearch}
               clearSearch={this.clearSearchResults}
             />

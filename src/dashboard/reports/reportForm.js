@@ -21,23 +21,8 @@ class ReportForm extends React.Component {
       selectedDataTypeIdx: "",
       selectedStateIdx: "",
       selectedCityIdx: "",
-      selectedTimeRangeIdx: "",
-      selectedPdf: false,
-      selectedCsv: false,
       cityList: [],
       stateList: [],
-      dataTypeErr: {
-        value: "",
-        status: false
-      },
-      timeRangeErr: {
-        value: "",
-        status: false
-      },
-      fileTypeErr: {
-        value: "",
-        status: false
-      }
     }
 
     this.dataType = [
@@ -47,40 +32,29 @@ class ReportForm extends React.Component {
       // { text: "User Log (list of all users)", value: 4 },
       // { text: "Audit Log", value: 5 }
     ]
-
-    this.timeRange = [
-      { text: "Last 7 days", value: 1 },
-      { text: "Last 14 days", value: 2 },
-      { text: "Last 1 month", value: 3 },
-      { text: "Last 3 months", value: 4 }
-    ]
-
-    // this.stateList = [
-    //   { state_short_name: "TN", text: "Tamilnadu", value: 1 },
-    //   { state_short_name: "KA", text: "Bangalore", value: 2 }
-    // ]
-
-    // this.city = [
-    //   { text: "Chennai", value: 1 },
-    //   { text: "Erode", value: 2 }
-    // ]
-
     this.handleChange = this.handleChange.bind(this)
     this.handleSelectChange = this.handleSelectChange.bind(this)
     this.handleTextFieldChange = this.handleTextFieldChange.bind(this)
     this.getData = this.getData.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.isFormValid = this.isFormValid.bind(this)
-    this.setFileType = this.setFileType.bind(this)
     this.updateCityList = this.updateCityList.bind(this)
   }
 
   componentWillReceiveProps(newProps) {
-    if (this.props.cityList !== newProps.cityList) {
-      this.setState({ cityList: newProps.cityList })
-    }
     if (this.props.stateList !== newProps.stateList) {
-      this.setState({ stateList: newProps.stateList })
+      this.setState({
+        stateList: newProps.stateList,
+        // selectedStateIdx: newProps.stateList[0].value
+      })
+      const cityList = newProps.cityList.filter((item) => {
+        if (parseInt(item.stateId) === parseInt(newProps.stateList[0].value)) {
+          return item
+        }
+      })
+      this.setState({
+        cityList,
+        // selectedCityIdx: cityList[0].value 
+      })
     }
   }
 
@@ -139,13 +113,6 @@ class ReportForm extends React.Component {
           city: this.props.cityList.find((item) => item.value === parseInt(e.target.value)).text
         })
         break;
-
-      case 'timeRange':
-        this.setState({
-          selectedTimeRangeIdx: parseInt(e.target.value),
-          timeRange: this.timeRange.find((item) => item.value === parseInt(e.target.value)).text
-        })
-        break;
     }
   }
 
@@ -161,67 +128,14 @@ class ReportForm extends React.Component {
   }
 
   /**
-   * Validates the report form
-   */
-  isFormValid() {
-    if (this.state.dataType.length === 0) {
-      this.setState({
-        dataTypeErr: {
-          value: "Data type is required",
-          status: true
-        }
-      })
-      return false;
-    } else if (this.state.timeRange.length === 0) {
-      this.setState({
-        timeRangeErr: {
-          value: "Time range is required",
-          status: true
-        }
-      })
-      return false;
-    } else if (this.state.fileType.length === 0) {
-      this.setState({
-        fileTypeErr: {
-          value: "File type is required",
-          status: true
-        }
-      })
-      return false;
-    }
-    return true;
-  }
-
-  /**
    * Submits the report request if form is valid
    */
   handleSubmit(e) {
     e.preventDefault()
-    //if (this.isFormValid()) {
     this.props.handleSubmit()
-    //}
-  }
-
-  /**
-   * Sets the file type
-   * @param {String} fileType 
-   */
-  setFileType(fileType) {
-    this.setState({
-      fileTypeErr: {
-        value: "",
-        status: false
-      }
-    })
-    if (fileType === 'pdf') {
-      this.setState({ selectedPdf: !this.state.selectedPdf, fileType: 'pdf', selectedCsv: false })
-    } else {
-      this.setState({ selectedCsv: !this.state.selectedCsv, fileType: 'csv', selectedPdf: false })
-    }
   }
 
   render() {
-    const { dataTypeErr, timeRangeErr, fileTypeErr } = this.state
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
@@ -236,12 +150,7 @@ class ReportForm extends React.Component {
             value={this.state.selectedDataTypeIdx}
             onChange={this.handleSelectChange}
           />
-          {
-            dataTypeErr.status &&
-            <p className="error-message">* {dataTypeErr.value}</p>
-          }
         </div>
-        {/* <div className="row"> */}
         <div className="form-group">
           <Label>State</Label>
           <Select
@@ -291,25 +200,6 @@ class ReportForm extends React.Component {
             onChange={this.handleTextFieldChange}
           />
         </div>
-        {/* </div> */}
-        {/* <div className="form-group">
-          <Label>
-            Time Range <span>*</span>
-          </Label>
-          <div className="timerange-wrapper">
-            <Select
-              options={this.timeRange}
-              name="timeRange"
-              small
-              value={this.state.selectedTimeRangeIdx}
-              onChange={this.handleSelectChange}
-            />
-            {
-              timeRangeErr.status &&
-              <p className="error-message">* {timeRangeErr.value}</p>
-            }
-          </div>
-        </div> */}
         <div className="form-group">
           <Label>
             Report Name (Optional)
@@ -319,51 +209,9 @@ class ReportForm extends React.Component {
             onChange={this.handleChange}
           />
         </div>
-        {/* <div className="form-group">
-          <Label>File Type <span>*</span></Label>
-          <div className="file-type">
-            <span
-              onClick={() => this.setFileType('pdf')}
-              className="circle"
-            >
-              {
-                !this.state.selectedPdf
-                  ? <Icon name="circle" />
-                  : <Icon name="filledCircle" />
-              }
-            </span>
-            <span
-              onClick={() => this.setFileType('pdf')}
-              className="value"
-            >
-              pdf
-            </span>
-            <span
-              onClick={() => this.setFileType('csv')}
-              className="circle"
-            >
-              {
-                !this.state.selectedCsv
-                  ? <Icon name="circle" />
-                  : <Icon name="filledCircle" />
-              }
-            </span>
-            <span
-              className="value"
-              onClick={() => this.setFileType('csv')}
-            >
-              csv
-            </span>
-          </div>
-          {
-            fileTypeErr.status &&
-            <p className="error-message">* {fileTypeErr.value}</p>
-          }
-        </div> */}
         <div className="form-group">
           <Button
             primary
-            // onClick={this.handleSubmit}
             disabled={this.props.disableRequestReport}
           >
             Download Report

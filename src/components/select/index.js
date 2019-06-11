@@ -16,14 +16,15 @@ class Select extends React.Component {
     return (
       <div className="select--container">
         <span>
-          <Icon name="down-small" size="10"/>
+          <Icon name="down-small" size="10" />
         </span>
         <select
           placeholder={this.props.placeholder}
           className={`select ${this.props.small ? 'small' : 'large'}`}
           name={this.props.name}
           onChange={this.handleChange}
-          value={this.props.value && this.props.value >= 0  ? this.props.value : ''}
+          required={this.props.required}
+          value={this.props.value && this.props.value >= 0 ? this.props.value : ''}
         >
           {
             this.props.name && !this.props.value &&
@@ -33,10 +34,10 @@ class Select extends React.Component {
           }
           {
             this.props.options.map((item, i) => (
-              <option key={i} value={item.value}>{ item.text }</option>
+              <option key={i} value={item.value}>{item.text}</option>
             ))
           }
-      </select>
+        </select>
       </div>
     )
   }
