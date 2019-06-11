@@ -27,8 +27,6 @@ class UserLog extends React.Component {
       filter: this.filter
     }
 
-    this.pageLimit = 10
-
     this.userLogTableHeaders = [
       { title: "Name", icon: "" },
       { title: "Email", icon: "" },
@@ -84,12 +82,19 @@ class UserLog extends React.Component {
       filterby: "name",
       value: this.state.dsoName
     }
+    const isSearchAlreadyApplied = this.state.filter ? this.state.filter.find((item) => item.filterby === "name") ? true : false : false
+
+    let filter = this.state.filter
+    if (isSearchAlreadyApplied) {
+      filter.pop()
+    }
 
     const payload = {
       activePage: 1,
       limit: 10,
-      filter: [...this.state.filter, filterObj]
+      filter: [...filter, filterObj]
     }
+
     const urlParams = {
       limit: 10,
       activePage: 1,
