@@ -87,8 +87,6 @@ class Account extends React.Component {
         {showResetPasswordModal && (
           <Dialog
             title="Reset password"
-            //subtitle="New API Key created"
-            //inputBox={true}
             onClick={() => this.unMountModal('resetPassword')}
             actions={[
               <Button onClick={() => this.unMountModal('resetPassword')} secondary>

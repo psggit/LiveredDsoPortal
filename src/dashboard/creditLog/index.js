@@ -107,18 +107,6 @@ class CreditManagement extends React.Component {
       <div id="CreditLog">
         <PageHeader pageName="Credit Log" />
         <Wrapper>
-          {/* <div>
-            <div style={{ display: 'flex', marginTop: '4px' }}>
-              <ul className="nav">
-                <li
-                  onClick={() => this.setActiveTab("credit-log")}
-                  className={`${activeTab === "credit-log" ? 'active' : ''}`}
-                >
-                  <a href="/home/credit-log">Credit Log</a>
-                </li>
-              </ul>
-            </div>
-          </div> */}
           <div className="body">
             <p>CURRENT BALANCE</p>
             <h2>₹ 2,00,000</h2>
