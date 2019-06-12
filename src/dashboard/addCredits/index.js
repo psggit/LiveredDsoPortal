@@ -39,7 +39,6 @@ class AddCredits extends React.Component {
     var FileSize = e.target.files[0].size / 1024 / 1024; // in MB
     if (FileSize <= 50) {
       const file = e.target.files[0]
-      console.log("on change")
       this.setState({
         data: file,
         isImageSelected: true
@@ -54,14 +53,14 @@ class AddCredits extends React.Component {
    * Resets the image selection and uploading state
    */
   resetUploadImage() {
-    this.setState({ 
+    this.setState({
       //isImageUploaded: false, 
-      isImageSelected: false, 
+      isImageSelected: false,
       isImageUploading: false
     })
   }
 
-  
+
   submitUploadedImage() {
     const formData = new FormData()
     formData.append('file', this.state.data)
@@ -69,16 +68,16 @@ class AddCredits extends React.Component {
   }
 
   render() {
-    const {activeTab} = this.state
+    const { activeTab } = this.state
     return (
       <div id="AddCredits">
         <PageHeader pageName="Credit Management" />
         <Wrapper>
           <div>
-            <div style={{display: 'flex', marginTop: '4px'}}>
+            <div style={{ display: 'flex', marginTop: '4px' }}>
               <ul className="nav">
-                <li 
-                  onClick={() => this.setActiveTab("credit-log")} 
+                <li
+                  onClick={() => this.setActiveTab("credit-log")}
                   className={`${activeTab === "credit-log" ? 'active' : ''}`}
                 >
                   <a href="/home/credit-log">Credit Log</a>
@@ -107,7 +106,7 @@ class AddCredits extends React.Component {
             </div>
             <div className="upload-section">
               <h2>Let us know about your payment</h2>
-            
+
               <div className="form-input">
                 <label>
                   Upload Document <span>*</span>
@@ -130,8 +129,8 @@ class AddCredits extends React.Component {
                 <label>
                   Message
                 </label>
-                <textarea 
-                  placeholder="Write a reason/note" 
+                <textarea
+                  placeholder="Write a reason/note"
                   name="message"
                   onChange={this.handleTextareaChange}
                 />

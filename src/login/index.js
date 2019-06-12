@@ -49,7 +49,8 @@ class Login extends React.Component {
     }
   }
 
-  handleLogin() {
+  handleLogin(e) {
+    e.preventDefault()
     const { email, password } = this.state
     if (password.length && email.length) {
       this.setState({ isSubmitting: true })

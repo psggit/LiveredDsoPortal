@@ -27,6 +27,7 @@ class SideMenu extends React.Component {
 
   render() {
     const { menuItems, currentRoute } = this.props
+    console.log("current route", currentRoute)
     return (
       <div id="sidemenu">
         <div className="side-menu">
@@ -46,10 +47,10 @@ class SideMenu extends React.Component {
                       <span>
                         <Icon name={item.icon} />
                       </span>
-                      { item.label }
+                      {item.label}
                       <div className="highlight"></div>
                     </a>
-                   
+
                   </React.Fragment>
                 }
               </div>

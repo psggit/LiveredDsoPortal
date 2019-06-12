@@ -112,6 +112,8 @@ class UserLog extends React.Component {
   }
 
   handlePageChange(pagerObj) {
+    const queryUri = location.search.slice(1)
+    const queryObj = getQueryObj(queryUri)
     let queryParamsObj = {}
 
     this.setState({
@@ -122,13 +124,13 @@ class UserLog extends React.Component {
     this.fetchUserLog({
       limit: parseInt(pagerObj.pageSize),
       offset: pagerObj.pageSize * (parseInt(pagerObj.activePage) - 1),
-      filter: this.state.filter
+      filter: queryObj.filter ? JSON.parse(decodeURI(queryObj.filter)) : this.state.filter
     })
 
     queryParamsObj = {
       limit: pagerObj.pageSize,
       activePage: pagerObj.activePage,
-      filter: JSON.stringify(this.state.filter)
+      filter: queryObj.filter ? (queryObj.filter) : JSON.stringify(this.state.filter)
     }
 
     history.pushState(
