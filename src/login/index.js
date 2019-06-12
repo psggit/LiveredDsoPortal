@@ -76,20 +76,20 @@ class Login extends React.Component {
   handlePasswordChange(evt) {
     const { password } = this.state
     const value = (evt.target.validity.valid || evt.target.validity.valueMissing) ? evt.target.value : eval((evt.target.name));
-    this.setState({ [evt.target.name]:  value});
+    this.setState({ [evt.target.name]: value });
   }
 
   handleEmailChange(evt) {
-    this.setState({ [evt.target.name]:  evt.target.value});
+    this.setState({ [evt.target.name]: evt.target.value });
   }
 
   handleClick() {
-    location.href="/home/support"
+    location.href = "/home/support"
   }
 
   resetPassword() {
     console.log("email", this.state.forgotPasswordEmail)
-    this.setState({showForgotPasswordModal: false, showSuccessMessageModal: true})
+    this.setState({ showForgotPasswordModal: false, showSuccessMessageModal: true })
   }
 
   mountModal() {
@@ -101,7 +101,7 @@ class Login extends React.Component {
   }
 
   handleTextChange(e) {
-    this.setState({forgotPasswordEmail: e.target.value})
+    this.setState({ forgotPasswordEmail: e.target.value })
   }
 
   render() {
@@ -116,13 +116,13 @@ class Login extends React.Component {
             </h3>
             <div className="body">
               <React.Fragment>
-                <form>
+                <form onSubmit={this.handleLogin}>
                   <div className="form-group">
                     <Label>Email Id</Label>
                     <input
                       type="text"
                       name="email"
-                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                      pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                       onInput={this.handleEmailChange.bind(this)}
                       value={this.state.email}
                       required
@@ -133,7 +133,7 @@ class Login extends React.Component {
                     <input
                       type="password"
                       name="password"
-                      pattern="^[a-zA-Z0-9!#@]*$"
+                      pattern="^[^-\s][a-zA-Z0-9_\s-#!@]+$"
                       onInput={this.handlePasswordChange.bind(this)}
                       value={this.state.password}
                       required
@@ -141,7 +141,7 @@ class Login extends React.Component {
                   </div>
                   <div className="form-group" style={{ textAlign: "center" }}>
                     <Button
-                      onClick={this.handleLogin}
+                      // onClick={this.handleLogin}
                       primary
                     >
                       Login
@@ -157,11 +157,11 @@ class Login extends React.Component {
               </p>
             )}
           </div>
-          <p style={{ 
-              textAlign: "center", 
-              marginTop: "24px",
-              cursor: "pointer",
-            }}
+          <p style={{
+            textAlign: "center",
+            marginTop: "24px",
+            cursor: "pointer",
+          }}
             onClick={this.handleClick}
           >
             Having trouble? Contact Support
@@ -181,7 +181,7 @@ class Login extends React.Component {
               </Button>
             ]}
           >
-            <input type="text" onChange={this.handleTextChange} />  
+            <input type="text" className="large" onChange={this.handleTextChange} />
           </Dialog>
         )}
         {this.state.showSuccessMessageModal && (
@@ -192,7 +192,7 @@ class Login extends React.Component {
             actions={[
               <Button onClick={() => this.unMountModal('showSuccessMessageModal')} primary>
                 Done
-              </Button>,``
+              </Button>, ``
             ]}
           />
         )}

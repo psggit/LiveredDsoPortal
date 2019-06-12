@@ -10,7 +10,7 @@ class Organization extends React.Component {
   constructor() {
     super()
     this.state = {
-      activeTab: "company-profile",
+      activeTab: "company-details",
       loadingProfileDetails: true,
       profileDetails: {}
     }
@@ -52,10 +52,10 @@ class Organization extends React.Component {
           <div style={{ display: 'flex', marginTop: '4px' }}>
             <ul className="nav">
               <li
-                onClick={() => this.setActiveTab("company-profile")}
-                className={`${activeTab === "company-profile" ? 'active' : ''}`}
+                onClick={() => this.setActiveTab("company-details")}
+                className={`${activeTab === "company-details" ? 'active' : ''}`}
               >
-                <a>Company Profile</a>
+                <a>Company Details</a>
               </li>
               <li
                 onClick={() => this.setActiveTab("locations")}
@@ -66,7 +66,7 @@ class Organization extends React.Component {
             </ul>
           </div>
           {
-            activeTab === "company-profile" &&
+            activeTab === "company-details" &&
             !loadingProfileDetails &&
             <React.Fragment>
               <div className="profile-details" style={{ borderBottom: '1px solid #dfe3e6' }}>

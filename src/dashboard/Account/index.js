@@ -1,5 +1,5 @@
 import React from 'react'
-import {accountData} from './../mock-data'
+import { accountData } from './../mock-data'
 import DataTable from '../../components/table'
 import PageHeader from "Components/pageheader"
 import Dialog from "Components/dialog"
@@ -29,27 +29,27 @@ class Account extends React.Component {
   resetPassword() {
     console.log("reset password", this.state)
     this.unMountModal('resetPassword')
-    this.setState({showSuccessMessageModal: true})
+    this.setState({ showSuccessMessageModal: true })
   }
 
   mountResetPasswordModal() {
-    this.setState({showResetPasswordModal: true})
+    this.setState({ showResetPasswordModal: true })
   }
 
   handleTextChange(e) {
-    this.setState({[e.target.name]: e.target.value})
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   unMountModal(modalName) {
-    if(modalName === 'resetPassword') {
-      this.setState({showResetPasswordModal: false})
+    if (modalName === 'resetPassword') {
+      this.setState({ showResetPasswordModal: false })
     } else {
-      this.setState({showSuccessMessageModal: false})
+      this.setState({ showSuccessMessageModal: false })
     }
   }
 
   render() {
-    const {showResetPasswordModal, showSuccessMessageModal} = this.state
+    const { showResetPasswordModal, showSuccessMessageModal } = this.state
     return (
       <div id="account">
         <PageHeader pageName="My Account" />
@@ -67,7 +67,7 @@ class Account extends React.Component {
               mountModal={this.mountResetPasswordModal}
             />
           </div>
-          <h4>Notifications Preferences</h4>
+          {/* <h4>Notifications Preferences</h4>
           <div className="notification-container">
             <p className="label">Communication Channel</p>
             <div className="channel">
@@ -82,7 +82,7 @@ class Account extends React.Component {
               </span>
               <p>Email</p>
             </div>
-          </div>
+          </div> */}
         </Wrapper>
         {showResetPasswordModal && (
           <Dialog
@@ -113,7 +113,7 @@ class Account extends React.Component {
             actions={[
               <Button onClick={() => this.unMountModal('showSuccessMessageModal')} primary>
                 Done
-              </Button>,``
+              </Button>, ``
             ]}
           />
         )}

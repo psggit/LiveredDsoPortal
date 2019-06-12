@@ -12,6 +12,7 @@
     }
     font-family: 'IBM Plex Sans', sans-serif;
     max-width: 500px;
+    width: 500px;
     background-color: #fff;
     position: absolute;
     border: 1px solid #9b9b9b;
@@ -27,7 +28,7 @@
     position: relative;
     padding: 45px;
     p {
-      margin: 0;
+      margin-bottom: 5px;
       font-size: 16px;
       line-height: 1.25;
       color: #152935;
@@ -56,6 +57,14 @@
       }
       margin-bottom: 20px;
     }
+
+    // .dialog--subtitle-bar {
+    //   p {
+    //     font-size: 16px;
+    //     color: #152935;
+    //     margin-bottom: 5px;
+    //   }
+    // }
   }
   
   .dialog--footer {
