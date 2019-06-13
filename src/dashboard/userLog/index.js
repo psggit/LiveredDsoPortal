@@ -78,13 +78,19 @@ class UserLog extends React.Component {
   }
 
   handleSearch(e) {
+    const queryUri = location.search.slice(1)
+    const queryObj = getQueryObj(queryUri)
+
     const filterObj = {
       filterby: "name",
       value: this.state.name
     }
-    const isSearchAlreadyApplied = this.state.filter ? this.state.filter.find((item) => item.filterby === "name") ? true : false : false
 
-    let filter = this.state.filter
+    const isSearchAlreadyApplied = queryObj.filter
+      ? JSON.parse(decodeURI(queryObj.filter)).find((item) => item.filterby === "name") ? true : false
+      : false
+
+    let filter = queryObj.filter ? JSON.parse(decodeURI(queryObj.filter)) : this.state.filter
     if (isSearchAlreadyApplied) {
       filter.pop()
     }
@@ -99,7 +105,7 @@ class UserLog extends React.Component {
     const urlParams = {
       limit: 10,
       activePage: 1,
-      filter: JSON.stringify([...this.state.filter, filterObj])
+      filter: JSON.stringify([...filter, filterObj])
     }
     this.setState(payload)
 
