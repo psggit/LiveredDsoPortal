@@ -33,25 +33,25 @@ class TextInput extends React.Component {
   //         fieldValue
   //       }
   //     }
-      
+
   //     this.props.onChange(fieldStatus)
-  
+
   //   } else {
   //     event.preventDefault()
   //     return false;
   //   }
   // }
 
-  handleChange(evt,fieldName) {
+  handleChange(evt, fieldName) {
     let fieldStatus = {}
-    if((evt.target.validity.valid || evt.target.validity.valueMissing) && evt.target.value.trim().length) {
-      this.setState({value: evt.target.value})
+    if ((evt.target.validity.valid || evt.target.validity.valueMissing) && evt.target.value.trim().length) {
+      this.setState({ value: evt.target.value })
       fieldStatus = {
         fieldName,
         fieldValue: evt.target.value
       }
       this.props.onChange(fieldStatus)
-    } else { 
+    } else {
       evt.preventDefault()
       // fieldStatus = {
       //   fieldName,
@@ -76,10 +76,10 @@ class TextInput extends React.Component {
         name={this.props.name}
         autoComplete="off"
         pattern='^[a-zA-Z0-9 ]*$'
-        onInput={(e) => this.handleChange(e, this.props.name) }
+        onInput={(e) => this.handleChange(e, this.props.name)}
         value={this.state.value}
-        //autocomplete="off"
-        //required
+      //autocomplete="off"
+      //required
       />
     )
   }
@@ -87,12 +87,12 @@ class TextInput extends React.Component {
 
 export default TextInput
 
-TextInput.defaultProps = {
-  name: "default",
-  onChange: () => void(0)
-}
+// TextInput.defaultProps = {
+//   name: "default",
+//   onChange: () => void(0)
+// }
 
-TextInput.propTypes = {
-  name: PropTypes.string,
-  onChange: PropTypes.function
-}
+// TextInput.propTypes = {
+//   name: PropTypes.string,
+//   onChange: PropTypes.function
+// }

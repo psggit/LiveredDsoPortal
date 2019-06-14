@@ -27,12 +27,13 @@ class App extends React.Component {
     this.state = {
       currentRoute: location.pathname.split('/')[2] || '',
       key: 0,
-      isLoggedIn: true
+      isLoggedIn: localStorage.getItem("hasura-id") ? true : false
     }
     this.checkUserLoggedIn = this.checkUserLoggedIn.bind(this)
   }
 
   componentDidMount() {
+    this.checkUserLoggedIn()
     history.listen((loction) => {
       const newRoute = location.pathname.split('/')[2]
       const { key } = this.state
@@ -40,35 +41,48 @@ class App extends React.Component {
     })
   }
 
-  checkUserLoggedIn() {
-    const fetchOptions = {
-      method: 'get',
-      credentials: 'include',
-      mode: 'cors',
-      'x-hasura-role': 'user'
-    }
+  //checkUserLoggedIn() {
+  // const fetchOptions = {
+  //   method: 'get',
+  //   credentials: 'include',
+  //   mode: 'cors',
+  //   'x-hasura-role': 'user'
+  // }
 
-    fetch(`${Api.authUrl}/user/account/info`, fetchOptions)
-      .then((response) => {
-        if (response.status !== 200) {
-          console.log(`Looks like there was a problem. Status Code: ${response.status}`)
-          if (location.pathname !== '/login') {
-            location.href = '/login'
-          }
-          return
-        }
-        response.json().then((data) => {
-          if (!location.pathname.includes('home') && !location.pathname.includes('support')) {
-            location.href = '/home/live-ottp'
-          }
-        })
-      })
-      .catch((err) => {
-        console.log('Fetch Error :-S', err)
-        if (location.pathname !== '/login') {
-          location.href = '/login'
-        }
-      })
+  // fetch(`${Api.authUrl}/user/account/info`, fetchOptions)
+  //   .then((response) => {
+  //     if (response.status !== 200) {
+  //       console.log(`Looks like there was a problem. Status Code: ${response.status}`)
+  //       if (location.pathname !== '/login') {
+  //         location.href = '/login'
+  //       }
+  //       return
+  //     }
+  //     response.json().then((data) => {
+  //       if (!location.pathname.includes('home') && !location.pathname.includes('support')) {
+  //         location.href = '/home/live-ottp'
+  //       }
+  //     })
+  //   })
+  //   .catch((err) => {
+  //     console.log('Fetch Error :-S', err)
+  //     if (location.pathname !== '/login') {
+  //       location.href = '/login'
+  //     }
+  //   })
+  //}
+
+  checkUserLoggedIn() {
+    const { isLoggedIn } = this.state
+    if (!isLoggedIn) {
+      if (location.pathname !== "/home/support" && location.pathname !== "/login") {
+        location.href = "/login"
+      }
+    } else {
+      if (!location.pathname.includes('home')) {
+        location.href = '/home/api'
+      }
+    }
   }
 
   render() {
@@ -92,7 +106,7 @@ class App extends React.Component {
                 overflow: 'auto'
               }}
             >
-              <Header isLoggedIn={isLoggedIn} />
+              <Header />
               <div>
                 {
                   this.state.isLoggedIn &&
@@ -122,8 +136,6 @@ class App extends React.Component {
                         render={props => <SupportWithForm {...props} isLoggedIn={this.state.isLoggedIn} />}
                       />
                     } */}
-
-
                     <Route
                       exact
                       path="/home/support"

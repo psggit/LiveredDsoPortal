@@ -10,7 +10,7 @@ class Header extends React.Component {
     super(props)
     this.state = {
       showLogoutModal: false,
-      isLoggedIn: props.isLoggedIn
+      isLoggedIn: localStorage.getItem("hasura-id")
     }
     this.logout = this.logout.bind(this)
     this.mountLogoutModal = this.mountLogoutModal.bind(this)
@@ -35,46 +35,52 @@ class Header extends React.Component {
 
   logout() {
     this.setState({ showLogoutModal: false })
-    POST({
-      api: "/retailer/auth/user/logout",
-      apiBase: "api1",
-      handleError: false,
-      cors: true
-    })
-      .then(response => {
-        if (response.status !== 200) {
-          console.log(
-            `Looks like there was a problem. Status Code: ${response.status}`
-          )
-          localStorage.clear()
-          location.href = "/login"
-          return
-        }
-        response.json().then(data => {
-          localStorage.clear()
-          location.href = "/login"
-        })
-      })
-      .catch(err => {
-        console.log("Fetch Error :-S", err)
-        localStorage.clear()
-        location.href = "/login"
-      })
+    localStorage.clear()
+    document.cookie = "livered=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    location.href = "/login"
+    // POST({
+    //   api: "/retailer/auth/user/logout",
+    //   apiBase: "api1",
+    //   handleError: false,
+    //   cors: true
+    // })
+    //   .then(response => {
+    //     if (response.status !== 200) {
+    //       console.log(
+    //         `Looks like there was a problem. Status Code: ${response.status}`
+    //       )
+    //       localStorage.clear()
+    //       location.href = "/login"
+    //       return
+    //     }
+    //     response.json().then(data => {
+    //       localStorage.clear()
+    //       location.href = "/login"
+    //     })
+    //   })
+    //   .catch(err => {
+    //     console.log("Fetch Error :-S", err)
+    //     localStorage.clear()
+    //     location.href = "/login"
+    //   })
   }
 
   handleClick() {
     console.log("click")
-    location.href="/home/account"
+    location.href = "/home/account"
   }
 
   render() {
-    const { showLogoutModal, showDropdown } = this.state
+    const { showLogoutModal, showDropdown, isLoggedIn } = this.state
     return (
       <div id="pageHeader" className="page-header">
-     
+
         <div className="logo">
           <Icon name="liveredLogo" />
-          <p onClick={this.mountLogoutModal}>Logout</p>
+          {
+            isLoggedIn &&
+            <p onClick={this.mountLogoutModal}>Logout</p>
+          }
           {/* {
             this.state.isLoggedIn &&
             <span onClick={this.openDropdown} className="icon">
@@ -82,8 +88,8 @@ class Header extends React.Component {
             </span>
           } */}
         </div>
-      
-       
+
+
         {/* <div
           className={`dropdown-menu ${showDropdown ? "show" : "hide"}`}
         >
