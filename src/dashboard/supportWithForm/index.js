@@ -8,7 +8,7 @@ import "./supportWithForm.scss"
 class SupportForm extends React.Component {
 
   constructor() {
-    super() 
+    super()
     // this.state = {
     //   formErr: false
     // }
@@ -18,7 +18,7 @@ class SupportForm extends React.Component {
   handleFormSubmit() {
     // console.log("submit state", this.supportForm.getData())
     const formData = this.supportForm.getData()
-    if(formData.name.length && formData.email.length && formData.designation.length) {
+    if (formData.name.length && formData.email.length && formData.designation.length) {
       this.createComplaint({
         name: formData.name,
         email: formData.email,
@@ -26,9 +26,9 @@ class SupportForm extends React.Component {
         urgency: formData.urgencyLevel,
         message: formData.message,
         confirmation: formData.isConfirmation,
-        dso_id: "SW123"
+        dso_id: localStorage.getItem("dsoId")
       }, this.successCallback, this.failureCallback)
-    } 
+    }
     // else {
     //   this.setState({formErr: true})
     // }
@@ -53,7 +53,7 @@ class SupportForm extends React.Component {
         <p className="sub-header">Please share your queries/feedback. Our support team will contact you ASAP</p>
         <div className="main-container">
           <div className="ticket-form">
-            <SupportTicketForm  ref={(node) => { this.supportForm = node }} handleSubmit={this.handleFormSubmit} />
+            <SupportTicketForm ref={(node) => { this.supportForm = node }} handleSubmit={this.handleFormSubmit} />
             {/* {
               this.state.formErr &&
               <p className="error-message">Please fill the required fields</p>

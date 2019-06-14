@@ -27,7 +27,7 @@ class Organization extends React.Component {
   fetchCompanyProfileDetails() {
     this.setState({ loadingProfileDetails: true })
     Api.fetchCompanyProfileDetails({
-      dso_id: "SW123"
+      dso_id: localStorage.getItem("dsoId")
     }, this.successCallback)
   }
 

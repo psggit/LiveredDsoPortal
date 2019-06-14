@@ -24,8 +24,19 @@ export function getHasuraId(data) {
   return hasuraId
 }
 
+// export function getStateId(data) {
+//   const stateId = data.state_id
+//   return stateId
+// }
+
+export function getDsoId(data) {
+  const dsoId = data.dso_id
+  return dsoId
+}
 
 export function createSession(data) {
   //localStorage.setItem('x-hasura-role', getHasuraRole(data))
   localStorage.setItem('hasura-id', getHasuraId(data))
+  // localStorage.setItem("state-id", getStateId(data))
+  localStorage.setItem("dso-id", getDsoId(data))
 }
