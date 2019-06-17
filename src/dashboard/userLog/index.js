@@ -14,7 +14,7 @@ class UserLog extends React.Component {
 
     this.filter = [{
       filterby: "dso_id",
-      value: localStorage.getItem("dsoId")
+      value: localStorage.getItem("dso-id")
     }]
 
     this.state = {

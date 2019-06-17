@@ -26,7 +26,7 @@ class SupportForm extends React.Component {
         urgency: formData.urgencyLevel,
         message: formData.message,
         confirmation: formData.isConfirmation,
-        dso_id: localStorage.getItem("dsoId")
+        dso_id: localStorage.getItem("dso-id")
       }, this.successCallback, this.failureCallback)
     }
     // else {

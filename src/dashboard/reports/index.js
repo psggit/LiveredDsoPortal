@@ -61,7 +61,6 @@ class Reports extends React.Component {
    */
   handleSubmit() {
     const formData = this.reportForm.getData()
-    console.log("report form data", this.reportForm.getData(), stateShortName)
     this.setState({ requestingReport: true })
     this.generateReport({
       data_type: formData.dataType,
@@ -69,8 +68,9 @@ class Reports extends React.Component {
       state_id: formData.selectedStateIdx.toString(),
       city_id: formData.selectedCityIdx.toString(),
       file_name: formData.reportName,
-      from_date: formData.fromDate,
-      to_date: formData.toDate
+      dso_id: localStorage.getItem("dso-id"),
+      from_date: new Date(formData.fromDate).toISOString(),
+      to_date: new Date(formData.toDate).toISOString()
     })
   }
 
