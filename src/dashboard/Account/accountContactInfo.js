@@ -2,7 +2,7 @@ import React from "react"
 import "Sass/card.scss"
 import PropTypes from "prop-types"
 
-const AccountContactInfo = ({email, phone, mountModal}) => (
+const AccountContactInfo = ({ email, phone, mountModal }) => (
   <div className="card-container">
     <div className="item">
       <p className="label">Email Address</p>
@@ -14,7 +14,7 @@ const AccountContactInfo = ({email, phone, mountModal}) => (
       <p className="value">{phone}</p>
     </div>
     <div className="item" onClick={mountModal}>
-      <p class="link">Reset Password</p>
+      <p className="link">Reset Password</p>
     </div>
   </div>
 )
@@ -24,7 +24,7 @@ export default AccountContactInfo
 AccountContactInfo.defaultProps = {
   email: undefined,
   phone: undefined,
-  mountModal: undefined    
+  mountModal: undefined
 }
 
 AccountContactInfo.propTypes = {

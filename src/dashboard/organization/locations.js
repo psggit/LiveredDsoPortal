@@ -30,7 +30,6 @@ class Locations extends React.Component {
     this.setState({ loadingLocations: true })
     Api.fetchLocations({})
       .then((response) => {
-        console.log("res", response)
         this.setState({ locationsData: response.locations, loadingLocations: false })
       })
       .catch((err) => {

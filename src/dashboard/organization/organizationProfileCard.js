@@ -46,14 +46,20 @@ export default ProfileCard
 
 ProfileCard.defaultProps = {
   dsoName: undefined,
-  validationStatus: undefined,
   entityType: undefined,
-  availableLocations: undefined
+  headOffice: undefined,
+  address: undefined,
+  name: undefined,
+  contact: undefined,
+  email: undefined
 }
 
 ProfileCard.propTypes = {
   dsoName: PropTypes.string.isRequired,
-  validationStatus: PropTypes.string.isRequired,
   entityType: PropTypes.string,
-  availableLocations: PropTypes.string.isRequired
+  headOffice: PropTypes.string,
+  address: PropTypes.string,
+  name: PropTypes.string,
+  contact: PropTypes.string,
+  email: PropTypes.string
 }

@@ -55,7 +55,7 @@ const LiveredDetailsCard = ({ licenseType, licenseStatus, licenseExpiry, deliver
           >
             States Servicable
           </Label>
-          <p className="value">{stateServicable}</p>
+          <p className="value">{stateServicable.join(", ")}</p>
         </div>
       </div>
     </div>
@@ -65,11 +65,17 @@ const LiveredDetailsCard = ({ licenseType, licenseStatus, licenseExpiry, deliver
 export default LiveredDetailsCard
 
 LiveredDetailsCard.defaultProps = {
-  isValidated: undefined,
-  category: undefined
+  licenseType: undefined,
+  licenseStatus: undefined,
+  licenseExpiry: undefined,
+  deliveryStatus: undefined,
+  stateServicable: undefined
 }
 
 LiveredDetailsCard.propTypes = {
-  isValidated: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
+  licenseType: PropTypes.string.isRequired,
+  licenseStatus: PropTypes.bool.isRequired,
+  licenseExpiry: PropTypes.string.isRequired,
+  deliveryStatus: PropTypes.bool.isRequired,
+  stateServicable: PropTypes.array.isRequired
 }

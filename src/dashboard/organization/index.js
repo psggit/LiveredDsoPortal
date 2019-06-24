@@ -67,6 +67,15 @@ class Organization extends React.Component {
           </div>
           {
             activeTab === "company-details" &&
+            loadingProfileDetails &&
+            <React.Fragment>
+              <div className="card-container" style={{ textAlign: 'center' }}>
+                Loading...
+              </div>
+            </React.Fragment>
+          }
+          {
+            activeTab === "company-details" &&
             !loadingProfileDetails &&
             <React.Fragment>
               <div className="profile-details" style={{ borderBottom: '1px solid #dfe3e6' }}>
@@ -85,7 +94,7 @@ class Organization extends React.Component {
                   licenseType={profileDetails.license_type}
                   licenseStatus={profileDetails.license_status}
                   licenseExpiry={profileDetails.license_expiry}
-                  deliveryStatus={profileDetails.is_validated}
+                  deliveryStatus={profileDetails.is_active}
                   stateServicable={profileDetails.state_servicable}
                 />
               </div>
