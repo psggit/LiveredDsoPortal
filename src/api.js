@@ -1,10 +1,10 @@
 import { POST, GET } from 'Utils/fetch'
 
-const ottp = "https://7450ee1c.ngrok.io"
-export const dso = "https://d0978267.ngrok.io"
-const credit = "https://4f867990.ngrok.io"
-export const consumer = "https://d0fc5ac5.ngrok.io"
-const rule = " https://61bf4952.ngrok.io"
+const ottp = "https://ottp.livered-dev.com"
+export const dso = "https://dsomanagement.livered-dev.com"
+const credit = "https://credit.livered-dev.com"
+export const consumer = "https://consumer.livered-dev.com"
+const rule = "https://ruleengine.livered-dev.com"
 
 export function createComplaint(payloadObj, successCallback, failureCallback) {
 	return POST({
