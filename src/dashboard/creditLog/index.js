@@ -19,6 +19,7 @@ class CreditManagement extends React.Component {
       activePage: 1,
       limit: 10,
       creditLogs: [],
+      available_credit: 0,
       creditLogCount: 0,
       loadingCreditLogs: false
     }
@@ -61,7 +62,8 @@ class CreditManagement extends React.Component {
     this.setState({
       creditLogs: response.credit_log,
       creditLogCount: response.count,
-      loadingCreditLogs: false
+      loadingCreditLogs: false,
+      available_credit: response.available_credit
     })
   }
 
@@ -102,14 +104,14 @@ class CreditManagement extends React.Component {
   }
 
   render() {
-    const { activeTab, creditLogs, creditLogCount, loadingCreditLogs } = this.state
+    const { activeTab, creditLogs, creditLogCount, loadingCreditLogs, available_credit } = this.state
     return (
       <div id="CreditLog">
         <PageHeader pageName="Credit Log" />
         <Wrapper>
           <div className="body">
             <p>CURRENT BALANCE</p>
-            <h2>₹ 2,00,000</h2>
+            <h2>₹ {available_credit}</h2>
             <div className="pager">
               <Pagination
                 activePage={this.state.activePage}
@@ -125,7 +127,7 @@ class CreditManagement extends React.Component {
             >
               {
                 !loadingCreditLogs &&
-                creditLogs.length &&
+                creditLogs.length > 0 &&
                 creditLogs.map((item, i) => {
                   return (
                     <tr key={i}>
