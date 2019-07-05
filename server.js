@@ -5,7 +5,7 @@ const ReactDOMServer = require('react-dom/server')
 
 const app = express()
 
-console.log(app);
+// console.log(app);
 
 const env = process.env.NODE_ENV
 
