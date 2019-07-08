@@ -1,10 +1,10 @@
 import { POST, GET } from 'Utils/fetch'
 
-const ottp = "https://ottp.livered-dev.com"
-export const dso = "https://dsomanagement.livered-dev.com"
-const credit = "https://credit.livered-dev.com"
-export const consumer = "https://consumer.livered-dev.com"
-const rule = "https://ruleengine.livered-dev.com"
+const ottp = "https://f5c2eb8c.ngrok.io"
+export const dso = "http://192.168.5.84"
+const credit = "https://e6ee9cc2.ngrok.io"
+export const consumer = "https://2b20cfb3.ngrok.io"
+const rule = "https://3f004433.ngrok.io"
 
 export function createComplaint(payloadObj, successCallback, failureCallback) {
 	return POST({
@@ -34,7 +34,7 @@ export function fetchUserLog(payloadObj) {
 }
 
 export function generateOttpReport(payloadObj, successCallback, failureCallback) {
-	console.log("data", payloadObj)
+	// console.log("data", payloadObj)
 	// return POST({
 	//     api: 'http://192.168.5.63:3000/livered/ottpReports',
 	//     handleError: true,
