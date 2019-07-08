@@ -113,7 +113,7 @@ class Login extends React.Component {
               <React.Fragment>
                 <form onSubmit={this.handleLogin}>
                   <div className="form-group">
-                    <Label>Email Id</Label>
+                    <Label>Email ID</Label>
                     <input
                       type="text"
                       name="email"
