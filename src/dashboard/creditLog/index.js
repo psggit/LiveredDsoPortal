@@ -47,6 +47,7 @@ class CreditManagement extends React.Component {
     })
 
     this.fetchCreditLog({
+      dso_id: localStorage.getItem("dso-id"),
       limit: queryObj.limit ? parseInt(queryObj.limit) : this.state.limit,
       offset: queryObj.activePage ? parseInt(queryObj.limit * (queryObj.activePage - 1)) : 0
     })
@@ -87,6 +88,7 @@ class CreditManagement extends React.Component {
       limit: pagerObj.pageSize
     })
     this.fetchCreditLog({
+      dso_id: localStorage.getItem("dso-id"),
       limit: parseInt(pagerObj.pageSize),
       offset: pagerObj.pageSize * (pagerObj.activePage - 1)
     })
