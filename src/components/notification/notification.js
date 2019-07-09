@@ -1,97 +1,98 @@
 import React, { Component } from 'react'
 import { unmountComponentAtNode } from "react-dom"
-import getIcon from './../getIcon'
+import Icon from './../icon'
 
 class Notification extends Component {
 
-    constructor(props) {
+  constructor(props) {
 
-      super(props)
+    super(props)
 
-      let { message, type } = this.props
+    let { message, type } = this.props
 
-      this.state = {
-        message,
-        type,
-        style: this.initialStyle()
-      }
-
-      this.mountNotify = this.mountNotify.bind(this)
-      this.unmountNotify = this.unmountNotify.bind(this)
-
+    this.state = {
+      message,
+      type,
+      style: this.initialStyle()
     }
 
-    initialStyle() {
-      return {
-        opacity: 0,
+    this.mountNotify = this.mountNotify.bind(this)
+    this.unmountNotify = this.unmountNotify.bind(this)
+
+  }
+
+  initialStyle() {
+    return {
+      opacity: 0,
+      transition: 'all 0.4s ease',
+    }
+  }
+
+  unmountNotify() {
+
+    this.setState({
+      style: this.initialStyle()
+    })
+
+    setTimeout(() => {
+      unmountComponentAtNode(document.querySelector('.notification-container'))
+    }, 1000)
+
+  }
+
+  mountNotify() {
+
+    this.setState({
+
+      style: {
+        opacity: 1,
         transition: 'all 0.4s ease',
       }
-    }
 
-    unmountNotify() {
+    })
 
-      this.setState({
-        style: this.initialStyle()
-      })
-
-      setTimeout(() => {
-        unmountComponentAtNode(document.querySelector('.notification-container'))
-      }, 1000)
-
-    }
-
-    mountNotify() {
-
-      this.setState({
-
-        style: {
-          opacity: 1,
-          transition: 'all 0.4s ease',
-        }
-
-      })
-
-    }
+  }
 
 
-    componentDidMount() {
+  componentDidMount() {
 
-      setTimeout(this.mountNotify, 500)
+    setTimeout(this.mountNotify, 500)
 
-      setTimeout(() => {
-        this.unmountNotify()
-      }, 3500)
+    setTimeout(() => {
+      this.unmountNotify()
+    }, 3500)
 
-    }
+  }
 
-    render() {
+  render() {
 
-      const { message, type, style } = this.state
+    const { message, type, style } = this.state
 
-      return (
+    return (
 
-        <div
-            className={`notification ${type}`}
-            style={style}
-        >
-          <div className="notification-message">
-            <span className="__type-icon">
-                {
-                    getIcon(type)
-                }
-            </span>
-            <span>{message}</span>
-          </div>
-
-          <span className="__close-icon" onClick={this.unmountNotify}>
+      <div
+        className={`notification ${type}`}
+        style={style}
+      >
+        <div className="notification-message">
+          <span className="__type-icon">
             {
-                (type === "warning" ? getIcon("close-grey") : getIcon("close-white"))
+              // getIcon(type)
+              <Icon name={type} />
             }
           </span>
+          <span>{message}</span>
         </div>
 
-      )
-    }
+        <span className="__close-icon" onClick={this.unmountNotify}>
+          {
+            (type === "warning" ? <Icon name="close-grey" /> : <Icon name="close-white" />)
+          }
+        </span>
+      </div>
+
+    )
+  }
 }
 
 export default Notification
