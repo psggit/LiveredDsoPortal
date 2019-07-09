@@ -161,7 +161,6 @@ class ReportForm extends React.Component {
             options={this.state.stateList}
             name="state"
             small
-            required
             value={this.state.selectedStateIdx}
             onChange={this.handleSelectChange}
           />
