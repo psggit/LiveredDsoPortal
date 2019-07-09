@@ -26,9 +26,12 @@ class ReportForm extends React.Component {
     }
 
     this.dataType = [
-      { text: "Transport Permits History (OTTPs)", value: 1 },
-      { text: "Cancelled Transport Permits (OTTPs)", value: 2 },
-      { text: "Credit History", value: 3 },
+      // { text: "Transport Permits History (OTTPs)", value: 1 },
+      // { text: "Cancelled Transport Permits (OTTPs)", value: 2 },
+      // { text: "Credit History", value: 3 },
+      { text: "All transport permits", value: 1 },
+      { text: "Past transport permits", value: 2 },
+      { text: "Credit history", value: 3 },
       // { text: "User Log (list of all users)", value: 4 },
       // { text: "Audit Log", value: 5 }
     ]
@@ -76,7 +79,8 @@ class ReportForm extends React.Component {
         return item
       }
     })
-    this.setState({ cityList })
+    // console.log("city list", cityList)
+    this.setState({ cityList, selectedCityIdx: cityList[0].value })
   }
 
   /**

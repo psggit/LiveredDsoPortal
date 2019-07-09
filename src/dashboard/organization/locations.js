@@ -3,6 +3,7 @@ import { locationsData } from "./../mock-data"
 import DataTable from "Components/table/custom-table"
 import Moment from "moment"
 import * as Api from "./../../api"
+import Notify from "Components/notification"
 
 class Locations extends React.Component {
   constructor() {
@@ -34,6 +35,7 @@ class Locations extends React.Component {
       })
       .catch((err) => {
         console.log("Error in fetching locations", err)
+        err.response.json().then(json => { Notify("danger", json.message) })
       })
   }
 

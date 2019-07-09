@@ -1,4 +1,5 @@
 import { POST, GET } from 'Utils/fetch'
+import Notify from 'Components/notification';
 
 //dev
 // const ottp = "https://79bd647f.ngrok.io"
@@ -27,7 +28,7 @@ export function createComplaint(payloadObj, successCallback, failureCallback) {
 		})
 		.catch(err => {
 			console.log("Error in creating complaint", err)
-			err.response.json().then(json => { Notify("danger", json.error) })
+			err.response.json().then(json => { Notify("danger", json.message) })
 			failureCallback()
 		})
 }
@@ -58,7 +59,7 @@ export function generateOttpReport(payloadObj, successCallback, failureCallback)
 		})
 		.catch(err => {
 			console.log("Error in creating ottp report", err)
-			//err.response.json().then(json => { Notify("danger", json.error) })
+			err.response.json().then(json => { Notify("danger", json.message) })
 			failureCallback()
 		})
 }
@@ -74,6 +75,7 @@ export function generateCreditReport(payloadObj, successCallback, failureCallbac
 		})
 		.catch(err => {
 			console.log("Error in creating credit report", err)
+			err.response.json().then(json => { Notify("danger", json.message) })
 			failureCallback()
 		})
 }
@@ -92,6 +94,7 @@ export function fetchCreditLog(payload, successCallback) {
 		})
 		.catch(err => {
 			console.log("Error in fetching credit log", err)
+			err.response.json().then(json => { Notify("danger", json.message) })
 			//err.response.json().then(json => { Notify("danger", json.error) })
 			//failureCallback()
 		})
@@ -131,8 +134,7 @@ export function fetchCompanyProfileDetails(payload, successCallback) {
 		})
 		.catch(err => {
 			console.log("Error in fetching company profile details", err)
-			//err.response.json().then(json => { Notify("danger", json.error) })
-			//failureCallback()
+			err.response.json().then(json => { Notify("danger", json.message) })
 		})
 }
 

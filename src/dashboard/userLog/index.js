@@ -7,6 +7,7 @@ import DataTable from "Components/table/custom-table"
 import { getQueryObj, getQueryUri } from "Utils/url-utils"
 import Pagination from "Components/pagination"
 import Search from "Components/search"
+import Notify from 'Components/notification'
 
 class UserLog extends React.Component {
   constructor() {
@@ -73,6 +74,7 @@ class UserLog extends React.Component {
         })
       })
       .catch((err) => {
+        err.response.json().then(json => { Notify("danger", json.message) })
         console.log("Error in fetching user logs", err)
       })
   }

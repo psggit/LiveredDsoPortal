@@ -7,6 +7,7 @@ import * as Api from "./../../api"
 import { stateShortName } from "Utils/static-data"
 import Dialog from "Components/dialog"
 import Button from "Components/button"
+import Notify from "Components/notification"
 
 class Reports extends React.Component {
   constructor() {
@@ -52,7 +53,8 @@ class Reports extends React.Component {
         this.formatResponse(response)
       })
       .catch((err) => {
-        console.log("Error in fetching state and cities")
+        console.log("Error in fetching state and cities", err)
+        err.response.json().then(json => { Notify("danger", json.message) })
       })
   }
 
@@ -79,10 +81,10 @@ class Reports extends React.Component {
    * @param {Object} payloadObj - payload object
    */
   generateReport(payloadObj) {
-    if (payloadObj.data_type.includes("OTTP")) {
-      Api.generateOttpReport(payloadObj, this.successCallback, this.failureCallback)
-    } else {
+    if (payloadObj.data_type.toLowerCase().includes("credit")) {
       Api.generateCreditReport(payloadObj, this.successCallback, this.failureCallback)
+    } else {
+      Api.generateOttpReport(payloadObj, this.successCallback, this.failureCallback)
     }
   }
 
