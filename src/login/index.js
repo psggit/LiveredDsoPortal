@@ -44,7 +44,7 @@ class Login extends React.Component {
   handleLogin(e) {
     e.preventDefault()
     document.cookie = "livered=123;"
-    createSession({ hasura_id: 123, dso_id: "SW123" })
+    createSession({ hasura_id: 123, dso_id: "SW400" })
     window.location.href = "/home/api"
     // const { email, password } = this.state
     // if (password.length && email.length) {
