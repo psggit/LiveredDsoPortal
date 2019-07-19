@@ -32,6 +32,7 @@ class Api extends React.Component {
     this.unMountApiKeyModal = this.unMountApiKeyModal.bind(this)
     this.deleteApiKey = this.deleteApiKey.bind(this)
     this.handleTextChange = this.handleTextChange.bind(this)
+    this.openApiDoc = this.openApiDoc.bind(this)
   }
 
   handleTextChange(e) {
@@ -46,6 +47,10 @@ class Api extends React.Component {
   generateApiKey() {
     this.setState({ generateKey: false })
     console.log("Generate api key", this.state.apiKey)
+  }
+
+  openApiDoc() {
+    window.open(`/api-doc.pdf`)
   }
 
   mountApiKeyModal(action) {
@@ -106,7 +111,8 @@ class Api extends React.Component {
                     }
                   </DataTable>
                   <div style={{ marginTop: '60px' }}>
-                    <Button danger>API Documentation</Button>
+                    <Button danger onClick={this.openApiDoc}>API Documentation</Button>
+                    {/* <Button danger><a target="_blank" href="/api-doc.pdf">API Documentation</a></Button> */}
                   </div>
                 </React.Fragment>
                 : <div> Currently no APIs available </div>

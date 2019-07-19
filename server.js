@@ -19,6 +19,15 @@ const env = process.env.NODE_ENV
 //   })
 // }
 
+app.get('*.pdf', (req, res) => {
+  console.log("pdf", __dirname, req.url)
+  res.sendFile(path.join(__dirname, `pdf/${req.url}`), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 app.use(express.static(path.join(__dirname, 'dist')))
 
 app.get('/*', (req, res) => {
