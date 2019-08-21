@@ -8,11 +8,9 @@ import SideMenu from 'Components/sidemenu'
 import 'Sass/app.scss'
 import Layout from 'Components/layout'
 import { menuItems } from './const/nav-items'
-//import Support from './dashboard/supportWithForm'
 import Support from './dashboard/supportWithoutForm'
 import Login from './login'
 import CreditManagement from "./dashboard/creditLog"
-// import AddCredits from "./dashboard/addCredits"
 import Reports from "./dashboard/reports"
 import Organization from "./dashboard/organization"
 import Account from "./dashboard/Account"

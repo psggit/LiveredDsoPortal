@@ -9,11 +9,11 @@ import Notify from 'Components/notification';
 // const rule = "https://d429cc52.ngrok.io"
 
 //prod
-const ottp = "https://ottp.livered-dev.com"
-export const dso = "https://dsomanagement.livered-dev.com"
-const credit = "https://credit.livered-dev.com"
-export const consumer = "https://consumer.livered-dev.com"
-const rule = "https://ruleengine.livered-dev.com"
+const ottp = "https://ottp-livered.hipbar-dev.com"
+export const dso = "https://dsomanagement-livered.hipbar-dev.com"
+const credit = "https://credit-livered.hipbar-dev.com"
+export const consumer = "https://consumer-livered.hipbar-dev.com"
+const rule = "https://ruleengine-livered.hipbar-dev.com"
 
 export function createComplaint(payloadObj, successCallback, failureCallback) {
 	return POST({
@@ -40,6 +40,12 @@ export function fetchUserLog(payloadObj) {
 		prependBaseUrl: false,
 		data: payloadObj
 	})
+		.then((response) => {
+			console.log("Successfully fetched user log")
+		})
+		.catch((error) => {
+			console.log("Error in fetching user log", error)
+		})
 }
 
 export function generateOttpReport(payloadObj, successCallback, failureCallback) {
@@ -109,6 +115,12 @@ export function fetchLocations(payload) {
 		prependBaseUrl: false,
 		data: payload
 	})
+		.then((response) => {
+			console.log("Successfully fetched locations")
+		})
+		.catch((error) => {
+			console.log("Error in fetching locations", error)
+		})
 }
 
 export function fetchCityAndStates(payload) {
@@ -118,6 +130,12 @@ export function fetchCityAndStates(payload) {
 		prependBaseUrl: false,
 		//data: payload
 	})
+		.then((response) => {
+			console.log("Successfully fetched cities and states")
+		})
+		.catch((error) => {
+			console.log("Error in fetching city and states", error)
+		})
 }
 
 export function fetchCompanyProfileDetails(payload, successCallback) {
