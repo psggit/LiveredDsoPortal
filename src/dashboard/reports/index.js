@@ -29,11 +29,12 @@ class Reports extends React.Component {
   }
 
   formatResponse(response) {
+    console.log("response", response)
     const cityList = response.cities.map((item) => {
       return {
         text: item.city_name,
         value: item.id,
-        stateId: item.StateId
+        stateId: item.state_id
       }
     })
 
@@ -43,7 +44,7 @@ class Reports extends React.Component {
         value: item.id
       }
     })
-
+    console.log("city", cityList, "state", stateList)
     this.setState({ stateList, cityList })
   }
 

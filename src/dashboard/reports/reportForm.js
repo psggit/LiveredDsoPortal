@@ -50,7 +50,7 @@ class ReportForm extends React.Component {
         // selectedStateIdx: newProps.stateList[0].value
       })
       const cityList = newProps.cityList.filter((item) => {
-        if (parseInt(item.stateId) === parseInt(newProps.stateList[0].value)) {
+        if (parseInt(item.state_id) === parseInt(newProps.stateList[0].value)) {
           return item
         }
       })
@@ -75,7 +75,7 @@ class ReportForm extends React.Component {
    */
   updateCityList(stateId) {
     const cityList = this.props.cityList.filter((item) => {
-      if (parseInt(item.stateId) === parseInt(stateId)) {
+      if (parseInt(item.state_id) === parseInt(stateId)) {
         return item
       }
     })
