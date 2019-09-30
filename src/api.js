@@ -7,11 +7,20 @@ import Notify from 'Components/notification';
 // const credit = "https://23fff800.ngrok.io"
 // export const consumer = "https://9800b602.ngrok.io"
 // const rule = "https://d429cc52.ngrok.io"
-const ottp = "http://192.168.5.84:3000"
-export const dso = "http://192.168.5.84:3002"
-const credit = "http://192.168.5.84:3004"
-export const consumer = "http://192.168.5.84:3003"
-const rule = "http://192.168.5.84:3005"
+
+// const ottp = "http://192.168.5.84:3000"
+// export const dso = "http://192.168.5.84:3002"
+// const credit = "http://192.168.5.84:3004"
+// export const consumer = "http://192.168.5.84:3003"
+// const rule = "http://192.168.5.84:3005"
+// const fence = "http://192.168.5.84:3006"
+
+const ottp = "https://ottp-livered.hipbar-dev.com"
+export const dso = "https://dsomanagement-livered.hipbar-dev.com"
+const credit = "https://credit-livered.hipbar-dev.com"
+export const consumer = "https://consumer-livered.hipbar-dev.com"
+const rule = "https://ruleengine-livered.hipbar-dev.com"
+const fence = "https://loki-livered.hipbar-dev.com"
 
 //prod
 // const ottp = "https://ottp-livered.hipbar-dev.com"
@@ -100,14 +109,11 @@ export function fetchCreditLog(payload, successCallback) {
 		data: payload
 	})
 		.then((json) => {
-			//Notify("success", "Complaint created")
 			successCallback(json)
 		})
 		.catch(err => {
 			console.log("Error in fetching credit log", err)
 			err.response.json().then(json => { Notify("danger", json.message) })
-			//err.response.json().then(json => { Notify("danger", json.error) })
-			//failureCallback()
 		})
 }
 
@@ -130,7 +136,7 @@ export function fetchLocations(payload) {
 
 export function fetchCityAndStates(payload) {
 	return GET({
-		api: `${ottp}/livered/ottp/getCityAndStates`,
+		api: `${fence}/liveredFence/getStore`,
 		handleError: true,
 		prependBaseUrl: false,
 		//data: payload

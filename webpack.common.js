@@ -20,13 +20,15 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Output Management',
       template: './index.html'
-    })
+    }),
+    // new webpack.DefinePlugin({
+    //   "process.env.BASE_URL": JSON.stringify(process.env.BASE_URL || "hipbar-dev.com"),
+    // }),
   ],
   output: {
     filename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
-
   },
   module: {
     rules: [
