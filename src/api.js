@@ -136,7 +136,7 @@ export function fetchLocations(payload) {
 
 export function fetchCityAndStates(payload) {
 	return GET({
-		api: `${fence}/liveredFence/getStore`,
+		api: `${fence}/liveredFence/getCityAndState`,
 		handleError: true,
 		prependBaseUrl: false,
 		//data: payload

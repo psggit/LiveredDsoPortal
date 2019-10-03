@@ -125,6 +125,7 @@ class CreditManagement extends React.Component {
             <DataTable
               headings={this.creditLogTableHeaders}
               loadingData={loadingCreditLogs}
+              message="No credit log's found"
               className="logs"
             >
               {

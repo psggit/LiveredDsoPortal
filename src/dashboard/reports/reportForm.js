@@ -74,12 +74,13 @@ class ReportForm extends React.Component {
    * @param {String} stateId 
    */
   updateCityList(stateId) {
+    //console.log("state id", stateId, this.props.cityList)
     const cityList = this.props.cityList.filter((item) => {
-      if (parseInt(item.state_id) === parseInt(stateId)) {
+      if (parseInt(item.stateId) === parseInt(stateId)) {
         return item
       }
     })
-    // console.log("city list", cityList)
+    //console.log("city list", cityList)
     this.setState({ cityList, selectedCityIdx: cityList[0].value })
   }
 
