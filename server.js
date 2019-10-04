@@ -1,11 +1,7 @@
 const express = require('express')
 const path = require('path')
 const ReactDOMServer = require('react-dom/server')
-// const App = require('./src')
-
 const app = express()
-
-// console.log(app);
 
 const env = process.env.NODE_ENV
 
@@ -20,7 +16,6 @@ const env = process.env.NODE_ENV
 // }
 
 app.get('*.pdf', (req, res) => {
-  console.log("pdf", __dirname, req.url)
   res.sendFile(path.join(__dirname, `pdf/${req.url}`), (err) => {
     if (err) {
       res.status(500).send(err)
@@ -31,8 +26,6 @@ app.get('*.pdf', (req, res) => {
 app.use(express.static(path.join(__dirname, 'dist')))
 
 app.get('/*', (req, res) => {
-  // const html = ReactDOMServer.renderToString(App)
-  // res.render(html)
   res.sendFile(path.join(__dirname, 'dist/index.html'), (err) => {
     if (err) {
       res.status(500).send(err)
@@ -41,4 +34,4 @@ app.get('/*', (req, res) => {
 })
 
 app.listen(process.argv[2] || 8080)
-console.log('Server is running on the port 8080')
+console.log("Server is running on the port 8080")
